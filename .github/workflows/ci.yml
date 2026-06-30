@@ -15,19 +15,10 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: ['8.1', '8.2', '8.3', '8.4', '8.5']
-        symfony: ['6.4', '7.0', '7.4', '8.0', '8.1']
+        php: ['8.2', '8.3', '8.4', '8.5']
+        symfony: ['7.0', '7.4', '8.0', '8.1']
         exclude:
-          # PHP 8.1 doesn't support Symfony 7.0+ (requires PHP 8.2+) and Symfony 8.0, 8.1 (requires PHP 8.4+)
-          - php: '8.1'
-            symfony: '7.0'
-          - php: '8.1'
-            symfony: '7.4'
-          - php: '8.1'
-            symfony: '8.0'
-          - php: '8.1'
-            symfony: '8.1'
-          # PHP 8.2 and 8.3 don't support Symfony 8.0, 8.1 (requires PHP 8.4+)
+          # Symfony 8.0 and 8.1 require PHP 8.4+
           - php: '8.2'
             symfony: '8.0'
           - php: '8.2'
@@ -81,8 +72,8 @@ jobs:
           fi
           echo "✅ All tests passed successfully"
 
-      - name: Validate coverage (PHP 8.2 with Symfony 7.0 only)
-        if: matrix.php == '8.2' && matrix.symfony == '7.0'
+      - name: Validate coverage (PHP 8.2 with Symfony 7.4 only)
+        if: matrix.php == '8.2' && matrix.symfony == '7.4'
         run: |
           echo "📊 Generating coverage report..."
           composer test-coverage

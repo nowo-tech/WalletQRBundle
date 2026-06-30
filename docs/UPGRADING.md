@@ -2,6 +2,14 @@
 
 This document describes how to upgrade between versions of Wallet QR Bundle.
 
+## 2.x
+
+### 2.0.0
+
+- **Breaking:** PHP **8.2+** and Symfony **^7.0 || ^8.0** are now required.
+- Upgrade your application to PHP 8.2+ and Symfony 7 or 8 before updating the bundle.
+- Stay on **1.1.x** if you still run PHP 8.1 or Symfony 6.
+
 ## 1.x
 
 ### 1.1.0

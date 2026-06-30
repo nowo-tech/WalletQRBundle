@@ -25,7 +25,7 @@ The demos use:
 - **Two Caddyfiles**: `Caddyfile` (production, with worker) and `Caddyfile.dev` (development, no worker).
 - An **entrypoint** that, when `APP_ENV=dev`, copies `Caddyfile.dev` over the default Caddyfile and then starts FrankenPHP.
 
-There are demos for **Symfony 6**, **7**, **8** and **8 (PHP 8.5)** (e.g. **demo/symfony6**, **demo/symfony7**, **demo/symfony8**, **demo/symfony8-php85**). Each has its own Dockerfile, docker-compose.yml and Makefile. From the bundle root you run e.g. `make -C demo/symfony8 up` (see the demo's README for the URL and port).
+There are demos for **Symfony 7**, **8** and **8 (PHP 8.5)** (e.g. **demo/symfony7**, **demo/symfony8**, **demo/symfony8-php85**). A legacy **demo/symfony6** remains in the repository but is outside the bundle's supported Symfony range. Each demo has its own Dockerfile, docker-compose.yml and Makefile. From the bundle root you run e.g. `make -C demo/symfony8 up` (see the demo's README for the URL and port).
 
 The main difference between development and production is:
 
