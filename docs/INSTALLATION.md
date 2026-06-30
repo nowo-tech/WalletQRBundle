@@ -2,8 +2,8 @@
 
 ## Requirements
 
-- PHP 8.1 or higher
-- Symfony 6.x, 7.x, or 8.x
+- PHP 8.2 or higher
+- Symfony 7.x or 8.x
 - Google Cloud service account JSON key (for Google Wallet / Android)
 - HTTPS endpoint serving `.pkpass` files (for Apple Wallet / iOS)
 

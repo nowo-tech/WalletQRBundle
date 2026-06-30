@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-06-30
+
+### Changed
+
+- **Breaking:** minimum PHP raised to **8.2**; minimum Symfony raised to **7.0** (`^7.0 || ^8.0`). Symfony 6 and PHP 8.1 are no longer supported.
+- CI matrix aligned: PHP 8.2–8.5, Symfony 7.0 / 7.4 / 8.0 / 8.1.
+- Documentation updated for new requirements (README, INSTALLATION, CONTRIBUTING, DEMO-FRANKENPHP).
+
 ## [1.1.0] - 2026-06-30
 
 ### Added

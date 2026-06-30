@@ -4,8 +4,8 @@
 [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/wallet-qr-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle)
 [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/wallet-qr-bundle.svg)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PHP](https://img.shields.io/badge/PHP-8.1%2B-777BB4?logo=php)](https://php.net)
-[![Symfony](https://img.shields.io/badge/Symfony-6.0%2B%20%7C%207.4%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net)
+[![Symfony](https://img.shields.io/badge/Symfony-7.0%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com)
 [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/wallet-qr-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/WalletQrBundle)
 [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
 
@@ -13,7 +13,7 @@
 
 **Symfony bundle to generate Google Wallet (Android) and Apple Wallet (iOS) save links with QR codes.**
 
-> 📋 **Compatible with Symfony 6.x, 7.x, and 8.x**
+> 📋 **Requires PHP 8.2+ and Symfony 7.x or 8.x**
 
 ## Features
 
@@ -22,7 +22,7 @@
 - ✅ PNG QR codes as data URIs (Twig helpers included)
 - ✅ Pair generation for Android + iOS in one call
 - ✅ Symfony configuration under `nowo_wallet_qr`
-- ✅ Demo apps for Symfony 6, 7, and 8 (FrankenPHP)
+- ✅ Demo apps for Symfony 7 and 8 (FrankenPHP)
 
 ## Quick start
 
