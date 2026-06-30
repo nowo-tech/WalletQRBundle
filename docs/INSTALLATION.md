@@ -40,3 +40,11 @@ php bin/console debug:container WalletQrService
 ## Demo
 
 See [Demo with FrankenPHP](DEMO-FRANKENPHP.md).
+
+## Symfony Flex recipe
+
+When using Symfony Flex, the recipe at `.symfony/recipe/nowo-tech/wallet-qr-bundle/0.1/` copies:
+
+- `config/packages/nowo_wallet_qr.yaml` — default bundle configuration
+
+See `post-install.txt` in the recipe for next steps after `composer require`.

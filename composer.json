@@ -14,10 +14,10 @@
         "android",
         "ios"
     ],
-    "homepage": "https://github.com/nowo-tech/wallet-qr-bundle",
+    "homepage": "https://github.com/nowo-tech/WalletQrBundle",
     "support": {
-        "issues": "https://github.com/nowo-tech/wallet-qr-bundle/issues",
-        "source": "https://github.com/nowo-tech/wallet-qr-bundle"
+        "issues": "https://github.com/nowo-tech/WalletQrBundle/issues",
+        "source": "https://github.com/nowo-tech/WalletQrBundle"
     },
     "authors": [
         {

@@ -24,7 +24,7 @@ This project adheres to a code of conduct. By participating, you are expected to
 
 If you find a bug, please:
 
-1. **Check that the bug hasn't already been reported** in the [issues](https://github.com/nowo-tech/wallet-qr-bundle/issues)
+1. **Check that the bug hasn't already been reported** in the [issues](https://github.com/nowo-tech/WalletQrBundle/issues)
 2. **Create a new issue** with:
    - A descriptive title
    - Steps to reproduce the problem
@@ -36,7 +36,7 @@ If you find a bug, please:
 
 Enhancement suggestions are welcome:
 
-1. **Check that the enhancement hasn't already been suggested** in the [issues](https://github.com/nowo-tech/wallet-qr-bundle/issues)
+1. **Check that the enhancement hasn't already been suggested** in the [issues](https://github.com/nowo-tech/WalletQrBundle/issues)
 2. **Create a new issue** with:
    - A descriptive title
    - Detailed description of the proposed enhancement
@@ -169,15 +169,19 @@ open coverage/index.html
 ## Project Structure
 
 ```
-wallet-qr-bundle/
+WalletQrBundle/
 ├── src/                    # Bundle source code
-│   ├── DependencyInjection/ # Bundle configuration
-│   ├── Form/               # Form types
-│   └── Resources/          # Resources (templates, assets)
-├── tests/                  # Tests
-├── demo/                   # Demo project
+│   ├── DependencyInjection/
+│   ├── GoogleWallet/
+│   ├── AppleWallet/
+│   ├── QrCode/
+│   ├── Service/
+│   ├── Twig/
+│   └── Resources/
+├── tests/                  # Unit and integration tests
+├── demo/                   # Demo applications (Symfony 6, 7, 8)
 ├── .github/                # GitHub configuration
-└── docs/                   # Additional documentation (if any)
+└── docs/                   # Documentation
 ```
 
 ## Demos
