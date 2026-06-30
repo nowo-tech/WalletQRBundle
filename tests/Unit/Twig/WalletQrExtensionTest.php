@@ -8,6 +8,7 @@ use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Service\WalletQrService;
 use Nowo\WalletQrBundle\Twig\WalletQrExtension;
 use PHPUnit\Framework\TestCase;
+use Twig\TwigFunction;
 
 final class WalletQrExtensionTest extends TestCase
 {
@@ -26,5 +27,18 @@ final class WalletQrExtensionTest extends TestCase
         $walletQr  = $service->createQrForUrl(WalletPlatform::Android, 'https://example.com');
 
         $this->assertSame($walletQr->qrCodeDataUri, $extension->walletQrDataUri($walletQr));
+    }
+
+    public function testGetFunctions(): void
+    {
+        $extension = new WalletQrExtension(new WalletQrService(new \Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer()));
+        $functions = $extension->getFunctions();
+
+        $this->assertCount(2, $functions);
+        $this->assertContainsOnlyInstancesOf(TwigFunction::class, $functions);
+        $this->assertSame(
+            ['wallet_qr_data_uri', 'wallet_qr_for_url'],
+            array_map(static fn (TwigFunction $function): string => $function->getName(), $functions),
+        );
     }
 }

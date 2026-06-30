@@ -1,6 +1,6 @@
 {
     "name": "nowo-tech/wallet-qr-demo-symfony7",
-    "description": "Demo project for Wallet QR Bundle - Symfony 7.0",
+    "description": "Demo project for Wallet QR Bundle - Symfony 7.4",
     "type": "project",
     "license": "MIT",
     "minimum-stability": "dev",
@@ -80,7 +80,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.0.*"
+            "require": "7.4.*"
         }
     },
     "repositories": [
