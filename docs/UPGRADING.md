@@ -4,6 +4,13 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 2.x
 
+### 2.1.0
+
+- **URL validation:** `createQrForUrl` and `wallet_qr_for_url` now reject non-http(s) schemes (`javascript:`, `data:`, etc.) with `InvalidWalletQrUrlException`. If you passed only valid https URLs, no change is required.
+- **Optional allowlist:** set `qr_code.url_allowlist` to restrict which hosts/URLs can be encoded (see [Configuration](CONFIGURATION.md)).
+- **Manual instantiation:** if you construct `WalletQrService` yourself (outside DI), pass `QrUrlPolicy` as the second constructor argument.
+- **Demos:** `demo/symfony6` removed; use `demo/symfony7`, `demo/symfony8`, or `demo/symfony8-php85`.
+
 ### 2.0.0
 
 - **Breaking:** PHP **8.2+** and Symfony **^7.0 || ^8.0** are now required.

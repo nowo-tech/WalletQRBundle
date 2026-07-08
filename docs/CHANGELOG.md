@@ -4,6 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-07-08
+
+### Added
+
+- `QrUrlPolicy` validates URLs in `createQrForUrl` and `wallet_qr_for_url` (http/https only; blocks `javascript:`, `data:`, etc.).
+- `InvalidWalletQrUrlException` when a URL is rejected.
+- Configuration key `qr_code.url_allowlist` for optional host/URL pattern restrictions.
+- GitHub Spec Kit baseline (`specs/001-baseline/`), operator manual (`docs/SPEC-KIT.md`), and Cursor Agent skills.
+
+### Changed
+
+- `WalletQrService` requires `QrUrlPolicy` (injected automatically via Symfony DI).
+- Removed legacy `demo/symfony6` (outside supported Symfony 7+ range).
+- Demo projects refreshed (Symfony 7.4 / 8.1, debug bundles, dependency updates).
+- Documentation: CONFIGURATION, USAGE, SPEC-DRIVEN-DEVELOPMENT, DEMO-FRANKENPHP, CONTRIBUTING.
+
 ## [2.0.0] - 2026-06-30
 
 ### Changed

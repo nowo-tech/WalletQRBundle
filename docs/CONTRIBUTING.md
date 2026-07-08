@@ -179,7 +179,7 @@ WalletQrBundle/
 │   ├── Twig/
 │   └── Resources/
 ├── tests/                  # Unit and integration tests
-├── demo/                   # Demo applications (Symfony 7, 8; symfony6 kept for reference)
+├── demo/                   # Demo applications (Symfony 7, 8)
 ├── .github/                # GitHub configuration
 └── docs/                   # Documentation
 ```

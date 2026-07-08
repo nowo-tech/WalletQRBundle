@@ -7,4 +7,5 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Nowo\WalletQrBundle\NowoWalletQrBundle::class => ['all' => true],
     Nowo\TwigInspectorBundle\NowoTwigInspectorBundle::class => ['dev' => true, 'test' => true],
+    Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true],
 ];

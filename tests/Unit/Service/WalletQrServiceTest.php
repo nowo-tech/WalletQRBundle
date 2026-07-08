@@ -6,10 +6,12 @@ namespace Nowo\WalletQrBundle\Tests\Unit\Service;
 
 use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
+use Nowo\WalletQrBundle\Exception\InvalidWalletQrUrlException;
 use Nowo\WalletQrBundle\Exception\WalletConfigurationException;
 use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilder;
 use Nowo\WalletQrBundle\Model\GoogleWalletPassReference;
 use Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer;
+use Nowo\WalletQrBundle\Security\QrUrlPolicy;
 use Nowo\WalletQrBundle\Service\WalletQrService;
 use PHPUnit\Framework\TestCase;
 
@@ -26,7 +28,7 @@ final class WalletQrServiceTest extends TestCase
 
     public function testCreateQrForUrl(): void
     {
-        $service = new WalletQrService(new QrCodeDataUriRenderer());
+        $service = new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy());
         $result  = $service->createQrForUrl(WalletPlatform::Android, 'https://example.com/save');
 
         $this->assertSame(WalletPlatform::Android, $result->link->platform);
@@ -34,10 +36,19 @@ final class WalletQrServiceTest extends TestCase
         $this->assertStringStartsWith('data:image/png;base64,', $result->qrCodeDataUri);
     }
 
+    public function testCreateQrForUrlRejectsUnsafeScheme(): void
+    {
+        $this->expectException(InvalidWalletQrUrlException::class);
+
+        $service = new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy());
+        $service->createQrForUrl(WalletPlatform::Android, 'javascript:alert(1)');
+    }
+
     public function testCreateGoogleWalletQr(): void
     {
         $service = new WalletQrService(
             new QrCodeDataUriRenderer(),
+            new QrUrlPolicy(),
             new GoogleWalletSaveLinkBuilder('3388000000000000000', $this->fixturePath),
         );
 
@@ -52,6 +63,7 @@ final class WalletQrServiceTest extends TestCase
     {
         $service = new WalletQrService(
             new QrCodeDataUriRenderer(),
+            new QrUrlPolicy(),
             null,
             new AppleWalletPassLinkBuilder('https://example.com/{pass_id}.pkpass'),
         );
@@ -66,6 +78,7 @@ final class WalletQrServiceTest extends TestCase
     {
         $service = new WalletQrService(
             new QrCodeDataUriRenderer(),
+            new QrUrlPolicy(),
             new GoogleWalletSaveLinkBuilder('3388000000000000000', $this->fixturePath),
             new AppleWalletPassLinkBuilder('https://example.com/{pass_id}.pkpass'),
         );
@@ -83,7 +96,7 @@ final class WalletQrServiceTest extends TestCase
     {
         $this->expectException(WalletConfigurationException::class);
 
-        $service = new WalletQrService(new QrCodeDataUriRenderer());
+        $service = new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy());
         $service->createGoogleWalletQr(
             GoogleWalletPassReference::withIssuer('3388000000000000000', 'OBJ', 'CLS'),
         );
@@ -93,7 +106,7 @@ final class WalletQrServiceTest extends TestCase
     {
         $this->expectException(WalletConfigurationException::class);
 
-        $service = new WalletQrService(new QrCodeDataUriRenderer());
+        $service = new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy());
         $service->createAppleWalletQr('ticket-42');
     }
 }
