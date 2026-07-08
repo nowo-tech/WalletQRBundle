@@ -83,6 +83,11 @@ class Configuration implements ConfigurationInterface
                                 ->thenInvalid('qr_code.error_correction must be a string')
                             ->end()
                         ->end()
+                        ->arrayNode('url_allowlist')
+                            ->defaultValue([])
+                            ->info('Optional host/URL patterns for createQrForUrl (substring or #regex). Empty = any http(s) URL.')
+                            ->scalarPrototype()->end()
+                        ->end()
                     ->end()
                 ->end()
             ->end();

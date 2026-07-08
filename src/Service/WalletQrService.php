@@ -12,6 +12,7 @@ use Nowo\WalletQrBundle\Model\GoogleWalletPassReference;
 use Nowo\WalletQrBundle\Model\WalletLink;
 use Nowo\WalletQrBundle\Model\WalletQr;
 use Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer;
+use Nowo\WalletQrBundle\Security\QrUrlPolicy;
 
 /**
  * High-level API to create wallet save links and QR codes for Android and iOS.
@@ -20,6 +21,7 @@ final class WalletQrService
 {
     public function __construct(
         private readonly QrCodeDataUriRenderer $qrCodeRenderer,
+        private readonly QrUrlPolicy $qrUrlPolicy,
         private readonly ?GoogleWalletSaveLinkBuilder $googleWalletSaveLinkBuilder = null,
         private readonly ?AppleWalletPassLinkBuilder $appleWalletPassLinkBuilder = null,
     ) {
@@ -68,6 +70,8 @@ final class WalletQrService
 
     public function createQrForUrl(WalletPlatform $platform, string $url): WalletQr
     {
+        $this->qrUrlPolicy->assertAllowed($url);
+
         $link = new WalletLink($platform, $url);
 
         return new WalletQr($link, $this->qrCodeRenderer->renderDataUri($url));

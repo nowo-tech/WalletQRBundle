@@ -37,6 +37,7 @@ final class ConfigurationTest extends TestCase
         $this->assertSame(300, $config['qr_code']['size']);
         $this->assertSame(10, $config['qr_code']['margin']);
         $this->assertSame('high', $config['qr_code']['error_correction']);
+        $this->assertSame([], $config['qr_code']['url_allowlist']);
     }
 
     public function testCustomConfiguration(): void

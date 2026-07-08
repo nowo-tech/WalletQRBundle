@@ -11,3 +11,4 @@ nowo_wallet_qr:
         size: 300
         margin: 10
         error_correction: high
+        url_allowlist: []

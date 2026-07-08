@@ -22,6 +22,7 @@
 - ✅ PNG QR codes as data URIs (Twig helpers included)
 - ✅ Pair generation for Android + iOS in one call
 - ✅ Symfony configuration under `nowo_wallet_qr`
+- ✅ URL validation for custom QR links (`QrUrlPolicy`; optional host allowlist)
 - ✅ Demo apps for Symfony 7 and 8 (FrankenPHP)
 
 ## Quick start
@@ -71,6 +72,7 @@ $pair = $walletQrService->createWalletQrPair($reference, applePassId: 'MEMBER_00
 - [Security](docs/SECURITY.md)
 - [Engram](docs/ENGRAM.md)
 - [Spec-driven development](docs/SPEC-DRIVEN-DEVELOPMENT.md)
+- [GitHub Spec Kit](docs/SPEC-KIT.md)
 
 ### Additional documentation
 

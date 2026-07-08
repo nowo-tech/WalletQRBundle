@@ -16,6 +16,10 @@ services:
       $margin: '%nowo_wallet_qr.config.qr_code.margin%'
       $errorCorrection: '%nowo_wallet_qr.config.qr_code.error_correction%'
 
+  Nowo\WalletQrBundle\Security\QrUrlPolicy:
+    arguments:
+      $hostAllowlist: '%nowo_wallet_qr.config.qr_code.url_allowlist%'
+
   Nowo\WalletQrBundle\Service\WalletQrService:
     arguments:
       $googleWalletSaveLinkBuilder: '@?nowo_wallet_qr.google_wallet.save_link_builder'

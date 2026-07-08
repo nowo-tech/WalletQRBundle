@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Nowo\WalletQrBundle\Tests\Unit\Twig;
 
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
+use Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer;
+use Nowo\WalletQrBundle\Security\QrUrlPolicy;
 use Nowo\WalletQrBundle\Service\WalletQrService;
 use Nowo\WalletQrBundle\Twig\WalletQrExtension;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +16,7 @@ final class WalletQrExtensionTest extends TestCase
 {
     public function testWalletQrForUrl(): void
     {
-        $extension = new WalletQrExtension(new WalletQrService(new \Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer()));
+        $extension = new WalletQrExtension(new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy()));
         $result    = $extension->walletQrForUrl('ios', 'https://example.com/pass.pkpass');
 
         $this->assertSame(WalletPlatform::Ios, $result->link->platform);
@@ -22,7 +24,7 @@ final class WalletQrExtensionTest extends TestCase
 
     public function testWalletQrDataUri(): void
     {
-        $service   = new WalletQrService(new \Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer());
+        $service   = new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy());
         $extension = new WalletQrExtension($service);
         $walletQr  = $service->createQrForUrl(WalletPlatform::Android, 'https://example.com');
 
@@ -31,7 +33,7 @@ final class WalletQrExtensionTest extends TestCase
 
     public function testGetFunctions(): void
     {
-        $extension = new WalletQrExtension(new WalletQrService(new \Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer()));
+        $extension = new WalletQrExtension(new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy()));
         $functions = $extension->getFunctions();
 
         $this->assertCount(2, $functions);

@@ -51,6 +51,10 @@ $pair = $this->walletQrService->createWalletQrPair(
 
 ## Custom URL QR
 
+`createQrForUrl` and the Twig helper `wallet_qr_for_url` only accept **http** or **https** URLs with a valid host. Schemes such as `javascript:` or `data:` are rejected with `InvalidWalletQrUrlException`.
+
+Optionally restrict hosts with `qr_code.url_allowlist` (see [Configuration](CONFIGURATION.md)).
+
 ```php
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
 
