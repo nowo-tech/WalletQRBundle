@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.1.1] - 2026-07-08
+
+### Fixed
+
+- Test coverage for `QrUrlPolicy` and `InvalidWalletQrUrlException` restored to **100%** (CI coverage gate).
+
 ## [2.1.0] - 2026-07-08
 
 ### Added

@@ -4,6 +4,10 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 2.x
 
+### 2.1.1
+
+- **No action required.** Test-only patch; runtime behaviour unchanged since 2.1.0.
+
 ### 2.1.0
 
 - **URL validation:** `createQrForUrl` and `wallet_qr_for_url` now reject non-http(s) schemes (`javascript:`, `data:`, etc.) with `InvalidWalletQrUrlException`. If you passed only valid https URLs, no change is required.
