@@ -4,6 +4,10 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 2.x
 
+### 2.1.2
+
+- **No action required.** Maintenance release: dev lock sync and `.gitignore` only; no API or runtime changes.
+
 ### 2.1.1
 
 - **No action required.** Test-only patch; runtime behaviour unchanged since 2.1.0.
