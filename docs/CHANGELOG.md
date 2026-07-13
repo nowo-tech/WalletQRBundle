@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.1.2] - 2026-07-13
+
+### Changed
+
+- Dev dependency lock sync (`friendsofphp/php-cs-fixer`, `rector/rector`) and demo `composer.lock` files aligned.
+- `.gitignore`: ignore local Cursor sandbox file (`.cursor/sandbox.json`).
+
 ## [2.1.1] - 2026-07-08
 
 ### Fixed
