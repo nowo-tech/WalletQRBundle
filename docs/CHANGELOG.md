@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.1.3] - 2026-07-16
+
+### Added
+
+- CI job and local tooling for **REQ-GIT-001** (no Cursor co-author trailers): `.scripts/check-no-cursor-coauthor.sh`, `.githooks/commit-msg`, `make check-no-cursor-coauthor` / `make strip-cursor-coauthor-from-history`.
+- [Code of Conduct](../CODE_OF_CONDUCT.md) and [GitHub Actions CI requirements](GITHUB_CI.md).
+- Cursor rule `.cursor/rules/01-git-commits.mdc`.
+
+### Changed
+
+- `make release-check` and `make setup-hooks` include git-hygiene checks.
+- CONTRIBUTING and RELEASE docs updated for REQ-GIT-001.
+- Dev and demo `composer.lock` files synced.
+
 ## [2.1.2] - 2026-07-13
 
 ### Changed

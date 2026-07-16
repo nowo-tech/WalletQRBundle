@@ -4,6 +4,11 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 2.x
 
+### 2.1.3
+
+- **No action required** for application code. Maintenance release: git hygiene (REQ-GIT-001), Code of Conduct, CI docs, and lock sync; no API or runtime changes.
+- **Contributors:** run `make setup-hooks` so `commit-msg` strips accidental Cursor co-author trailers. See [GITHUB_CI.md](GITHUB_CI.md).
+
 ### 2.1.2
 
 - **No action required.** Maintenance release: dev lock sync and `.gitignore` only; no API or runtime changes.

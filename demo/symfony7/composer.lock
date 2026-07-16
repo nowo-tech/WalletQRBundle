@@ -332,7 +332,7 @@
             "dist": {
                 "type": "path",
                 "url": "/var/wallet-qr-bundle",
-                "reference": "458f95cb0064ac5af1e4adf7ff55f51d50672443"
+                "reference": "84b302be3a185edddd85a05fa05da6d79d2f42b6"
             },
             "require": {
                 "endroid/qr-code": "^6.0",

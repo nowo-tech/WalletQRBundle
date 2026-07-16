@@ -332,7 +332,7 @@
             "dist": {
                 "type": "path",
                 "url": "/var/wallet-qr-bundle",
-                "reference": "458f95cb0064ac5af1e4adf7ff55f51d50672443"
+                "reference": "84b302be3a185edddd85a05fa05da6d79d2f42b6"
             },
             "require": {
                 "endroid/qr-code": "^6.0",
@@ -3813,16 +3813,16 @@
         },
         {
             "name": "symfony/ux-icons",
-            "version": "v3.2.0",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-icons.git",
-                "reference": "a6b81d5953d5f963fc8f27a3584213d242406ca1"
+                "reference": "449a8873a8077fc21ac2bd98a453c247c320cdd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/a6b81d5953d5f963fc8f27a3584213d242406ca1",
-                "reference": "a6b81d5953d5f963fc8f27a3584213d242406ca1",
+                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/449a8873a8077fc21ac2bd98a453c247c320cdd5",
+                "reference": "449a8873a8077fc21ac2bd98a453c247c320cdd5",
                 "shasum": ""
             },
             "require": {
@@ -3882,7 +3882,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-icons/tree/v3.2.0"
+                "source": "https://github.com/symfony/ux-icons/tree/v3.3.0"
             },
             "funding": [
                 {
