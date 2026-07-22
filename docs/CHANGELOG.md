@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [2.1.4] - 2026-07-22
+
+### Changed
+
+- Demo FrankenPHP entrypoints use **`FRANKENPHP_MODE`** (`classic` \| `worker`, default `worker`) instead of switching Caddyfile from `APP_ENV` alone (REQ-DEMO-010).
+- Shared `docker/entrypoint.sh` in Symfony 7 / 8 / 8-php85 demos; documented in [DEMO-FRANKENPHP.md](DEMO-FRANKENPHP.md).
+- PHP CS Fixer: `fully_qualified_strict_types` with `import_symbols: true`.
+
 ## [2.1.3] - 2026-07-16
 
 ### Added

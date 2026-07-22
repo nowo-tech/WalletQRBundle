@@ -4,6 +4,10 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 2.x
 
+### 2.1.4
+
+- **No action required** for applications using the Packagist package. Demo-only: FrankenPHP mode is controlled with `FRANKENPHP_MODE` (`classic` or `worker`). See [DEMO-FRANKENPHP.md](DEMO-FRANKENPHP.md) if you run or copy the bundled demos.
+
 ### 2.1.3
 
 - **No action required** for application code. Maintenance release: git hygiene (REQ-GIT-001), Code of Conduct, CI docs, and lock sync; no API or runtime changes.

@@ -44,6 +44,8 @@ There is no separate executable spec language (for example Gherkin); Spec Kit sp
 | ID | Where | What it marks |
 | --- | --- | --- |
 | REQ-MAKE-008 | Root and demo `Makefile` | Shared `update-deps` targets (monorepo `.scripts`) |
+| REQ-GIT-001 | CI, `.scripts/`, `.githooks/commit-msg` | No Cursor co-author trailers in git history |
+| REQ-DEMO-010 | Demo `docker/entrypoint.sh`, `.env.example` | `FRANKENPHP_MODE` classic \| worker |
 
 ---
 
