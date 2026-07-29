@@ -2,6 +2,13 @@
 
 All options live under the `nowo_wallet_qr` root key.
 
+## Table of contents
+
+- [Google Wallet (Android)](#google-wallet-android)
+- [Apple Wallet (iOS)](#apple-wallet-ios)
+- [QR code rendering](#qr-code-rendering)
+- [Environment variables](#environment-variables)
+
 ## Google Wallet (Android)
 
 | Key | Type | Default | Description |

@@ -13,7 +13,7 @@ use function is_string;
 /**
  * Configuration definition for Wallet QR Bundle.
  */
-class Configuration implements ConfigurationInterface
+final class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder(): TreeBuilder
     {

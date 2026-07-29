@@ -32,6 +32,8 @@ final class NowoWalletQrExtensionTest extends TestCase
 
         $this->assertTrue($container->hasDefinition(WalletQrService::class));
         $this->assertTrue($container->hasParameter('nowo_wallet_qr.config'));
+        $this->assertSame(300, $container->getParameter('nowo_wallet_qr.config.qr_code.size'));
+        $this->assertSame([], $container->getParameter('nowo_wallet_qr.config.qr_code.url_allowlist'));
     }
 
     public function testLoadRegistersGoogleWalletBuilderWhenEnabled(): void

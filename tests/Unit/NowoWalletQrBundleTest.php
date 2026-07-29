@@ -10,15 +10,14 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 final class NowoWalletQrBundleTest extends TestCase
 {
-    public function testBundleExtendsSymfonyBundle(): void
+    public function testBundleName(): void
     {
-        $this->assertSame(NowoWalletQrBundle::class, (new NowoWalletQrBundle())::class);
+        $this->assertSame('NowoWalletQrBundle', (new NowoWalletQrBundle())->getName());
     }
 
     public function testBundleHasContainerExtension(): void
     {
         $extension = (new NowoWalletQrBundle())->getContainerExtension();
-        $this->assertNotNull($extension);
         $this->assertSame('nowo_wallet_qr', $extension->getAlias());
     }
 

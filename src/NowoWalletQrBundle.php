@@ -15,18 +15,15 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * @author Héctor Franco Aceituno <hectorfranco@nowo.tech>
  * @copyright 2026 Nowo.tech
  */
-class NowoWalletQrBundle extends Bundle
+final class NowoWalletQrBundle extends Bundle
 {
-    public function getContainerExtension(): ?ExtensionInterface
+    public function getContainerExtension(): ExtensionInterface
     {
         if (!$this->extension instanceof ExtensionInterface) {
             $this->extension = new NowoWalletQrExtension();
         }
 
-        $extension = $this->extension;
-
-        /* @phpstan-ignore identical.alwaysFalse */
-        return $extension === false ? null : $extension;
+        return $this->extension;
     }
 
     public function build(ContainerBuilder $container): void

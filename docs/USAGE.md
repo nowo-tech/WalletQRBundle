@@ -1,5 +1,15 @@
 # Usage
 
+## Table of contents
+
+- [Inject the service](#inject-the-service)
+- [Google Wallet QR (Android)](#google-wallet-qr-android)
+- [Apple Wallet QR (iOS)](#apple-wallet-qr-ios)
+- [Android + iOS pair](#android-ios-pair)
+- [Custom URL QR](#custom-url-qr)
+- [Twig](#twig)
+- [Mobile scanning notes](#mobile-scanning-notes)
+
 ## Inject the service
 
 ```php

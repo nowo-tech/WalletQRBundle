@@ -1,19 +1,16 @@
 # Wallet QR Bundle
 
-[![CI](https://github.com/nowo-tech/WalletQrBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/WalletQrBundle/actions/workflows/ci.yml)
-[![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/wallet-qr-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/wallet-qr-bundle.svg)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net)
-[![Symfony](https://img.shields.io/badge/Symfony-7.0%2B%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com)
-[![GitHub stars](https://img.shields.io/github/stars/nowo-tech/wallet-qr-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/WalletQrBundle)
-[![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
+[![CI](https://github.com/nowo-tech/WalletQrBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/WalletQrBundle/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/wallet-qr-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/wallet-qr-bundle.svg)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-7.4%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com) [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/wallet-qr-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/WalletQrBundle) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
 
 > ⭐ **Found this useful?** Give it a star on GitHub! It helps us maintain and improve the project.
+> 📋 **Requires PHP 8.2+ and Symfony 7.x or 8.x** (CI matrix includes Symfony **7.4**, **8.0**, **8.1**)
 
+**FrankenPHP demos:** runtime is selected with **`FRANKENPHP_MODE`** (`worker` default, or `classic` for per-request PHP / hot-reload). See [docs/DEMO-FRANKENPHP.md](docs/DEMO-FRANKENPHP.md).
 **Symfony bundle to generate Google Wallet (Android) and Apple Wallet (iOS) save links with QR codes.**
 
-> 📋 **Requires PHP 8.2+ and Symfony 7.x or 8.x**
+![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
+
+This bundle is **FrankenPHP worker mode friendly**.
 
 ## Features
 
@@ -60,9 +57,20 @@ $pair = $walletQrService->createWalletQrPair($reference, applePassId: 'MEMBER_00
 // $pair['android']->qrCodeDataUri, $pair['ios']->qrCodeDataUri
 ```
 
+## Development
+
+```bash
+make up
+make test
+make test-coverage
+make demo-smoke
+make release-check
+```
+
+Demos: `make -C demo/symfony8 up`
+
 ## Documentation
 
-- [GitHub Actions CI requirements](docs/GITHUB_CI.md)
 - [Installation](docs/INSTALLATION.md)
 - [Configuration](docs/CONFIGURATION.md)
 - [Usage](docs/USAGE.md)
@@ -78,18 +86,8 @@ $pair = $walletQrService->createWalletQrPair($reference, applePassId: 'MEMBER_00
 
 ### Additional documentation
 
+- [GitHub Actions CI requirements](docs/GITHUB_CI.md)
 - [Demo with FrankenPHP](docs/DEMO-FRANKENPHP.md)
-
-## Development
-
-```bash
-make up
-make test
-make test-coverage
-make release-check
-```
-
-Demos: `make -C demo/symfony8 up`
 
 ## Tests and coverage
 

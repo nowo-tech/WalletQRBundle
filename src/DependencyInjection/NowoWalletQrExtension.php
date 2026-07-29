@@ -15,7 +15,7 @@ use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 /**
  * Dependency injection extension for the Wallet QR bundle.
  */
-class NowoWalletQrExtension extends Extension
+final class NowoWalletQrExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {
@@ -23,6 +23,13 @@ class NowoWalletQrExtension extends Extension
         $config        = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('nowo_wallet_qr.config', $config);
+
+        // Flat parameters for services.yaml — Symfony does not resolve nested keys on array parameters.
+        $qrCode = $config['qr_code'] ?? [];
+        $container->setParameter('nowo_wallet_qr.config.qr_code.size', $qrCode['size'] ?? 300);
+        $container->setParameter('nowo_wallet_qr.config.qr_code.margin', $qrCode['margin'] ?? 10);
+        $container->setParameter('nowo_wallet_qr.config.qr_code.error_correction', $qrCode['error_correction'] ?? 'high');
+        $container->setParameter('nowo_wallet_qr.config.qr_code.url_allowlist', $qrCode['url_allowlist'] ?? []);
 
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yaml');

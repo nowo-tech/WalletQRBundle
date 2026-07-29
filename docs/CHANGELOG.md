@@ -2,7 +2,42 @@
 
 All notable changes to this project will be documented in this file.
 
+## Table of contents
+
+- [[Unreleased]](#unreleased)
+- [[2.1.5] - 2026-07-29](#215-2026-07-29)
+- [[2.1.4] - 2026-07-22](#214-2026-07-22)
+- [[2.1.3] - 2026-07-16](#213-2026-07-16)
+- [[2.1.2] - 2026-07-13](#212-2026-07-13)
+- [[2.1.1] - 2026-07-08](#211-2026-07-08)
+- [[2.1.0] - 2026-07-08](#210-2026-07-08)
+- [[2.0.0] - 2026-06-30](#200-2026-06-30)
+- [[1.1.0] - 2026-06-30](#110-2026-06-30)
+- [[1.0.0] - 2026-06-10](#100-2026-06-10)
+
 ## [Unreleased]
+
+## [2.1.5] - 2026-07-29
+
+### Added
+
+- FrankenPHP Friendly Worker Mode banner (REQ-DOCS-017) after PHPStan FrankenPHP rules (REQ-CS-005).
+- `make check-open-prs` / `.scripts/check-open-prs.sh` (REQ-REL-003); `make demo-smoke` (REQ-TEST-011).
+- `SYMFONY_DEPRECATIONS_HELPER=max[direct]=0` in PHPUnit and CI (REQ-SF-005).
+- Threat model for `QrUrlPolicy` in `docs/SECURITY.md` (REQ-SEC-004).
+
+### Fixed
+
+- Demo Docker images install PHP **gd** (required by `endroid/qr-code` PNG rendering).
+- Flat DI parameters for `qr_code.*` so Symfony can inject `%nowo_wallet_qr.config.qr_code.size%` (nested array parameters are not resolvable).
+
+### Changed
+
+- Symfony 8 demos use `frankenphp:1-php8.5-alpine` (REQ-DEMO-010).
+- README Documentation order (REQ-DOCS-002); Symfony badge includes **7.4** floor (REQ-DOCS-004).
+- Packagist keywords include `php` and `frankenphp` (REQ-PKG-004).
+- Bundle / DI classes marked `final` (REQ-PHP-001).
+- `phpstan.neon.dist`: explicit `ignoreErrors: []` (REQ-CS-006).
 
 ## [2.1.4] - 2026-07-22
 

@@ -2,7 +2,26 @@
 
 This document describes how to upgrade between versions of Wallet QR Bundle.
 
+## Table of contents
+
+- [2.x](#2x)
+- [1.x](#1x)
+
 ## 2.x
+
+### Unreleased
+
+_Placeholder for the next release._
+
+### 2.1.5
+
+- **No action required** for typical applications using DI defaults. Flat container parameters `nowo_wallet_qr.config.qr_code.*` are now registered so Symfony can resolve `%nowo_wallet_qr.config.qr_code.size%` (and related keys) from `services.yaml`.
+- **CI / tests:** PHPUnit and GitHub Actions set `SYMFONY_DEPRECATIONS_HELPER=max[direct]=0` (REQ-SF-005). Applications should treat new direct Symfony deprecations as regressions when upgrading.
+- **Demos:** Symfony 8 demos use FrankenPHP **PHP 8.5** images (`dunglas/frankenphp:1-php8.5-alpine`); images install PHP **gd** for QR PNG rendering.
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
 
 ### 2.1.4
 
