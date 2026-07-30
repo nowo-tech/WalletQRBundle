@@ -65,7 +65,7 @@ test: ensure-up
 	$(COMPOSE) exec -e APP_ENV=test php composer test
 
 test-coverage: ensure-up
-	$(COMPOSE) exec php composer test-coverage
+	$(COMPOSE) exec -e APP_ENV=test php composer test-coverage
 
 cache-clear: ensure-up
 	$(COMPOSE) exec php php bin/console cache:clear

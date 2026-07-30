@@ -15,8 +15,9 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
+| 3.x     | :white_check_mark: |
 | 2.x     | :white_check_mark: |
-| 1.x     | :white_check_mark: |
+| 1.x     | :x:                |
 
 ## Reporting a Vulnerability
 
@@ -74,7 +75,7 @@ There is **no** bundled HTTP admin UI or public controller. Host applications su
 
 | Risk | Mitigation |
 |------|------------|
-| **Phishing / unsafe QR payloads** | `QrUrlPolicy` (`src/Security/QrUrlPolicy.php`) accepts only `http`/`https` URLs and rejects `javascript:`, `data:`, and other schemes. Optional `qr_code.url_allowlist` restricts hosts/URLs further. |
+| **Phishing / unsafe QR payloads** | `QrUrlPolicy` from required [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle) accepts only `http`/`https` and rejects `javascript:`, `data:`, etc. Optional `nowo_qr_code.url_allowlist` (or legacy `nowo_wallet_qr.qr_code.url_allowlist`) restricts hosts further. |
 | **Empty allowlist** | With an empty allowlist, any https URL may be encoded — treat QR content as host-controlled input; do not pass untrusted user URLs without an allowlist. |
 | **Google Wallet service-account key** | Path configured via `google_wallet.service_account_json`; keep the JSON file out of git, readable only by the app user, rotate on leak. |
 | **JWT origins** | Configure `google_wallet.origins` to your production origins only. |
@@ -85,7 +86,7 @@ There is **no** bundled HTTP admin UI or public controller. Host applications su
 ## Dependencies and updates
 
 - Run `composer audit` regularly.
-- Keep Symfony, `endroid/qr-code`, and `firebase/php-jwt` updated.
+- Keep Symfony, `nowo-tech/qr-code-bundle` (and its `endroid/qr-code`), and `firebase/php-jwt` updated.
 - Review Dependabot PRs before release (`make check-open-prs`).
 
 ## Release security checklist (12.4.1)

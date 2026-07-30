@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Nowo\WalletQrBundle\Service;
 
+use Nowo\QrCodeBundle\Service\QrCodeService;
 use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Exception\WalletConfigurationException;
@@ -11,17 +12,16 @@ use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilder;
 use Nowo\WalletQrBundle\Model\GoogleWalletPassReference;
 use Nowo\WalletQrBundle\Model\WalletLink;
 use Nowo\WalletQrBundle\Model\WalletQr;
-use Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer;
-use Nowo\WalletQrBundle\Security\QrUrlPolicy;
 
 /**
  * High-level API to create wallet save links and QR codes for Android and iOS.
+ *
+ * QR rendering and URL policy are provided by nowo-tech/qr-code-bundle ({@see QrCodeService}).
  */
 final class WalletQrService
 {
     public function __construct(
-        private readonly QrCodeDataUriRenderer $qrCodeRenderer,
-        private readonly QrUrlPolicy $qrUrlPolicy,
+        private readonly QrCodeService $qrCodeService,
         private readonly ?GoogleWalletSaveLinkBuilder $googleWalletSaveLinkBuilder = null,
         private readonly ?AppleWalletPassLinkBuilder $appleWalletPassLinkBuilder = null,
     ) {
@@ -39,7 +39,7 @@ final class WalletQrService
             $this->requireGoogleBuilder()->buildSaveLink($reference, $origins),
         );
 
-        return new WalletQr($link, $this->qrCodeRenderer->renderDataUri($link->url));
+        return new WalletQr($link, $this->qrCodeService->createDataUri($link->url));
     }
 
     public function createAppleWalletQr(string $passId): WalletQr
@@ -49,7 +49,7 @@ final class WalletQrService
             $this->requireAppleBuilder()->buildPassDownloadUrl($passId),
         );
 
-        return new WalletQr($link, $this->qrCodeRenderer->renderDataUri($link->url));
+        return new WalletQr($link, $this->qrCodeService->createDataUri($link->url));
     }
 
     /**
@@ -70,11 +70,9 @@ final class WalletQrService
 
     public function createQrForUrl(WalletPlatform $platform, string $url): WalletQr
     {
-        $this->qrUrlPolicy->assertAllowed($url);
-
         $link = new WalletLink($platform, $url);
 
-        return new WalletQr($link, $this->qrCodeRenderer->renderDataUri($url));
+        return new WalletQr($link, $this->qrCodeService->createDataUriForUrl($url));
     }
 
     private function requireGoogleBuilder(): GoogleWalletSaveLinkBuilder

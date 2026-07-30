@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.0] - 2026-07-30](#300-2026-07-30)
 - [[2.1.5] - 2026-07-29](#215-2026-07-29)
 - [[2.1.4] - 2026-07-22](#214-2026-07-22)
 - [[2.1.3] - 2026-07-16](#213-2026-07-16)
@@ -16,6 +17,32 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.0] - 2026-07-30
+
+### Added
+
+- Required Composer dependency on [`nowo-tech/qr-code-bundle`](https://packagist.org/packages/nowo-tech/qr-code-bundle) (^1.1).
+- Flex recipe registers `NowoQrCodeBundle` together with `NowoWalletQrBundle`.
+- `NowoWalletQrBundle::build()` fails fast if `NowoQrCodeBundle` is not enabled.
+- Legacy `nowo_wallet_qr.qr_code` config is prepended onto `nowo_qr_code` for backward compatibility.
+
+### Changed
+
+- **Breaking:** QR PNG rendering lives in QrCodeBundle. `WalletQrService` depends on `Nowo\QrCodeBundle\Service\QrCodeService`.
+- Prefer configuring QR options under `nowo_qr_code` (profiles / flat keys normalized by QrCodeBundle).
+- Demos register `NowoQrCodeBundle` and resolve `qr-code-bundle` from Packagist.
+
+### Deprecated
+
+- BC class aliases (same underlying QrCodeBundle classes):
+  - `Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer`
+  - `Nowo\WalletQrBundle\Security\QrUrlPolicy`
+  - `Nowo\WalletQrBundle\Exception\InvalidWalletQrUrlException` → use `Nowo\QrCodeBundle\Exception\InvalidQrUrlException`
+
+### Removed
+
+- Direct Composer requirement on `endroid/qr-code` (now transitive via QrCodeBundle).
 
 ## [2.1.5] - 2026-07-29
 

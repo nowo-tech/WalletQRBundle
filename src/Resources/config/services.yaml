@@ -9,19 +9,13 @@ services:
     exclude:
       - '../../DependencyInjection/'
       - '../../NowoWalletQrBundle.php'
-
-  Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer:
-    arguments:
-      $size: '%nowo_wallet_qr.config.qr_code.size%'
-      $margin: '%nowo_wallet_qr.config.qr_code.margin%'
-      $errorCorrection: '%nowo_wallet_qr.config.qr_code.error_correction%'
-
-  Nowo\WalletQrBundle\Security\QrUrlPolicy:
-    arguments:
-      $hostAllowlist: '%nowo_wallet_qr.config.qr_code.url_allowlist%'
+      - '../../QrCode/'
+      - '../../Security/'
+      - '../../Exception/InvalidWalletQrUrlException.php'
 
   Nowo\WalletQrBundle\Service\WalletQrService:
     arguments:
+      $qrCodeService: '@Nowo\QrCodeBundle\Service\QrCodeService'
       $googleWalletSaveLinkBuilder: '@?nowo_wallet_qr.google_wallet.save_link_builder'
       $appleWalletPassLinkBuilder: '@?nowo_wallet_qr.apple_wallet.pass_link_builder'
 

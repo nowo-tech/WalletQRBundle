@@ -35,8 +35,8 @@
     ],
     "require": {
         "php": ">=8.2 <8.6",
-        "endroid/qr-code": "^6.0",
         "firebase/php-jwt": "^7.0",
+        "nowo-tech/qr-code-bundle": "^1.1",
         "symfony/config": "^7.0 || ^8.0",
         "symfony/dependency-injection": "^7.0 || ^8.0",
         "symfony/framework-bundle": "^7.0 || ^8.0",

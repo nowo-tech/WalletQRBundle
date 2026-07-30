@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Nowo\WalletQrBundle\Tests\Unit\Twig;
 
+use Nowo\QrCodeBundle\Config\ProfileResolver;
+use Nowo\QrCodeBundle\Service\QrCodeService;
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
-use Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer;
-use Nowo\WalletQrBundle\Security\QrUrlPolicy;
 use Nowo\WalletQrBundle\Service\WalletQrService;
 use Nowo\WalletQrBundle\Twig\WalletQrExtension;
 use PHPUnit\Framework\TestCase;
@@ -16,7 +16,7 @@ final class WalletQrExtensionTest extends TestCase
 {
     public function testWalletQrForUrl(): void
     {
-        $extension = new WalletQrExtension(new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy()));
+        $extension = new WalletQrExtension(new WalletQrService($this->qrCodeService()));
         $result    = $extension->walletQrForUrl('ios', 'https://example.com/pass.pkpass');
 
         $this->assertSame(WalletPlatform::Ios, $result->link->platform);
@@ -24,7 +24,7 @@ final class WalletQrExtensionTest extends TestCase
 
     public function testWalletQrDataUri(): void
     {
-        $service   = new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy());
+        $service   = new WalletQrService($this->qrCodeService());
         $extension = new WalletQrExtension($service);
         $walletQr  = $service->createQrForUrl(WalletPlatform::Android, 'https://example.com');
 
@@ -33,7 +33,7 @@ final class WalletQrExtensionTest extends TestCase
 
     public function testGetFunctions(): void
     {
-        $extension = new WalletQrExtension(new WalletQrService(new QrCodeDataUriRenderer(), new QrUrlPolicy()));
+        $extension = new WalletQrExtension(new WalletQrService($this->qrCodeService()));
         $functions = $extension->getFunctions();
 
         $this->assertCount(2, $functions);
@@ -42,5 +42,17 @@ final class WalletQrExtensionTest extends TestCase
             ['wallet_qr_data_uri', 'wallet_qr_for_url'],
             array_map(static fn (TwigFunction $function): string => $function->getName(), $functions),
         );
+    }
+
+    private function qrCodeService(): QrCodeService
+    {
+        return new QrCodeService(new ProfileResolver([
+            'default' => [
+                'size'             => 300,
+                'margin'           => 10,
+                'error_correction' => 'high',
+                'url_allowlist'    => [],
+            ],
+        ], 'default'));
     }
 }

@@ -8,6 +8,12 @@ parameters:
         - tests
     excludePaths:
         - demo/*
+        # Runtime class_alias files — symbols registered via bootstrapFiles for analysis
+        - src/Exception/InvalidWalletQrUrlException.php
+        - src/QrCode/QrCodeDataUriRenderer.php
+        - src/Security/QrUrlPolicy.php
+    bootstrapFiles:
+        - phpstan-bootstrap.php
     # REQ-CS-006: never silence findings here — fix the code instead
     ignoreErrors: []
 

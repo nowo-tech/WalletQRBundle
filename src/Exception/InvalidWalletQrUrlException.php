@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Nowo\WalletQrBundle\Exception;
 
-use RuntimeException;
+use Nowo\QrCodeBundle\Exception\InvalidQrUrlException;
 
-/**
- * Thrown when a URL cannot be encoded into a wallet QR code.
+/*
+ * @deprecated since WalletQrBundle 3.0 — use {@see InvalidQrUrlException} from nowo-tech/qr-code-bundle
  */
-final class InvalidWalletQrUrlException extends RuntimeException
-{
-}
+class_alias(InvalidQrUrlException::class, InvalidWalletQrUrlException::class);

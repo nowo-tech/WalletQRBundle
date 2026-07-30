@@ -50,6 +50,10 @@ Your application must serve the `.pkpass` file at the resolved URL with the corr
 
 ## QR code rendering
 
+QR PNG rendering lives in the **required** dependency [QrCodeBundle](https://github.com/nowo-tech/QrCodeBundle). Preferred config root: **`nowo_qr_code`**.
+
+Legacy keys under `nowo_wallet_qr.qr_code` are still supported and forwarded to `nowo_qr_code`.
+
 | Key | Type | Default | Description |
 | --- | --- | --- | --- |
 | `qr_code.size` | int | `300` | Image size in pixels (64–1024) |
@@ -57,7 +61,23 @@ Your application must serve the `.pkpass` file at the resolved URL with the corr
 | `qr_code.error_correction` | string | `high` | `low`, `medium`, `quartile`, or `high` |
 | `qr_code.url_allowlist` | string[] | `[]` | Optional host/URL patterns for `createQrForUrl` / `wallet_qr_for_url` (substring or `#regex`). Empty = any `http`/`https` URL with a valid host. |
 
-Example with URL allowlist:
+Preferred:
+
+```yaml
+nowo_qr_code:
+    default_profile: default
+    profiles:
+        default:
+            size: 300
+            margin: 10
+            error_correction: high
+            url_allowlist:
+                - example.com
+```
+
+Flat keys (`size`, `margin`, …) are also accepted and normalized into `profiles.default` by QrCodeBundle.
+
+Example with URL allowlist (legacy key):
 
 ```yaml
 nowo_wallet_qr:

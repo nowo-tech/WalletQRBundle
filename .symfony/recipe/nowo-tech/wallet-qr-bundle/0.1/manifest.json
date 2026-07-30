@@ -1,5 +1,6 @@
 {
     "bundles": {
+        "Nowo\\QrCodeBundle\\NowoQrCodeBundle": ["all"],
         "Nowo\\WalletQrBundle\\NowoWalletQrBundle": ["all"]
     },
     "copy-from-recipe": {

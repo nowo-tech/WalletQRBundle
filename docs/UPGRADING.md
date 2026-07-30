@@ -4,14 +4,46 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## Table of contents
 
+- [3.x](#3x)
 - [2.x](#2x)
 - [1.x](#1x)
 
+## 3.x
+
+### 3.0.0
+
+**Breaking:** QR generation moved to the required dependency [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle).
+
+1. Update the package (QrCodeBundle is installed automatically):
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
+2. Enable **both** bundles (Flex recipe registers them; otherwise add manually):
+
+```php
+// config/bundles.php
+Nowo\QrCodeBundle\NowoQrCodeBundle::class => ['all' => true],
+Nowo\WalletQrBundle\NowoWalletQrBundle::class => ['all' => true],
+```
+
+3. Prefer QR options under `nowo_qr_code`. Existing `nowo_wallet_qr.qr_code` keys still work (prepended onto `nowo_qr_code`).
+
+```yaml
+# config/packages/nowo_qr_code.yaml
+nowo_qr_code:
+    size: 300
+    margin: 10
+    error_correction: high
+    url_allowlist: []
+```
+
+4. If you construct services manually, inject `Nowo\QrCodeBundle\Service\QrCodeService` (built with `ProfileResolver`). Deprecated WalletQr aliases remain for `QrCodeDataUriRenderer`, `QrUrlPolicy`, and `InvalidWalletQrUrlException`.
+
+5. For QR codes without wallet links, use `QrCodeService` / Twig `qr_code_data_uri` / `qr_code_for_url` / `<twig:NowoQrCode>` from QrCodeBundle.
+
 ## 2.x
-
-### Unreleased
-
-_Placeholder for the next release._
 
 ### 2.1.5
 

@@ -10,13 +10,29 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+
+use function is_array;
 
 /**
  * Dependency injection extension for the Wallet QR bundle.
+ *
+ * QR rendering is provided by nowo-tech/qr-code-bundle. Legacy `nowo_wallet_qr.qr_code`
+ * keys are prepended onto `nowo_qr_code` for backward compatibility.
  */
-final class NowoWalletQrExtension extends Extension
+final class NowoWalletQrExtension extends Extension implements PrependExtensionInterface
 {
+    public function prepend(ContainerBuilder $container): void
+    {
+        foreach ($container->getExtensionConfig('nowo_wallet_qr') as $config) {
+            if (!isset($config['qr_code']) || !is_array($config['qr_code'])) {
+                continue;
+            }
+            $container->prependExtensionConfig('nowo_qr_code', $config['qr_code']);
+        }
+    }
+
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
@@ -24,7 +40,7 @@ final class NowoWalletQrExtension extends Extension
 
         $container->setParameter('nowo_wallet_qr.config', $config);
 
-        // Flat parameters for services.yaml — Symfony does not resolve nested keys on array parameters.
+        // Flat parameters kept for BC with apps reading %nowo_wallet_qr.config.qr_code.*%
         $qrCode = $config['qr_code'] ?? [];
         $container->setParameter('nowo_wallet_qr.config.qr_code.size', $qrCode['size'] ?? 300);
         $container->setParameter('nowo_wallet_qr.config.qr_code.margin', $qrCode['margin'] ?? 10);

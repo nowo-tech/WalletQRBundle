@@ -8,6 +8,19 @@
 
 After creating the release commit and tag, run `make check-no-cursor-coauthor` again **before** `git push` (REQ-GIT-001). The release commit itself is not covered by an earlier `release-check` run.
 
+## Example for v3.0.0
+
+```bash
+git add -A
+git status   # review
+make release-check
+git -c core.hooksPath=.githooks commit -m "Release 3.0.0: extract QR to nowo-tech/qr-code-bundle"
+make check-no-cursor-coauthor
+git tag -a v3.0.0 -m "Release 3.0.0"
+git push origin main
+git push origin v3.0.0
+```
+
 ## Example for v2.1.5
 
 ```bash

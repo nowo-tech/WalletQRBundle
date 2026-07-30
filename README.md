@@ -8,6 +8,8 @@
 **FrankenPHP demos:** runtime is selected with **`FRANKENPHP_MODE`** (`worker` default, or `classic` for per-request PHP / hot-reload). See [docs/DEMO-FRANKENPHP.md](docs/DEMO-FRANKENPHP.md).
 **Symfony bundle to generate Google Wallet (Android) and Apple Wallet (iOS) save links with QR codes.**
 
+QR rendering requires the mandatory dependency [**QrCodeBundle**](https://github.com/nowo-tech/QrCodeBundle) (`nowo-tech/qr-code-bundle`), which Composer installs automatically. You can also use it standalone for QR codes outside wallet flows.
+
 ![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
 
 This bundle is **FrankenPHP worker mode friendly**.
@@ -16,7 +18,7 @@ This bundle is **FrankenPHP worker mode friendly**.
 
 - ✅ Google Wallet **Add to Google Wallet** save links (signed JWT)
 - ✅ Apple Wallet `.pkpass` download URL builder for iOS QR codes
-- ✅ PNG QR codes as data URIs (Twig helpers included)
+- ✅ PNG QR codes as data URIs via required [QrCodeBundle](https://github.com/nowo-tech/QrCodeBundle) (Twig helpers included)
 - ✅ Pair generation for Android + iOS in one call
 - ✅ Symfony configuration under `nowo_wallet_qr`
 - ✅ URL validation for custom QR links (`QrUrlPolicy`; optional host allowlist)
@@ -25,7 +27,14 @@ This bundle is **FrankenPHP worker mode friendly**.
 ## Quick start
 
 ```bash
-composer require nowo-tech/wallet-qr-bundle endroid/qr-code firebase/php-jwt
+composer require nowo-tech/wallet-qr-bundle
+```
+
+`nowo-tech/qr-code-bundle` is pulled in as a **required** dependency. Register both bundles (Flex does this via the recipe):
+
+```php
+Nowo\QrCodeBundle\NowoQrCodeBundle::class => ['all' => true],
+Nowo\WalletQrBundle\NowoWalletQrBundle::class => ['all' => true],
 ```
 
 ```yaml
@@ -39,8 +48,14 @@ nowo_wallet_qr:
     apple_wallet:
         enabled: true
         pass_download_url_pattern: 'https://www.example.com/wallet/{pass_id}.pkpass'
-    qr_code:
-        size: 300
+
+# Prefer configuring QR options on QrCodeBundle (legacy nowo_wallet_qr.qr_code still works):
+# config/packages/nowo_qr_code.yaml
+nowo_qr_code:
+    default_profile: default
+    profiles:
+        default:
+            size: 300
 ```
 
 ```php
