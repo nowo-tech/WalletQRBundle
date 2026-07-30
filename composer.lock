@@ -251,16 +251,16 @@
         },
         {
             "name": "nowo-tech/qr-code-bundle",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/QrCodeBundle.git",
-                "reference": "1f79a680d0ed1161d99e4fd3134d53d853b772e5"
+                "reference": "790a97cd17d4a252797adb350745475e810624c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/1f79a680d0ed1161d99e4fd3134d53d853b772e5",
-                "reference": "1f79a680d0ed1161d99e4fd3134d53d853b772e5",
+                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/790a97cd17d4a252797adb350745475e810624c8",
+                "reference": "790a97cd17d4a252797adb350745475e810624c8",
                 "shasum": ""
             },
             "require": {
@@ -274,6 +274,8 @@
                 "twig/twig": "^3.8 || ^4.0"
             },
             "require-dev": {
+                "doctrine/doctrine-bundle": "^2.12 || ^3.0",
+                "doctrine/orm": "^2.19 || ^3.0",
                 "friendsofphp/php-cs-fixer": "^3.0",
                 "nowo-tech/phpstan-frankenphp": "^1.0",
                 "phpstan/extension-installer": "^1.0",
@@ -282,12 +284,20 @@
                 "phpstan/phpstan-symfony": "^2.0",
                 "phpunit/phpunit": "^11.0",
                 "rector/rector": "^2.0",
+                "symfony/form": "^7.0 || ^8.0",
                 "symfony/framework-bundle": "^7.0 || ^8.0",
+                "symfony/security-core": "^7.0 || ^8.0",
+                "symfony/validator": "^7.0 || ^8.0",
                 "symfony/yaml": "^7.0 || ^8.0"
             },
             "suggest": {
+                "doctrine/doctrine-bundle": "Required when nowo_qr_code.use_database_config is true",
+                "doctrine/orm": "Required when nowo_qr_code.use_database_config is true (DB profile overrides + admin CRUD)",
                 "ext-gd": "Required by endroid/qr-code for PNG rendering",
-                "symfony/ux-toolkit": "Optional design-system toolkit (PHP 8.4+); NowoQrCode follows Toolkit @prop documentation conventions and works alongside Shadcn kit components"
+                "symfony/form": "Required for the optional /admin/qr-code-profiles CRUD",
+                "symfony/security-bundle": "Recommended to protect admin CRUD via security.access_roles",
+                "symfony/ux-toolkit": "Optional design-system toolkit (PHP 8.4+); NowoQrCode follows Toolkit @prop documentation conventions and works alongside Shadcn kit components",
+                "symfony/validator": "Recommended for admin form constraints"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -336,7 +346,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-30T09:26:01+00:00"
+            "time": "2026-07-30T09:47:57+00:00"
         },
         {
             "name": "psr/cache",
