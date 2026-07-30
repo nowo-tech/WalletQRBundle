@@ -78,6 +78,8 @@ $qr = $this->walletQrService->createQrForUrl(
 
 ## Twig
 
+This bundle exposes Twig **functions** only (`wallet_qr_data_uri`, `wallet_qr_for_url`). It does **not** ship HTML templates under `src/Resources/views/` (no Twig path overrides / REQ-TWIG-001 surface). For standalone QR widgets and themes, see [QrCodeBundle](https://github.com/nowo-tech/QrCodeBundle).
+
 ```twig
 <img src="{{ wallet_qr_data_uri(androidQr) }}" alt="Add to Google Wallet">
 

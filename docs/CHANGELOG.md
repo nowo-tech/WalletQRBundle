@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.1] - 2026-07-30](#301-2026-07-30)
 - [[3.0.0] - 2026-07-30](#300-2026-07-30)
 - [[2.1.5] - 2026-07-29](#215-2026-07-29)
 - [[2.1.4] - 2026-07-22](#214-2026-07-22)
@@ -17,6 +18,17 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.1] - 2026-07-30
+
+### Added
+
+- Unit test: `NowoWalletQrExtension::prepend` skips configs without a `qr_code` array (coverage for BC bridge onto `nowo_qr_code`).
+
+### Documentation
+
+- **[USAGE](USAGE.md):** Twig helpers only — no HTML template override surface (REQ-TWIG-001 N/A); pointer to QrCodeBundle for QR widgets.
+- **[UPGRADING](UPGRADING.md)** section **3.0.1**.
 
 ## [3.0.0] - 2026-07-30
 

@@ -54,6 +54,28 @@ final class NowoWalletQrExtensionTest extends TestCase
         $this->assertSame(['example.com'], $prepended[0]['url_allowlist']);
     }
 
+    public function testPrependSkipsConfigsWithoutQrCodeArray(): void
+    {
+        $container = new ContainerBuilder();
+        $container->prependExtensionConfig('nowo_wallet_qr', [
+            'google_wallet' => ['enabled' => false],
+        ]);
+        $container->prependExtensionConfig('nowo_wallet_qr', [
+            'qr_code' => 'not-an-array',
+        ]);
+        $container->prependExtensionConfig('nowo_wallet_qr', [
+            'qr_code' => [
+                'size' => 350,
+            ],
+        ]);
+
+        $this->extension->prepend($container);
+
+        $prepended = $container->getExtensionConfig('nowo_qr_code');
+        $this->assertCount(1, $prepended);
+        $this->assertSame(350, $prepended[0]['size']);
+    }
+
     public function testLoadRegistersGoogleWalletBuilderWhenEnabled(): void
     {
         $container = new ContainerBuilder();
