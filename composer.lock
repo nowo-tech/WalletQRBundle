@@ -251,16 +251,16 @@
         },
         {
             "name": "nowo-tech/qr-code-bundle",
-            "version": "v1.2.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/QrCodeBundle.git",
-                "reference": "790a97cd17d4a252797adb350745475e810624c8"
+                "reference": "7d40f1dc0c1f929eb25c6b3292565be1f06d8399"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/790a97cd17d4a252797adb350745475e810624c8",
-                "reference": "790a97cd17d4a252797adb350745475e810624c8",
+                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/7d40f1dc0c1f929eb25c6b3292565be1f06d8399",
+                "reference": "7d40f1dc0c1f929eb25c6b3292565be1f06d8399",
                 "shasum": ""
             },
             "require": {
@@ -346,7 +346,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-30T09:47:57+00:00"
+            "time": "2026-08-03T12:50:03+00:00"
         },
         {
             "name": "psr/cache",
@@ -3732,16 +3732,16 @@
         },
         {
             "name": "friendsofphp/php-cs-fixer",
-            "version": "v3.95.17",
+            "version": "v3.95.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer.git",
-                "reference": "0ee88422118f3cc59c8c3def222ba7f1493b6d5b"
+                "reference": "a8b4e4216faabf67f4e96110ee99a48c96e4e683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/0ee88422118f3cc59c8c3def222ba7f1493b6d5b",
-                "reference": "0ee88422118f3cc59c8c3def222ba7f1493b6d5b",
+                "url": "https://api.github.com/repos/PHP-CS-Fixer/PHP-CS-Fixer/zipball/a8b4e4216faabf67f4e96110ee99a48c96e4e683",
+                "reference": "a8b4e4216faabf67f4e96110ee99a48c96e4e683",
                 "shasum": ""
             },
             "require": {
@@ -3825,7 +3825,7 @@
             ],
             "support": {
                 "issues": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/issues",
-                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.95.17"
+                "source": "https://github.com/PHP-CS-Fixer/PHP-CS-Fixer/tree/v3.95.18"
             },
             "funding": [
                 {
@@ -3833,7 +3833,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-24T13:54:39+00:00"
+            "time": "2026-07-30T15:46:02+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -3954,16 +3954,16 @@
         },
         {
             "name": "nowo-tech/phpstan-frankenphp",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/PhpStanFrankenPhp.git",
-                "reference": "8edcc44f9059541a31d87766cac12bd4002e7932"
+                "reference": "17f99e7d84286ec3a73f7918765f3ed4cf2916d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/PhpStanFrankenPhp/zipball/8edcc44f9059541a31d87766cac12bd4002e7932",
-                "reference": "8edcc44f9059541a31d87766cac12bd4002e7932",
+                "url": "https://api.github.com/repos/nowo-tech/PhpStanFrankenPhp/zipball/17f99e7d84286ec3a73f7918765f3ed4cf2916d2",
+                "reference": "17f99e7d84286ec3a73f7918765f3ed4cf2916d2",
                 "shasum": ""
             },
             "require": {
@@ -4036,7 +4036,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-29T14:51:52+00:00"
+            "time": "2026-08-03T12:45:27+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -5369,16 +5369,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "2.5.9",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "858b1fb95d94f658b54c01080bf7b6ae97274536"
+                "reference": "24ef17c06737a6272806c5cca32b860449efe1ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/858b1fb95d94f658b54c01080bf7b6ae97274536",
-                "reference": "858b1fb95d94f658b54c01080bf7b6ae97274536",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/24ef17c06737a6272806c5cca32b860449efe1ba",
+                "reference": "24ef17c06737a6272806c5cca32b860449efe1ba",
                 "shasum": ""
             },
             "require": {
@@ -5417,7 +5417,7 @@
             ],
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/2.5.9"
+                "source": "https://github.com/rectorphp/rector/tree/2.6.0"
             },
             "funding": [
                 {
@@ -5425,7 +5425,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-30T22:10:00+00:00"
+            "time": "2026-08-03T09:01:59+00:00"
         },
         {
             "name": "sebastian/cli-parser",
