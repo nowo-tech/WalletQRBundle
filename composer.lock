@@ -482,16 +482,16 @@
         },
         {
             "name": "nowo-tech/qr-code-bundle",
-            "version": "v1.4.0",
+            "version": "v1.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/QrCodeBundle.git",
-                "reference": "e02cbdde9d97a38c952777fe6859fa7bd1851dc1"
+                "reference": "a3c67e826d35373b88d3b81219c311b422027e14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/e02cbdde9d97a38c952777fe6859fa7bd1851dc1",
-                "reference": "e02cbdde9d97a38c952777fe6859fa7bd1851dc1",
+                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/a3c67e826d35373b88d3b81219c311b422027e14",
+                "reference": "a3c67e826d35373b88d3b81219c311b422027e14",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +582,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-04T22:03:39+00:00"
+            "time": "2026-08-07T21:35:41+00:00"
         },
         {
             "name": "nowo-tech/ui-kit-bundle",
@@ -7701,16 +7701,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v7.4.15",
+            "version": "v7.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "088ec6fe0ef6819cbc301174093b6bfa4ad26930"
+                "reference": "f4c69c9aed03abf933b294257d618bdd9b30a06d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/088ec6fe0ef6819cbc301174093b6bfa4ad26930",
-                "reference": "088ec6fe0ef6819cbc301174093b6bfa4ad26930",
+                "url": "https://api.github.com/repos/symfony/console/zipball/f4c69c9aed03abf933b294257d618bdd9b30a06d",
+                "reference": "f4c69c9aed03abf933b294257d618bdd9b30a06d",
                 "shasum": ""
             },
             "require": {
@@ -7775,7 +7775,7 @@
                 "terminal"
             ],
             "support": {
-                "source": "https://github.com/symfony/console/tree/v7.4.15"
+                "source": "https://github.com/symfony/console/tree/v7.4.16"
             },
             "funding": [
                 {
@@ -7795,7 +7795,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-07-27T13:51:00+00:00"
+            "time": "2026-07-31T12:37:14+00:00"
         },
         {
             "name": "symfony/polyfill-php80",
