@@ -35,7 +35,7 @@ Each demo has its own `docker-compose.yml` and can be run independently. You can
 
 ```bash
 # Navigate to the demo directory
-cd demo/symfony7
+cd demo/symfony8
 
 # Start containers
 docker-compose up -d
@@ -50,8 +50,8 @@ Or using the Makefile:
 
 ```bash
 cd demo
-make up-symfony7
-make install-symfony7
+make up-symfony8
+make install-symfony8
 ```
 
 ### Symfony 8.0 Demo (PHP 8.4)
@@ -106,12 +106,12 @@ Stop a specific demo:
 
 ```bash
 # Stop Symfony 7.0 demo
-cd demo/symfony7
+cd demo/symfony8
 docker-compose down
 
 # Or using Makefile
 cd demo
-make down-symfony7
+make down-symfony8
 ```
 
 Similar commands for other demos:
@@ -124,7 +124,7 @@ Similar commands for other demos:
 
 1. **Navigate to the demo directory:**
    ```bash
-   cd demo/symfony7
+   cd demo/symfony8
    ```
 
 2. **Install dependencies:**
@@ -187,7 +187,6 @@ Each demo includes:
 
 ```
 demo/
-├── symfony7/          # Symfony 7.0 demo (Port 8001 by default, PHP 8.2)
 │   ├── docker-compose.yml  # Independent docker-compose for this demo
 │   ├── Dockerfile          # FrankenPHP PHP 8.2 image with Composer
 │   ├── docker/frankenphp/Caddyfile  # HTTP :80, worker mode
@@ -267,7 +266,6 @@ You can also customize the password field by modifying the options in each demo'
 
 Each demo includes a `.env` file with the default port configuration:
 
-- **Symfony 7.0**: Port 8001 (configured in `symfony7/.env`)
 - **Symfony 8.0**: Port 8001 (configured in `symfony8/.env`)
 - **Symfony 8.0 + PHP 8.5**: Port 8001 (configured in `symfony8-php85/.env`)
 
@@ -277,7 +275,7 @@ If a port is already in use, you can customize it by editing the `.env` file in 
 
 ```bash
 # Edit the .env file
-cd demo/symfony7
+cd demo/symfony8
 nano .env  # or use your preferred editor
 
 # Change the PORT value
@@ -354,7 +352,7 @@ Each demo includes its own test suite to verify that the Wallet QR Bundle works 
 
 ```bash
 # Run tests for Symfony 7.0 demo
-cd demo/symfony7
+cd demo/symfony8
 docker-compose exec php vendor/bin/phpunit
 
 # Run tests for Symfony 8.0 demo
@@ -372,12 +370,12 @@ Or using the Makefile from the `demo/` directory:
 cd demo
 
 # Run tests for a specific demo (using specific commands)
-make test-symfony7
+make test-symfony8
 make test-symfony8
 make test-symfony8-php85
 
 # Or using generic commands with demo name
-make test symfony7
+make test symfony8
 make test symfony8
 make test symfony8-php85
 

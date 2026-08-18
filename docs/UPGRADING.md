@@ -85,7 +85,7 @@ composer update nowo-tech/wallet-qr-bundle
 - **URL validation:** `createQrForUrl` and `wallet_qr_for_url` now reject non-http(s) schemes (`javascript:`, `data:`, etc.) with `InvalidWalletQrUrlException`. If you passed only valid https URLs, no change is required.
 - **Optional allowlist:** set `qr_code.url_allowlist` to restrict which hosts/URLs can be encoded (see [Configuration](CONFIGURATION.md)).
 - **Manual instantiation:** if you construct `WalletQrService` yourself (outside DI), pass `QrUrlPolicy` as the second constructor argument.
-- **Demos:** `demo/symfony6` removed; use `demo/symfony7`, `demo/symfony8`, or `demo/symfony8-php85`.
+- **Demos:** `demo/symfony8` removed; use `demo/symfony8`, or `demo/symfony8-php85`.
 
 ### 2.0.0
 
