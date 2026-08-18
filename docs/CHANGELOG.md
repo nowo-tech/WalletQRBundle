@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.2] - 2026-08-18](#302-2026-08-18)
 - [[3.0.1] - 2026-07-30](#301-2026-07-30)
 - [[3.0.0] - 2026-07-30](#300-2026-07-30)
 - [[2.1.5] - 2026-07-29](#215-2026-07-29)
@@ -18,6 +19,13 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.2] - 2026-08-18
+
+### Changed
+
+- **Demos:** pin `nowo-tech/hot-reload-bundle` to `^1.4` with FrankenPHP Mercure/`hot_reload` (`dev`/`test` only).
+- **Demos:** Symfony 8 only; Symfony 6/7 demo apps removed.
 
 ## [3.0.1] - 2026-07-30
 
