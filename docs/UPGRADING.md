@@ -10,6 +10,14 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 3.x
 
+### 3.0.2
+
+- **No action required.** Demos only: Hot Reload Bundle `^1.4`; Symfony 8 is the only shipped demo (Symfony 6/7 demo apps removed).
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
 ### 3.0.1
 
 - **No action required.** Adds a unit test for the legacy `nowo_wallet_qr.qr_code` → `nowo_qr_code` prepend bridge when configs omit or misuse `qr_code`. Behaviour unchanged from **3.0.0**.
