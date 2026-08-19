@@ -22,6 +22,12 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.5] - 2026-08-19
+
+### Changed
+
+- **Maintainer:** refresh `composer.lock` after PHP CS Fixer CI run.
+
 ## [3.0.4] - 2026-08-19
 
 ### Documentation
