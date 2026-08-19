@@ -385,16 +385,16 @@
         },
         {
             "name": "nowo-tech/form-kit-bundle",
-            "version": "v2.4.3",
+            "version": "v2.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/FormKitBundle.git",
-                "reference": "3e6de3f9465ffed997c229b6f4b5b247f1d3096c"
+                "reference": "ace97700b32e49db110f8ccd9df819089cc7b4ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/FormKitBundle/zipball/3e6de3f9465ffed997c229b6f4b5b247f1d3096c",
-                "reference": "3e6de3f9465ffed997c229b6f4b5b247f1d3096c",
+                "url": "https://api.github.com/repos/nowo-tech/FormKitBundle/zipball/ace97700b32e49db110f8ccd9df819089cc7b4ef",
+                "reference": "ace97700b32e49db110f8ccd9df819089cc7b4ef",
                 "shasum": ""
             },
             "require": {
@@ -478,20 +478,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-19T15:34:20+00:00"
+            "time": "2026-08-19T16:33:18+00:00"
         },
         {
             "name": "nowo-tech/qr-code-bundle",
-            "version": "v1.4.4",
+            "version": "v1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/QrCodeBundle.git",
-                "reference": "1a99dd229d7475119362495c0f0147d55e204be2"
+                "reference": "270139430173aa8146df2df41c1c0d8e21614100"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/1a99dd229d7475119362495c0f0147d55e204be2",
-                "reference": "1a99dd229d7475119362495c0f0147d55e204be2",
+                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/270139430173aa8146df2df41c1c0d8e21614100",
+                "reference": "270139430173aa8146df2df41c1c0d8e21614100",
                 "shasum": ""
             },
             "require": {
@@ -582,20 +582,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-19T16:30:48+00:00"
+            "time": "2026-08-19T16:39:06+00:00"
         },
         {
             "name": "nowo-tech/ui-kit-bundle",
-            "version": "v1.8.1",
+            "version": "v1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/UiKitBundle.git",
-                "reference": "1e6807eabfcbca4fc9b88a5748e2bfc9da895a24"
+                "reference": "b0766d1ec0e31c5dc74bbd9c9d276f7a8748d3ea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/UiKitBundle/zipball/1e6807eabfcbca4fc9b88a5748e2bfc9da895a24",
-                "reference": "1e6807eabfcbca4fc9b88a5748e2bfc9da895a24",
+                "url": "https://api.github.com/repos/nowo-tech/UiKitBundle/zipball/b0766d1ec0e31c5dc74bbd9c9d276f7a8748d3ea",
+                "reference": "b0766d1ec0e31c5dc74bbd9c9d276f7a8748d3ea",
                 "shasum": ""
             },
             "require": {
@@ -665,7 +665,7 @@
                 "issues": "https://github.com/nowo-tech/UiKitBundle/issues",
                 "source": "https://github.com/nowo-tech/UiKitBundle"
             },
-            "time": "2026-08-18T09:35:01+00:00"
+            "time": "2026-08-19T16:33:04+00:00"
         },
         {
             "name": "psr/cache",
