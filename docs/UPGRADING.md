@@ -10,6 +10,15 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 3.x
 
+### 3.0.3
+
+From **3.0.2** — Review production SSRF config. Flex recipe `when@prod` ships a `qr.url_allowlist` placeholder. Replace with allowed host patterns before generating wallet QR codes from user URLs.
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+php bin/console cache:clear
+```
+
 ### 3.0.2
 
 - **No action required.** Demos only: Hot Reload Bundle `^1.4`; Symfony 8 is the only shipped demo (Symfony 6/7 demo apps removed).
