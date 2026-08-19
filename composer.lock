@@ -385,16 +385,16 @@
         },
         {
             "name": "nowo-tech/form-kit-bundle",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/FormKitBundle.git",
-                "reference": "b54ec2e884be01f71f8f92ca4085480cfc2c22c8"
+                "reference": "3e6de3f9465ffed997c229b6f4b5b247f1d3096c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/FormKitBundle/zipball/b54ec2e884be01f71f8f92ca4085480cfc2c22c8",
-                "reference": "b54ec2e884be01f71f8f92ca4085480cfc2c22c8",
+                "url": "https://api.github.com/repos/nowo-tech/FormKitBundle/zipball/3e6de3f9465ffed997c229b6f4b5b247f1d3096c",
+                "reference": "3e6de3f9465ffed997c229b6f4b5b247f1d3096c",
                 "shasum": ""
             },
             "require": {
@@ -478,20 +478,20 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-18T09:34:49+00:00"
+            "time": "2026-08-19T15:34:20+00:00"
         },
         {
             "name": "nowo-tech/qr-code-bundle",
-            "version": "v1.4.2",
+            "version": "v1.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/QrCodeBundle.git",
-                "reference": "65ab352b05fba39422391f399553865a23c37aa6"
+                "reference": "4d465117fa155ab8647ccfa9fcdde45d6219b335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/65ab352b05fba39422391f399553865a23c37aa6",
-                "reference": "65ab352b05fba39422391f399553865a23c37aa6",
+                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/4d465117fa155ab8647ccfa9fcdde45d6219b335",
+                "reference": "4d465117fa155ab8647ccfa9fcdde45d6219b335",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +582,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-18T09:34:56+00:00"
+            "time": "2026-08-19T15:10:00+00:00"
         },
         {
             "name": "nowo-tech/ui-kit-bundle",
