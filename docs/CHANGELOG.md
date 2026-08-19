@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.4] - 2026-08-19](#304---2026-08-19)
 - [[3.0.3] - 2026-08-19](#303---2026-08-19)
 - [[3.0.2] - 2026-08-18](#302-2026-08-18)
 - [[3.0.1] - 2026-07-30](#301-2026-07-30)
@@ -20,6 +21,12 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.4] - 2026-08-19
+
+### Documentation
+
+- Sync `CHANGELOG.md` and `UPGRADING.md` for v3.0.3 release notes.
 
 ## [3.0.3] - 2026-08-19
 

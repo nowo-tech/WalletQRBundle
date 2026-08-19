@@ -10,6 +10,14 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 3.x
 
+### 3.0.4
+
+From **3.0.3** — No application upgrade steps. Documentation-only release.
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
 ### 3.0.3
 
 From **3.0.2** — Review production SSRF config. Flex recipe `when@prod` ships a `qr.url_allowlist` placeholder. Replace with allowed host patterns before generating wallet QR codes from user URLs.
