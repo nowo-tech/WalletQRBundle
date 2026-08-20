@@ -59,7 +59,7 @@ Legacy keys under `nowo_wallet_qr.qr_code` are still supported and forwarded to 
 | `qr_code.size` | int | `300` | Image size in pixels (64–1024) |
 | `qr_code.margin` | int | `10` | Quiet zone margin |
 | `qr_code.error_correction` | string | `high` | `low`, `medium`, `quartile`, or `high` |
-| `qr_code.url_allowlist` | string[] | `[]` | Optional host/URL patterns for `createQrForUrl` / `wallet_qr_for_url` (substring or `#regex`). Empty = any `http`/`https` URL with a valid host. |
+| `qr_code.url_allowlist` | string[] | `[]` | Optional host/URL patterns for `createQrForUrl` / `wallet_qr_for_url`. Empty = any `http`/`https` URL. In production, set real hosts: QrCodeBundle `^1.4.6` fails compile when `url_allowlist_required` is true and the list is empty or only `example.com`. |
 
 Preferred:
 

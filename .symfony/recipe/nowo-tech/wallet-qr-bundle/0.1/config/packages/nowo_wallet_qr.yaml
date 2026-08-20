@@ -16,5 +16,7 @@ nowo_wallet_qr:
 when@prod:
     nowo_wallet_qr:
         qr_code:
-            url_allowlist:
-                - example.com
+            # Empty on purpose. Do not ship example.com (QrCodeBundle ^1.4.6 rejects
+            # that placeholder when url_allowlist_required is true). Set your hosts
+            # here or on nowo_qr_code.profiles.default.url_allowlist before prod boot.
+            url_allowlist: []

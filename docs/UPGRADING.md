@@ -10,6 +10,35 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## 3.x
 
+### 3.0.6
+
+From **3.0.5** — **Replace the Flex `example.com` allowlist before production.** The recipe no longer ships that placeholder. Wallet QR URL encoding is enforced by [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle) **`^1.4.6`**: with `url_allowlist_required: true`, compile fails if the allowlist is empty or only `example.com`.
+
+1. Update both packages:
+
+```bash
+composer update nowo-tech/wallet-qr-bundle nowo-tech/qr-code-bundle
+```
+
+2. Set production hosts (prefer `nowo_qr_code`; legacy `nowo_wallet_qr.qr_code.url_allowlist` is still prepended):
+
+```yaml
+# config/packages/prod/nowo_qr_code.yaml
+nowo_qr_code:
+    url_allowlist_required: true
+    profiles:
+        default:
+            url_allowlist:
+                - pay.google.com
+                - wallet.apple.com
+```
+
+3. Apps that still have `url_allowlist: [example.com]` from an older recipe **will fail compile** after QrCodeBundle 1.4.6 until that list is replaced. That is intentional.
+
+```bash
+php bin/console cache:clear --env=prod
+```
+
 ### 3.0.5
 
 No application upgrade steps.

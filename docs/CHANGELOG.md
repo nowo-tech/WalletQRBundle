@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.6] - 2026-08-20](#306---2026-08-20)
+- [[3.0.5] - 2026-08-19](#305---2026-08-19)
 - [[3.0.4] - 2026-08-19](#304---2026-08-19)
 - [[3.0.3] - 2026-08-19](#303---2026-08-19)
 - [[3.0.2] - 2026-08-18](#302-2026-08-18)
@@ -21,6 +23,14 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.6] - 2026-08-20
+
+### Security
+
+- **Flex recipe `when@prod`:** stop shipping `qr_code.url_allowlist: [example.com]`. Production must set real hosts (or rely on QrCodeBundle `^1.4.6` fail-fast when `url_allowlist_required` is true and the allowlist is empty/placeholder).
+
+[3.0.6]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.6
 
 ## [3.0.5] - 2026-08-19
 
