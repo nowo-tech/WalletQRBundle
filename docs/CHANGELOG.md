@@ -24,6 +24,20 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+
+## [3.0.7] - 2026-08-24
+
+### Changed
+
+- **Docs:** PHP-FIG PSR evaluation (REQ-CS-007).
+- **Style:** PHP CS Fixer alignment.
+
+### Notes
+
+- **No API or configuration changes** for integrators unless noted above.
+
+[3.0.7]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.7
+
 ## [3.0.6] - 2026-08-20
 
 ### Security

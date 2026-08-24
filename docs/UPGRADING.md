@@ -4,9 +4,27 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## Table of contents
 
+
+- [From 3.0.6 to 3.0.7](#from-306-to-307)
 - [3.x](#3x)
 - [2.x](#2x)
 - [1.x](#1x)
+
+## From 3.0.6 to 3.0.7
+
+No breaking changes. **No application upgrade steps.**
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
+## From 3.0.6 to 3.0.7
+
+No breaking changes. **No application upgrade steps.**
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
 
 ## 3.x
 
