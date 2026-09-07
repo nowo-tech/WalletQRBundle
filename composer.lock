@@ -491,16 +491,16 @@
         },
         {
             "name": "nowo-tech/qr-code-bundle",
-            "version": "v1.4.7",
+            "version": "v1.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nowo-tech/QrCodeBundle.git",
-                "reference": "8b6e5b2fff9051018e9b0e24a279b1a24af20e6a"
+                "reference": "2a7f0af988fa103fd683c7fc5d79c75e8fd6cdbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/8b6e5b2fff9051018e9b0e24a279b1a24af20e6a",
-                "reference": "8b6e5b2fff9051018e9b0e24a279b1a24af20e6a",
+                "url": "https://api.github.com/repos/nowo-tech/QrCodeBundle/zipball/2a7f0af988fa103fd683c7fc5d79c75e8fd6cdbd",
+                "reference": "2a7f0af988fa103fd683c7fc5d79c75e8fd6cdbd",
                 "shasum": ""
             },
             "require": {
@@ -533,7 +533,7 @@
                 "symfony/security-core": "^7.0 || ^8.0",
                 "symfony/validator": "^7.0 || ^8.0",
                 "symfony/yaml": "^7.0 || ^8.0",
-                "vincentlanglet/twig-cs-fixer": "^3.0"
+                "vincentlanglet/twig-cs-fixer": "^4.1"
             },
             "suggest": {
                 "doctrine/doctrine-bundle": "Required when nowo_qr_code.use_database_config is true",
@@ -591,7 +591,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-08-24T16:03:11+00:00"
+            "time": "2026-09-03T22:02:43+00:00"
         },
         {
             "name": "nowo-tech/ui-kit-bundle",
