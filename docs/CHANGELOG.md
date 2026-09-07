@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.8] - 2026-09-07](#308---2026-09-07)
+- [[3.0.7] - 2026-08-24](#307---2026-08-24)
 - [[3.0.6] - 2026-08-20](#306---2026-08-20)
 - [[3.0.5] - 2026-08-19](#305---2026-08-19)
 - [[3.0.4] - 2026-08-19](#304---2026-08-19)
@@ -24,6 +26,18 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.8] - 2026-09-07
+
+### Changed
+
+- **Dependency:** bump `nowo-tech/qr-code-bundle` from **1.4.7** to **1.4.8**.
+- **Deps (dev):** phpstan / rector / php-cs-fixer bumps and Composer lock refresh.
+
+### Notes
+
+- **No API or configuration changes** for Wallet QR itself. Pull the updated QrCodeBundle with Composer.
+
+[3.0.8]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.8
 
 ## [3.0.7] - 2026-08-24
 
