@@ -2,7 +2,7 @@
 
 **Baseline spec**: [`spec.md`](spec.md)  
 **Package**: `nowo-tech/wallet-qr-bundle`  
-**Last audited**: 2026-07-07
+**Last audited**: 2026-09-25
 
 This file proves that **every production source artifact** under `src/` is referenced by the baseline specification. Test-only files under `tests/` and `*.test.ts` under `src/` are out of Packagist scope. Built assets under `Resources/public/` are documented as Vite/build outputs.
 
@@ -29,27 +29,27 @@ This file proves that **every production source artifact** under `src/` is refer
 | --- | --- | --- |
 | `Security/QrUrlPolicy.php` | URL/HTML policy | FR-SEC-004 |
 
+## Wallet & QR
+
+| Source file | Spec section | Requirement IDs |
+| --- | --- | --- |
+| `AppleWallet/AppleWalletPassLinkBuilder.php` | Wallet link builder | FR-WALLET-001, FR-WRK-001 |
+| `GoogleWallet/GoogleWalletSaveLinkBuilder.php` | Wallet link builder | FR-WALLET-001, FR-WRK-001 |
+| `QrCode/QrCodeDataUriRenderer.php` | BC `class_alias` → QrCodeBundle | FR-QR-001 |
+| `Service/WalletQrService.php` | Wallet QR orchestration | FR-WALLET-002, FR-WRK-001 |
+
 ## Twig PHP
 
 | Source file | Spec section | Requirement IDs |
 | --- | --- | --- |
-| `Twig/WalletQrExtension.php` | Twig extension | FR-TWIG-001 |
+| `Twig/WalletQrExtension.php` | Twig extension | FR-TWIG-001, FR-WRK-001 |
 
 ## Exceptions
 
 | Source file | Spec section | Requirement IDs |
 | --- | --- | --- |
-| `Exception/InvalidWalletQrUrlException.php` | Domain exception | FR-ERR-001 |
+| `Exception/InvalidWalletQrUrlException.php` | BC `class_alias` → QrCodeBundle | FR-ERR-001 |
 | `Exception/WalletConfigurationException.php` | Domain exception | FR-ERR-001 |
-
-## Wallet & QR
-
-| Source file | Spec section | Requirement IDs |
-| --- | --- | --- |
-| `AppleWallet/AppleWalletPassLinkBuilder.php` | Wallet link builder | FR-WALLET-001 |
-| `GoogleWallet/GoogleWalletSaveLinkBuilder.php` | Wallet link builder | FR-WALLET-001 |
-| `QrCode/QrCodeDataUriRenderer.php` | QR data-URI renderer | FR-QR-001 |
-| `Service/WalletQrService.php` | Wallet QR orchestration | FR-WALLET-002 |
 
 ## Symfony config
 

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.9] - 2026-09-25](#309---2026-09-25)
 - [[3.0.8] - 2026-09-07](#308---2026-09-07)
 - [[3.0.7] - 2026-08-24](#307---2026-08-24)
 - [[3.0.6] - 2026-08-20](#306---2026-08-20)
@@ -25,6 +26,21 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.9] - 2026-09-25
+
+### Changed
+
+- **Dependency:** require `nowo-tech/qr-code-bundle` **`^1.4.9`** (FrankenPHP worker + `reset_kernel` false / no `services_resetter` safe for YAML and database QR profiles).
+- **Docs:** FrankenPHP worker audit ([`FRANKENPHP-WORKER-AUDIT.md`](FRANKENPHP-WORKER-AUDIT.md)), DEMO-FRANKENPHP / README / SPEC pointers; baseline `FR-WRK-001`.
+- PHPStan (level 8) also analyses the BC `class_alias` files.
+- **Demos:** `make -C demo release-check` runs functional tests (not coverage) so FrankenPHP images without pcov do not fail the gate.
+
+### Notes
+
+- **No Wallet QR API changes.** Update both packages: `composer update nowo-tech/wallet-qr-bundle nowo-tech/qr-code-bundle`.
+
+[3.0.9]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.9
 
 ## [3.0.8] - 2026-09-07
 

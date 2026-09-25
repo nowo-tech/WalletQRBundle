@@ -5,11 +5,20 @@ This document describes how to upgrade between versions of Wallet QR Bundle.
 ## Table of contents
 
 
+- [From 3.0.8 to 3.0.9](#from-308-to-309)
 - [From 3.0.7 to 3.0.8](#from-307-to-308)
 - [From 3.0.6 to 3.0.7](#from-306-to-307)
 - [3.x](#3x)
 - [2.x](#2x)
 - [1.x](#1x)
+
+## From 3.0.8 to 3.0.9
+
+No breaking changes for Wallet QR APIs. Raises the required [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle) to **`^1.4.9`** so FrankenPHP **worker** mode with the kernel **not** reset between requests (`reset_kernel` / equivalent off) stays correct when QR profiles use the database (`use_database_config: true`). See [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md).
+
+```bash
+composer update nowo-tech/wallet-qr-bundle nowo-tech/qr-code-bundle
+```
 
 ## From 3.0.7 to 3.0.8
 

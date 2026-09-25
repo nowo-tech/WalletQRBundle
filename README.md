@@ -12,7 +12,7 @@ QR rendering requires the mandatory dependency [**QrCodeBundle**](https://github
 
 ![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
 
-This bundle is **FrankenPHP worker mode friendly**.
+This bundle is **FrankenPHP worker mode friendly** (including when the kernel is **not** reset between requests). See [docs/FRANKENPHP-WORKER-AUDIT.md](docs/FRANKENPHP-WORKER-AUDIT.md).
 
 ## Features
 
@@ -104,6 +104,7 @@ Demos: `make -C demo/symfony8 up`
 
 - [GitHub Actions CI requirements](docs/GITHUB_CI.md)
 - [Demo with FrankenPHP](docs/DEMO-FRANKENPHP.md)
+- [FrankenPHP worker audit (`reset_kernel` false)](docs/FRANKENPHP-WORKER-AUDIT.md)
 
 ## Tests and coverage
 

@@ -50,6 +50,7 @@ As a template author, I render wallet QR markup via `WalletQrExtension`.
 - **FR-TWIG-001**: Twig functions/filters for integrator templates.
 - **FR-ERR-001**: Configuration and invalid URL exceptions.
 - **FR-DI-001**: Autowired services YAML.
+- **FR-WRK-001**: FrankenPHP worker mode with kernel **not** reset between requests (`reset_kernel` / equivalent off) — all WalletQrBundle services are stateless; QR rendering relies on `nowo-tech/qr-code-bundle` `^1.4.9` (also scenario-B safe). See [`docs/FRANKENPHP-WORKER-AUDIT.md`](../../docs/FRANKENPHP-WORKER-AUDIT.md).
 
 ---
 

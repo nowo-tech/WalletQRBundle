@@ -25,6 +25,8 @@ The demos use:
 - **Two Caddyfiles**: `Caddyfile` (production, with worker) and `Caddyfile.dev` (development, no worker).
 - An **entrypoint** that selects classic vs worker Caddyfile from **`FRANKENPHP_MODE`** (`classic` \| `worker`, default **`worker`** in `.env.example`)
 
+Worker Caddyfiles keep the PHP app in memory between requests. This bundle is audited for the strict case where the Symfony kernel is **not** reset between requests (`reset_kernel` / equivalent off). See [FRANKENPHP-WORKER-AUDIT.md](FRANKENPHP-WORKER-AUDIT.md).
+
 There are demos for **Symfony 8** and **8 (PHP 8.5)** (e.g. **demo/symfony8**, **demo/symfony8-php85**). Each demo has its own Dockerfile, docker-compose.yml and Makefile. From the bundle root you run e.g. `make -C demo/symfony8 up` (see the demo's README for the URL and port).
 
 The main difference between development and production is:

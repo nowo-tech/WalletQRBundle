@@ -325,8 +325,9 @@ demo-smoke:
 	if [ "$$code" != "200" ]; then echo "symfony8 failed with HTTP $$code"; exit 1; fi; \
 	echo "symfony8 OK (HTTP $$code)"
 
-# release-check: refresh bundle code, test-coverage-all, then release-verify
-release-check: update-bundle-all test-coverage-all release-verify
+# release-check: refresh bundle code, run demo functional tests, then release-verify
+# (coverage is enforced on the bundle root, not on FrankenPHP demo images which may lack pcov)
+release-check: update-bundle-all test-all release-verify
 	@echo "✅ All demos passed release-check."
 
 # Pre-release: for each demo up → sleep → healthcheck HTTP 200 → down (§5.4.1, invoked by root release-check)
