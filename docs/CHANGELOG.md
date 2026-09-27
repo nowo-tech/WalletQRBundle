@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.10] - 2026-09-27](#3010---2026-09-27)
 - [[3.0.9] - 2026-09-25](#309---2026-09-25)
 - [[3.0.8] - 2026-09-07](#308---2026-09-07)
 - [[3.0.7] - 2026-08-24](#307---2026-08-24)
@@ -26,6 +27,18 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.10] - 2026-09-27
+
+### Added
+
+- **REQ-CS-008:** `igor-php/igor-php` (require-dev only), root `igor.json`, Composer/`Makefile` `igor` target, and `release-check` wiring for FrankenPHP worker-state audit.
+
+### Changed
+
+- **Worker safety (Igor):** justified `// @igor-ignore` annotations and/or `ResetInterface` / request-scoped fixes so `make igor` passes on package `src/`.
+
+[3.0.10]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.10
 
 ## [3.0.9] - 2026-09-25
 
