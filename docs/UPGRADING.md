@@ -3,6 +3,16 @@
 
 ## Unreleased
 
+## To 3.0.11
+
+From **3.0.10** — dependency refresh only.
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
+- No breaking changes. No application upgrade steps.
+
 ## To 3.0.10
 
 From **3.0.9** — REQ-CS-008 Igor FrankenPHP worker audit (igor-php require-dev, igor.json, make igor).

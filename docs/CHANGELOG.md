@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.11] - 2026-10-09](#3011---2026-10-09)
+  - [Dependencies](#dependencies)
 - [[3.0.10] - 2026-09-27](#3010---2026-09-27)
 - [[3.0.9] - 2026-09-25](#309---2026-09-25)
 - [[3.0.8] - 2026-09-07](#308---2026-09-07)
@@ -27,6 +29,17 @@ All notable changes to this project will be documented in this file.
 - [[1.0.0] - 2026-06-10](#100-2026-06-10)
 
 ## [Unreleased]
+
+## [3.0.11] - 2026-10-09
+
+### Dependencies
+
+- Dependabot: `firebase/php-jwt` 7.2.1, `igor-php/igor-php` `^0.10.0` (dev), `phpstan/phpstan-phpunit`.
+- Composer refresh: `nowo-tech/qr-code-bundle` 1.5.0, `nowo-tech/form-kit-bundle` 2.6.1, `nowo-tech/ui-kit-bundle` 1.9.2 (lockfile); dev tooling `phpstan/phpstan` 2.3.1, `rector/rector` 2.7.0, `nowo-tech/phpstan-frankenphp` 1.2.3.
+- Demos: Symfony 8.1.8, `firebase/php-jwt` 7.2.1, `twig/twig` 3.30.0; regenerated `config/reference.php`.
+- PHP CS Fixer bot passes (no functional change).
+
+[3.0.11]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.11
 
 ## [3.0.10] - 2026-09-27
 
