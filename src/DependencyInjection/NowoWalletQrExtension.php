@@ -6,6 +6,7 @@ namespace Nowo\WalletQrBundle\DependencyInjection;
 
 use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
 use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilder;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
@@ -14,6 +15,8 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 
 use function is_array;
+use function sprintf;
+use function trim;
 
 /**
  * Dependency injection extension for the Wallet QR bundle.
@@ -69,10 +72,14 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
         $issuerId     = (string) ($googleConfig['issuer_id'] ?? '');
         $jsonPath     = (string) ($googleConfig['service_account_json'] ?? '');
 
-        if (!$enabled || !GoogleWalletSaveLinkBuilder::isConfigured($issuerId, $jsonPath)) {
+        if (!$enabled) {
             $container->setParameter('nowo_wallet_qr.google_wallet.enabled', false);
 
             return;
+        }
+
+        if (!GoogleWalletSaveLinkBuilder::isConfigured($issuerId, $jsonPath)) {
+            throw new InvalidConfigurationException(sprintf('nowo_wallet_qr.google_wallet is enabled but %s empty: set both issuer_id and service_account_json, or set google_wallet.enabled to false.', trim($issuerId) === '' ? 'issuer_id is' : 'service_account_json is'));
         }
 
         $definition = new Definition(GoogleWalletSaveLinkBuilder::class, [
@@ -95,10 +102,16 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
         $enabled     = (bool) ($appleConfig['enabled'] ?? false);
         $pattern     = (string) ($appleConfig['pass_download_url_pattern'] ?? '');
 
-        if (!$enabled || !AppleWalletPassLinkBuilder::isConfigured($pattern)) {
+        if (!$enabled) {
             $container->setParameter('nowo_wallet_qr.apple_wallet.enabled', false);
 
             return;
+        }
+
+        // A pattern coming from %env()% is only known at runtime: the builder validates it on first use.
+        $hasEnv = $container->resolveEnvPlaceholders($pattern, '%%env(%s)%%') !== $pattern;
+        if (trim($pattern) === '' || (!$hasEnv && !AppleWalletPassLinkBuilder::isConfigured($pattern))) {
+            throw new InvalidConfigurationException(sprintf('nowo_wallet_qr.apple_wallet is enabled but pass_download_url_pattern %s: use a URL containing the "{pass_id}" placeholder, or set apple_wallet.enabled to false.', trim($pattern) === '' ? 'is empty' : sprintf('("%s") has no "{pass_id}" placeholder', $pattern)));
         }
 
         $definition = new Definition(AppleWalletPassLinkBuilder::class, [$pattern]);

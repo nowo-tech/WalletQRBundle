@@ -10,6 +10,7 @@ use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Service\WalletQrService;
 use Nowo\WalletQrBundle\Twig\WalletQrExtension;
 use PHPUnit\Framework\TestCase;
+use Twig\Error\RuntimeError;
 use Twig\TwigFunction;
 
 final class WalletQrExtensionTest extends TestCase
@@ -20,6 +21,15 @@ final class WalletQrExtensionTest extends TestCase
         $result    = $extension->walletQrForUrl('ios', 'https://example.com/pass.pkpass');
 
         $this->assertSame(WalletPlatform::Ios, $result->link->platform);
+    }
+
+    public function testWalletQrForUrlRejectsUnknownPlatform(): void
+    {
+        $extension = new WalletQrExtension(new WalletQrService($this->qrCodeService()));
+
+        $this->expectException(RuntimeError::class);
+        $this->expectExceptionMessage('wallet_qr_for_url(): unknown wallet platform "windows"; expected one of: android, ios.');
+        $extension->walletQrForUrl('windows', 'https://example.com/pass.pkpass');
     }
 
     public function testWalletQrDataUri(): void

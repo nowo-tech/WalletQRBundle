@@ -7,6 +7,7 @@ All options live under the `nowo_wallet_qr` root key.
 - [Google Wallet (Android)](#google-wallet-android)
 - [Apple Wallet (iOS)](#apple-wallet-ios)
 - [QR code rendering](#qr-code-rendering)
+- [Allowlist scope](#allowlist-scope)
 - [Environment variables](#environment-variables)
 
 ## Google Wallet (Android)
@@ -17,6 +18,8 @@ All options live under the `nowo_wallet_qr` root key.
 | `google_wallet.issuer_id` | string | `''` | Google Wallet issuer ID |
 | `google_wallet.service_account_json` | string | `''` | Absolute path to service account JSON |
 | `google_wallet.origins` | string[] | `[]` | Optional JWT `origins` claim |
+
+With `enabled: true`, both `issuer_id` and `service_account_json` must be non-empty, otherwise the container fails to compile with `InvalidConfigurationException` (it used to disable the integration silently).
 
 Example:
 
@@ -36,6 +39,8 @@ nowo_wallet_qr:
 | --- | --- | --- | --- |
 | `apple_wallet.enabled` | bool | `false` | Enable pass download URL builder |
 | `apple_wallet.pass_download_url_pattern` | string | `''` | URL with `{pass_id}` placeholder |
+
+With `enabled: true`, an empty pattern or one without `{pass_id}` fails container compilation with `InvalidConfigurationException` (it used to disable the integration silently). A pattern from `%env()%` is only checked at runtime, when the first link is built (`WalletConfigurationException`).
 
 Example:
 
@@ -59,7 +64,7 @@ Legacy keys under `nowo_wallet_qr.qr_code` are still supported and forwarded to 
 | `qr_code.size` | int | `300` | Image size in pixels (64–1024) |
 | `qr_code.margin` | int | `10` | Quiet zone margin |
 | `qr_code.error_correction` | string | `high` | `low`, `medium`, `quartile`, or `high` |
-| `qr_code.url_allowlist` | string[] | `[]` | Optional host/URL patterns for `createQrForUrl` / `wallet_qr_for_url`. Empty = any `http`/`https` URL. In production, set real hosts: QrCodeBundle `^1.4.6` fails compile when `url_allowlist_required` is true and the list is empty or only `example.com`. |
+| `qr_code.url_allowlist` | string[] | `[]` | Optional host/URL patterns for `createQrForUrl` / `wallet_qr_for_url` **only** (see [Allowlist scope](#allowlist-scope)). Empty = any `http`/`https` URL. In production, set real hosts: QrCodeBundle `^1.4.6` fails compile when `url_allowlist_required` is true and the list is empty or only `example.com`. |
 
 Preferred:
 
@@ -87,6 +92,17 @@ nowo_wallet_qr:
             - example.com
             - '#^https://cdn\\.example\\.com/'
 ```
+
+## Allowlist scope
+
+`url_allowlist` (`nowo_qr_code.profiles.*.url_allowlist`, or legacy `nowo_wallet_qr.qr_code.url_allowlist`) is enforced **only** for arbitrary URLs: `WalletQrService::createQrForUrl()` and the Twig `wallet_qr_for_url()`.
+
+Links built by the bundle from trusted configuration are encoded **without** the allowlist check:
+
+- `createGoogleWalletQr()` → always `https://pay.google.com/gp/v/save/<signed JWT>`;
+- `createAppleWalletQr()` → your `apple_wallet.pass_download_url_pattern` with the URL-encoded pass id.
+
+So `pay.google.com` / your pass host do **not** need to be in the allowlist for those methods (listing them is harmless). Do not pass user-supplied URLs to `createQrForUrl()` / `wallet_qr_for_url()` without an allowlist.
 
 ## Environment variables
 

@@ -63,7 +63,9 @@ $pair = $this->walletQrService->createWalletQrPair(
 
 `createQrForUrl` and the Twig helper `wallet_qr_for_url` only accept **http** or **https** URLs with a valid host. Schemes such as `javascript:` or `data:` are rejected with `InvalidWalletQrUrlException` (alias of QrCodeBundle’s `InvalidQrUrlException`).
 
-Optionally restrict hosts with `nowo_qr_code.url_allowlist` or legacy `nowo_wallet_qr.qr_code.url_allowlist` (see [Configuration](CONFIGURATION.md)).
+Optionally restrict hosts with `nowo_qr_code.url_allowlist` or legacy `nowo_wallet_qr.qr_code.url_allowlist` (see [Configuration](CONFIGURATION.md)). The allowlist only applies to these custom URLs, not to `createGoogleWalletQr()` / `createAppleWalletQr()` (see [Allowlist scope](CONFIGURATION.md#allowlist-scope)).
+
+`wallet_qr_for_url()` accepts the platforms `android` and `ios`; any other value throws a Twig `RuntimeError` naming the accepted values.
 
 For QR codes **without** wallet links, use [QrCodeBundle](https://github.com/nowo-tech/QrCodeBundle) directly (`QrCodeService`, Twig `qr_code_data_uri` / `qr_code_for_url`).
 

@@ -13,7 +13,7 @@
 ## Requirements
 
 - PHP 8.2 or higher
-- Symfony 7.x or 8.x
+- Symfony 7.4+ or 8.x
 - **[`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle)** (required; installed automatically by Composer)
 - PHP **gd** (PNG QR rendering)
 - Google Cloud service account JSON key (for Google Wallet / Android)

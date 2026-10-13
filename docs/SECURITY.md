@@ -76,6 +76,7 @@ There is **no** bundled HTTP admin UI or public controller. Host applications su
 | Risk | Mitigation |
 |------|------------|
 | **Phishing / unsafe QR payloads** | `QrUrlPolicy` from required [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle) accepts only `http`/`https` and rejects `javascript:`, `data:`, etc. Optional `nowo_qr_code.url_allowlist` (or legacy `nowo_wallet_qr.qr_code.url_allowlist`) restricts hosts further. |
+| **Allowlist scope** | The allowlist applies to `createQrForUrl()` / `wallet_qr_for_url()` only. Google save links (`pay.google.com`) and Apple pass URLs are built from trusted configuration and are encoded without the allowlist (see [Configuration](CONFIGURATION.md#allowlist-scope)). |
 | **Empty allowlist** | With an empty allowlist, any https URL may be encoded — treat QR content as host-controlled input; do not pass untrusted user URLs without an allowlist. |
 | **Google Wallet service-account key** | Path configured via `google_wallet.service_account_json`; keep the JSON file out of git, readable only by the app user, rotate on leak. |
 | **JWT origins** | Configure `google_wallet.origins` to your production origins only. |

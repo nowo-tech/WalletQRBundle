@@ -31,6 +31,17 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Fixed
+
+- `google_wallet.enabled: true` without `issuer_id` / `service_account_json`, or `apple_wallet.enabled: true` with an empty pattern or one without `{pass_id}`, now fails container compilation with `InvalidConfigurationException` instead of silently disabling the integration (`%env()%` patterns are still validated at runtime).
+- Twig `wallet_qr_for_url()` with an unknown platform throws a `RuntimeError` listing the accepted values (`android`, `ios`) instead of a bare `ValueError` from `WalletPlatform::from()`.
+
+### Changed
+
+- Minimum Symfony version raised from 7.0 to **7.4**; the CI `7.0` cell (which resolved to 7.4 anyway) is dropped.
+- `symfony/yaml` moved from `require-dev` to `require` (the extension loads `services.yaml` with `YamlFileLoader`).
+- Documentation: the QR URL allowlist applies only to `createQrForUrl()` / `wallet_qr_for_url()`; Google/Apple wallet links built from configuration are not checked against it (docs/CONFIGURATION.md#allowlist-scope).
+
 ## [3.0.12] - 2026-10-13
 
 ### Changed

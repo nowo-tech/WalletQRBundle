@@ -7,8 +7,13 @@ namespace Nowo\WalletQrBundle\Twig;
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Model\WalletQr;
 use Nowo\WalletQrBundle\Service\WalletQrService;
+use Twig\Error\RuntimeError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
+
+use function array_map;
+use function implode;
+use function sprintf;
 
 /**
  * Twig helpers to render wallet QR codes in templates.
@@ -33,11 +38,16 @@ final class WalletQrExtension extends AbstractExtension
         return $walletQr->qrCodeDataUri;
     }
 
+    /**
+     * @throws RuntimeError when $platform is not a {@see WalletPlatform} value
+     */
     public function walletQrForUrl(string $platform, string $url): WalletQr
     {
-        return $this->walletQrService->createQrForUrl(
-            WalletPlatform::from($platform),
-            $url,
-        );
+        $walletPlatform = WalletPlatform::tryFrom($platform);
+        if ($walletPlatform === null) {
+            throw new RuntimeError(sprintf('wallet_qr_for_url(): unknown wallet platform "%s"; expected one of: %s.', $platform, implode(', ', array_map(static fn (WalletPlatform $p): string => $p->value, WalletPlatform::cases()))));
+        }
+
+        return $this->walletQrService->createQrForUrl($walletPlatform, $url);
     }
 }
