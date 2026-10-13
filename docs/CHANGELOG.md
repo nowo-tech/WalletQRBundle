@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.1.0] - 2026-10-13](#310---2026-10-13)
 - [[3.0.12] - 2026-10-13](#3012---2026-10-13)
 - [[3.0.11] - 2026-10-09](#3011---2026-10-09)
   - [Dependencies](#dependencies)
@@ -31,6 +32,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-10-13
+
 ### Fixed
 
 - `google_wallet.enabled: true` without `issuer_id` / `service_account_json`, or `apple_wallet.enabled: true` with an empty pattern or one without `{pass_id}`, now fails container compilation with `InvalidConfigurationException` instead of silently disabling the integration (`%env()%` patterns are still validated at runtime).
@@ -41,6 +44,8 @@ All notable changes to this project will be documented in this file.
 - Minimum Symfony version raised from 7.0 to **7.4**; the CI `7.0` cell (which resolved to 7.4 anyway) is dropped.
 - `symfony/yaml` moved from `require-dev` to `require` (the extension loads `services.yaml` with `YamlFileLoader`).
 - Documentation: the QR URL allowlist applies only to `createQrForUrl()` / `wallet_qr_for_url()`; Google/Apple wallet links built from configuration are not checked against it (docs/CONFIGURATION.md#allowlist-scope).
+
+[3.1.0]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.1.0
 
 ## [3.0.12] - 2026-10-13
 

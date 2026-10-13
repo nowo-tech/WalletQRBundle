@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+## To 3.1.0
+
+From **3.0.12** — fail fast on incomplete wallet config, clearer Twig errors, Symfony >=7.4.
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
 - **Symfony 7.4+** is now required (was 7.0+); 8.x unchanged.
 - **Fail-fast wallet config:** if you set `google_wallet.enabled: true` (or `apple_wallet.enabled: true`) without complete settings, the container now fails to compile. Either complete `issuer_id` + `service_account_json` (or a `pass_download_url_pattern` containing `{pass_id}`), or set `enabled: false` — e.g. per environment with `when@dev`.
 
