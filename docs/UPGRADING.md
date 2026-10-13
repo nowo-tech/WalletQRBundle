@@ -1,5 +1,35 @@
 # Upgrading
 
+## Table of contents
+
+- [Unreleased](#unreleased)
+- [To 3.1.0](#to-310)
+- [To 3.0.12](#to-3012)
+- [To 3.0.11](#to-3011)
+- [To 3.0.10](#to-3010)
+- [From 3.0.8 to 3.0.9](#from-308-to-309)
+- [From 3.0.7 to 3.0.8](#from-307-to-308)
+- [From 3.0.6 to 3.0.7](#from-306-to-307)
+- [3.x](#3x)
+  - [3.0.6](#306)
+  - [3.0.5](#305)
+  - [3.0.4](#304)
+  - [3.0.3](#303)
+  - [3.0.2](#302)
+  - [3.0.1](#301)
+  - [3.0.0](#300)
+- [2.x](#2x)
+  - [2.1.5](#215)
+  - [2.1.4](#214)
+  - [2.1.3](#213)
+  - [2.1.2](#212)
+  - [2.1.1](#211)
+  - [2.1.0](#210)
+  - [2.0.0](#200)
+- [1.x](#1x)
+  - [1.1.0](#110)
+  - [1.0.0](#100)
+
 ## Unreleased
 
 ## To 3.1.0
@@ -45,15 +75,6 @@ php bin/console cache:clear
 - No application upgrade steps for require-dev Igor tooling (REQ-CS-008). Consumers do not pull `igor-php/igor-php` transitively.
 
 This document describes how to upgrade between versions of Wallet QR Bundle.
-
-## Table of contents
-
-- [From 3.0.8 to 3.0.9](#from-308-to-309)
-- [From 3.0.7 to 3.0.8](#from-307-to-308)
-- [From 3.0.6 to 3.0.7](#from-306-to-307)
-- [3.x](#3x)
-- [2.x](#2x)
-- [1.x](#1x)
 
 ## From 3.0.8 to 3.0.9
 
