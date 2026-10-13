@@ -1,7 +1,16 @@
 # Upgrading
 
-
 ## Unreleased
+
+## To 3.0.12
+
+From **3.0.11** — dependency refresh and repository maintenance.
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
+- No breaking changes. No application upgrade steps.
 
 ## To 3.0.11
 
@@ -27,7 +36,6 @@ php bin/console cache:clear
 This document describes how to upgrade between versions of Wallet QR Bundle.
 
 ## Table of contents
-
 
 - [From 3.0.8 to 3.0.9](#from-308-to-309)
 - [From 3.0.7 to 3.0.8](#from-307-to-308)

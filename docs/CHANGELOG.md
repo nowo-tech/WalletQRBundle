@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.0.12] - 2026-10-13](#3012---2026-10-13)
 - [[3.0.11] - 2026-10-09](#3011---2026-10-09)
   - [Dependencies](#dependencies)
 - [[3.0.10] - 2026-09-27](#3010---2026-09-27)
@@ -30,9 +31,13 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.12] - 2026-10-13
+
 ### Changed
 
 - Development: `composer.json` pins `config.platform.php` to 8.2.0 so the committed lock stays installable on the minimum PHP; CI overrides the platform per matrix cell.
+
+[3.0.12]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.12
 
 ## [3.0.11] - 2026-10-09
 
