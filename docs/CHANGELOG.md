@@ -31,6 +31,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Documentation
+
+- Documentation: wave-1 REQ compliance — README preamble order and canonical FrankenPHP claim, GitHub links use the `WalletQRBundle` repository slug, documentation list order (PSR under Additional documentation), canonical issue templates, CONTRIBUTING Code of Conduct link and Cursor Agent queue settings (REQ-IDE-006), demo README rewritten for the two current demos with a DEMO-FRANKENPHP link, commented demo `.env.example`, Spec Kit baseline acceptance criteria / non-goals / assumptions, tables of contents on long docs.
+
 ## [3.1.0] - 2026-10-13
 
 ### Fixed
@@ -44,7 +48,7 @@ All notable changes to this project will be documented in this file.
 - `symfony/yaml` moved from `require-dev` to `require` (the extension loads `services.yaml` with `YamlFileLoader`).
 - Documentation: the QR URL allowlist applies only to `createQrForUrl()` / `wallet_qr_for_url()`; Google/Apple wallet links built from configuration are not checked against it (docs/CONFIGURATION.md#allowlist-scope).
 
-[3.1.0]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.1.0
+[3.1.0]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.1.0
 
 ## [3.0.12] - 2026-10-13
 
@@ -52,7 +56,7 @@ All notable changes to this project will be documented in this file.
 
 - Development: `composer.json` pins `config.platform.php` to 8.2.0 so the committed lock stays installable on the minimum PHP; CI overrides the platform per matrix cell.
 
-[3.0.12]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.12
+[3.0.12]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.12
 
 ## [3.0.11] - 2026-10-09
 
@@ -63,7 +67,7 @@ All notable changes to this project will be documented in this file.
 - Demos: Symfony 8.1.8, `firebase/php-jwt` 7.2.1, `twig/twig` 3.30.0; regenerated `config/reference.php`.
 - PHP CS Fixer bot passes (no functional change).
 
-[3.0.11]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.11
+[3.0.11]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.11
 
 ## [3.0.10] - 2026-09-27
 
@@ -75,7 +79,7 @@ All notable changes to this project will be documented in this file.
 
 - **Worker safety (Igor):** justified `// @igor-ignore` annotations and/or `ResetInterface` / request-scoped fixes so `make igor` passes on package `src/`.
 
-[3.0.10]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.10
+[3.0.10]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.10
 
 ## [3.0.9] - 2026-09-25
 
@@ -124,7 +128,7 @@ All notable changes to this project will be documented in this file.
 
 - **Flex recipe `when@prod`:** stop shipping `qr_code.url_allowlist: [example.com]`. Production must set real hosts (or rely on QrCodeBundle `^1.4.6` fail-fast when `url_allowlist_required` is true and the allowlist is empty/placeholder).
 
-[3.0.6]: https://github.com/nowo-tech/WalletQrBundle/releases/tag/v3.0.6
+[3.0.6]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.0.6
 
 ## [3.0.5] - 2026-08-19
 

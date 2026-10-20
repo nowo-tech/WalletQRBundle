@@ -8,6 +8,14 @@
 
 After creating the release commit and tag, run `make check-no-cursor-coauthor` again **before** `git push` (REQ-GIT-001). The release commit itself is not covered by an earlier `release-check` run.
 
+## Table of contents
+
+- [Example for v3.0.9](#example-for-v309)
+- [Example for v3.0.1](#example-for-v301)
+- [Example for v3.0.0](#example-for-v300)
+- [Example for v2.1.5](#example-for-v215)
+- [Example for v2.1.4](#example-for-v214)
+
 ## Example for v3.0.9
 
 ```bash

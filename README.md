@@ -1,18 +1,20 @@
 # Wallet QR Bundle
 
-[![CI](https://github.com/nowo-tech/WalletQrBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/WalletQrBundle/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/wallet-qr-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/wallet-qr-bundle.svg)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-7.4%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com) [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/wallet-qr-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/WalletQrBundle) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
+[![CI](https://github.com/nowo-tech/WalletQRBundle/actions/workflows/ci.yml/badge.svg)](https://github.com/nowo-tech/WalletQRBundle/actions/workflows/ci.yml) [![Packagist Version](https://img.shields.io/packagist/v/nowo-tech/wallet-qr-bundle.svg?style=flat)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle) [![Packagist Downloads](https://img.shields.io/packagist/dt/nowo-tech/wallet-qr-bundle.svg)](https://packagist.org/packages/nowo-tech/wallet-qr-bundle) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) [![PHP](https://img.shields.io/badge/PHP-8.2%2B-777BB4?logo=php)](https://php.net) [![Symfony](https://img.shields.io/badge/Symfony-7.4%20%7C%208.0%20%7C%208.1%2B-000000?logo=symfony)](https://symfony.com) [![GitHub stars](https://img.shields.io/github/stars/nowo-tech/wallet-qr-bundle.svg?style=social&label=Star)](https://github.com/nowo-tech/WalletQRBundle) [![Coverage](https://img.shields.io/badge/Coverage-100%25-brightgreen)](#tests-and-coverage)
 
 > ⭐ **Found this useful?** Give it a star on GitHub! It helps us maintain and improve the project.
-> 📋 **Requires PHP 8.2+ and Symfony 7.4+ or 8.x** (CI matrix includes Symfony **7.4**, **8.0**, **8.1**)
 
-**FrankenPHP demos:** runtime is selected with **`FRANKENPHP_MODE`** (`worker` default, or `classic` for per-request PHP / hot-reload). See [docs/DEMO-FRANKENPHP.md](docs/DEMO-FRANKENPHP.md).
 **Symfony bundle to generate Google Wallet (Android) and Apple Wallet (iOS) save links with QR codes.**
 
 QR rendering requires the mandatory dependency [**QrCodeBundle**](https://github.com/nowo-tech/QrCodeBundle) (`nowo-tech/qr-code-bundle`), which Composer installs automatically. You can also use it standalone for QR codes outside wallet flows.
 
+> 📋 **Requires PHP 8.2+ and Symfony 7.4+ or 8.x** (CI matrix includes Symfony **7.4**, **8.0**, **8.1**)
+
 ![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
 
-This bundle is **FrankenPHP worker mode friendly** (including when the kernel is **not** reset between requests). See [docs/FRANKENPHP-WORKER-AUDIT.md](docs/FRANKENPHP-WORKER-AUDIT.md).
+This bundle is **FrankenPHP worker mode friendly**.
+
+It stays safe when the kernel is **not** reset between requests — see [docs/FRANKENPHP-WORKER-AUDIT.md](docs/FRANKENPHP-WORKER-AUDIT.md).
 
 ## Features
 
@@ -74,6 +76,8 @@ $pair = $walletQrService->createWalletQrPair($reference, applePassId: 'MEMBER_00
 
 ## Development
 
+**FrankenPHP demos:** runtime is selected with **`FRANKENPHP_MODE`** (`worker` default, or `classic` for per-request PHP / hot-reload). See [docs/DEMO-FRANKENPHP.md](docs/DEMO-FRANKENPHP.md).
+
 ```bash
 make up
 make test
@@ -88,7 +92,6 @@ Demos: `make -C demo/symfony8 up`
 
 - [Installation](docs/INSTALLATION.md)
 - [Configuration](docs/CONFIGURATION.md)
-- [PSR evaluation (REQ-CS-007)](docs/PSR.md)
 - [Usage](docs/USAGE.md)
 - [Contributing](docs/CONTRIBUTING.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
@@ -102,6 +105,7 @@ Demos: `make -C demo/symfony8 up`
 
 ### Additional documentation
 
+- [PSR evaluation (REQ-CS-007)](docs/PSR.md)
 - [GitHub Actions CI requirements](docs/GITHUB_CI.md)
 - [Demo with FrankenPHP](docs/DEMO-FRANKENPHP.md)
 - [FrankenPHP worker audit (`reset_kernel` false)](docs/FRANKENPHP-WORKER-AUDIT.md)

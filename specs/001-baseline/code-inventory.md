@@ -2,9 +2,9 @@
 
 **Baseline spec**: [`spec.md`](spec.md)  
 **Package**: `nowo-tech/wallet-qr-bundle`  
-**Last audited**: 2026-09-25
+**Last audited**: 2026-10-20
 
-This file proves that **every production source artifact** under `src/` is referenced by the baseline specification. Test-only files under `tests/` and `*.test.ts` under `src/` are out of Packagist scope. Built assets under `Resources/public/` are documented as Vite/build outputs.
+This file proves that **every production source artifact** under `src/` is referenced by the baseline specification. The package ships PHP and one YAML service file only (no TypeScript, no build outputs).
 
 ## Bundle & DI
 
@@ -70,4 +70,4 @@ This file proves that **every production source artifact** under `src/` is refer
 | Symfony config | 1 | 1 |
 | **Total production sources** | **16** | **16** |
 
-Audit: `find src -type f ! -path '*/assets/dist/*' ! -name '*.test.ts' | wc -l`
+Audit: `git ls-files src | wc -l` → 16.

@@ -8,6 +8,17 @@
 | Method | Manual review of every file under `src/` (services, link builders, Twig extension, DI extension, config, `class_alias` BC shims) |
 | **Verdict** | ✅ **Compatible under scenario B** — every service of this bundle is stateless (`readonly` config only). QR rendering is delegated to [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle) **`^1.4.9`**, which is likewise compatible under scenario B (YAML and database profile modes). |
 
+## Table of contents
+
+- [Execution model assumed](#execution-model-assumed)
+- [Summary](#summary)
+- [Services reviewed](#services-reviewed)
+- [Findings](#findings)
+  - [W-01 — Service account JSON is read and parsed on every Google link (Low)](#w-01--service-account-json-is-read-and-parsed-on-every-google-link-low)
+  - [W-02 — QR rendering depends on QrCodeBundle (Info / resolved by constraint)](#w-02--qr-rendering-depends-on-qrcodebundle-info--resolved-by-constraint)
+- [Usage recommendations in worker mode](#usage-recommendations-in-worker-mode)
+- [Re-audit triggers](#re-audit-triggers)
+
 ## Execution model assumed
 
 FrankenPHP worker mode boots the Symfony kernel once per worker and serves many requests with the same container. This audit assumes the **strict** variant: the kernel is **not** rebooted between requests (`reset_kernel` / equivalent **off**), so every shared service, static property and PHP global survives from one request to the next. Two scenarios are evaluated:

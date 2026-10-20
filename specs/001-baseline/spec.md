@@ -26,17 +26,28 @@ Library-style Symfony bundle to build **Google Wallet save links** (signed JWT) 
 
 As an integrator, I pass a `GoogleWalletPassReference` and receive a signed save URL and QR PNG data URI.
 
-**Acceptance**: `GoogleWalletSaveLinkBuilder` signs JWT; `WalletQrService` composes `WalletQr`.
+**Acceptance**:
+
+1. **Given** configured Google issuer credentials and a `GoogleWalletPassReference`, **When** `WalletQrService` builds the Google link, **Then** `GoogleWalletSaveLinkBuilder` returns a `https://pay.google.com/gp/v/save/<signed JWT>` URL wrapped in a `WalletLink`.
+2. **Given** that link, **When** the QR is requested, **Then** a `WalletQr` with a PNG data URI is returned (rendered by `nowo-tech/qr-code-bundle`).
 
 ### US-02 — Apple Wallet download link + QR (Priority: P1)
 
 As an integrator, I build Apple pass download URLs from configured base URL and pass id.
 
-**Acceptance**: `AppleWalletPassLinkBuilder` validates configuration.
+**Acceptance**:
+
+1. **Given** a configured Apple pass base URL, **When** a pass id is passed, **Then** `AppleWalletPassLinkBuilder` returns the download URL.
+2. **Given** a missing base URL, **When** an Apple link is requested, **Then** `WalletConfigurationException` is thrown.
 
 ### US-03 — Twig helper (Priority: P2)
 
 As a template author, I render wallet QR markup via `WalletQrExtension`.
+
+**Acceptance**:
+
+1. **Given** a platform value (`android` / `ios`) and a wallet URL, **When** the template calls `wallet_qr_for_url(platform, url)`, **Then** a `WalletQr` is returned and `wallet_qr_data_uri(walletQr)` yields the PNG data URI for `<img src>`.
+2. **Given** an unknown platform value, **When** `wallet_qr_for_url()` is called, **Then** a Twig `RuntimeError` lists the accepted platforms.
 
 ---
 
@@ -56,10 +67,24 @@ As a template author, I render wallet QR markup via `WalletQrExtension`.
 
 ## Success Criteria
 
-- **SC-001**: 100% of production files in `src/` appear in [`code-inventory.md`](code-inventory.md) with requirement IDs (16/16 mapped).
+- **SC-001**: 100% of production files in `src/` appear in [`code-inventory.md`](code-inventory.md) with requirement IDs (16/16 mapped, audited 2026-10-20).
 - **SC-002**: Configuration keys in `docs/CONFIGURATION.md` match `Configuration.php`.
-- **SC-003**: `composer qa` / `make release-check` pass in CI (PHPUnit, PHPStan, Vitest where applicable).
+- **SC-003**: `composer qa` / `make release-check` pass in CI (PHP-CS-Fixer, PHPStan, PHPUnit). The package ships no TypeScript.
 - **SC-004**: No Packagist-visible behavior change without spec, inventory, and test updates.
+
+---
+
+## Non-goals
+
+- Issuing or signing Apple `.pkpass` files: the bundle builds the download URL; the host serves the signed pass.
+- Creating Google Wallet classes/objects through the Google Wallet REST API: the bundle signs save-link JWTs for passes the issuer already defines.
+- QR rendering itself (delegated to `nowo-tech/qr-code-bundle`).
+- `demo/` trees (illustrative, not Packagist API).
+
+## Assumptions
+
+- The host supplies Google issuer / service-account credentials and the Apple pass base URL through `nowo_wallet_qr` configuration (secrets via env vars).
+- QR payloads are wallet URLs validated by the QrCodeBundle URL policy (`QrUrlPolicy` is a deprecated alias of it since 3.0).
 
 ---
 
@@ -68,7 +93,6 @@ As a template author, I render wallet QR markup via `WalletQrExtension`.
 | Check | Command |
 | --- | --- |
 | Full QA | `make release-check` or `composer qa` |
-| Code inventory audit | `find src -type f ! -path '*/assets/dist/*' ! -name '*.test.ts' \| wc -l` |
-| TS tests | `pnpm test` or `make test-ts` (when assets present) |
+| Code inventory audit | `git ls-files src \| wc -l` → 16 |
 
 When changing behavior, update this spec, `code-inventory.md`, integrator docs, and tests.
