@@ -31,6 +31,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Dependencies refreshed (Composer and pnpm/npm lock files of the bundle and its demos, campaign 2026-10-19).
+- `.php-cs-fixer.dist.php`: `new ParallelConfig(2)` (REQ-CS-001).
+
 ### Documentation
 
 - Documentation: wave-1 REQ compliance — README preamble order and canonical FrankenPHP claim, GitHub links use the `WalletQRBundle` repository slug, documentation list order (PSR under Additional documentation), canonical issue templates, CONTRIBUTING Code of Conduct link and Cursor Agent queue settings (REQ-IDE-006), demo README rewritten for the two current demos with a DEMO-FRANKENPHP link, commented demo `.env.example`, Spec Kit baseline acceptance criteria / non-goals / assumptions, tables of contents on long docs.
