@@ -85,7 +85,7 @@ There is **no** bundled HTTP admin UI or public controller. Host applications su
 | **JWT origins** | Configure `google_wallet.origins` to your production origins only. |
 | **Twig / XSS** | QR helpers emit data-URI images or URLs; escape surrounding HTML as usual. Do not mark untrusted strings `is_safe` without policy checks. |
 
-**REQ-SEC-004:** AI audit + remedia **2026-07-29** — grade **Pass (conditional)** / residual risk **Medium** (phishing if host encodes untrusted URLs without allowlist; SA key permissions on host).
+**REQ-SEC-004:** AI audit + remedia **2026-07-29** (Pass (conditional) / Medium); re-audit **2026-09-28** — grade **Pass (good)** / residual risk **Low** (QR URLs through `QrUrlPolicy`; host keeps the Apple / Google keys private and configures the URL allowlist).
 
 ## Dependencies and updates
 
@@ -109,5 +109,6 @@ Before tagging a release, confirm:
 | **Cryptography** | Service-account private key from secure config path; never hardcoded. |
 | **Permissions / exposure** | No bundled admin routes; host configures any wallet-related controllers. |
 | **Limits / DoS** | Host should bound QR size and rate of generation if exposed to end users. |
+| **AI security audit (REQ-SEC-004)** | Grade **Pass (good)** / risk **Low** (re-audit 2026-09-28). Recorded in the Nowo monorepo `BUNDLES_SECURITY_ANALYSIS.md`. |
 
 Record confirmation in the release PR or tag notes.
