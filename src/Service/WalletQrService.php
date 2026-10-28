@@ -18,12 +18,12 @@ use Nowo\WalletQrBundle\Model\WalletQr;
  *
  * QR rendering and URL policy are provided by nowo-tech/qr-code-bundle ({@see QrCodeService}).
  */
-final class WalletQrService
+final readonly class WalletQrService
 {
     public function __construct(
-        private readonly QrCodeService $qrCodeService,
-        private readonly ?GoogleWalletSaveLinkBuilder $googleWalletSaveLinkBuilder = null,
-        private readonly ?AppleWalletPassLinkBuilder $appleWalletPassLinkBuilder = null,
+        private QrCodeService $qrCodeService,
+        private ?GoogleWalletSaveLinkBuilder $googleWalletSaveLinkBuilder = null,
+        private ?AppleWalletPassLinkBuilder $appleWalletPassLinkBuilder = null,
     ) {
     }
 

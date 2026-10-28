@@ -19,7 +19,7 @@ use function trim;
  *
  * @see https://developers.google.com/wallet/generic/web
  */
-final class GoogleWalletSaveLinkBuilder
+final readonly class GoogleWalletSaveLinkBuilder
 {
     private const SAVE_URL = 'https://pay.google.com/gp/v/save/';
 
@@ -27,9 +27,9 @@ final class GoogleWalletSaveLinkBuilder
      * @param list<string> $origins
      */
     public function __construct(
-        private readonly string $issuerId,
-        private readonly string $serviceAccountJsonPath,
-        private readonly array $origins = [],
+        private string $issuerId,
+        private string $serviceAccountJsonPath,
+        private array $origins = [],
     ) {
     }
 

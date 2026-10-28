@@ -16,10 +16,10 @@ use function trim;
  * Apple Wallet passes are typically served as `.pkpass` files. This builder resolves
  * a configured URL pattern so applications can expose a scannable link for iOS devices.
  */
-final class AppleWalletPassLinkBuilder
+final readonly class AppleWalletPassLinkBuilder
 {
     public function __construct(
-        private readonly string $passDownloadUrlPattern,
+        private string $passDownloadUrlPattern,
     ) {
     }
 

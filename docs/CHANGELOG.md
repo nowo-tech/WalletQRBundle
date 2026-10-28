@@ -31,6 +31,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+
+### Changed
+
+- Developer tooling: Rector targets PHP 8.2, the declared `php` floor (REQ-CS-003, REQ-SF-001). Rector's PHP 8.2 rules made the final services / value objects `readonly` classes (no API change).
 ### Changed
 
 - Dependencies refreshed (Composer and pnpm/npm lock files of the bundle and its demos, campaign 2026-10-19).
