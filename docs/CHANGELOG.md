@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.2.0] - 2026-10-29](#320---2026-10-29)
 - [[3.1.0] - 2026-10-13](#310---2026-10-13)
 - [[3.0.12] - 2026-10-13](#3012---2026-10-13)
 - [[3.0.11] - 2026-10-09](#3011---2026-10-09)
@@ -31,6 +32,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-10-29
+
+WalletQr: injected clock + PSR-3 logging around Google Wallet signing, strict qr_code enum (legacy node deprecated) See [UPGRADING](UPGRADING.md#to-320).
+
 ### Added
 
 - `GoogleWalletSaveLinkBuilder` takes an optional PSR-20 clock (JWT `iat`, defaults to FrameworkBundle's `clock`) and an optional PSR-3 logger (`wallet_qr` Monolog channel). Signing start/success/failure is logged without secrets (REQ-DI-001, REQ-OBS-001, REQ-CS-007). New runtime requirements: `symfony/clock`, `psr/clock`, `psr/log`.
@@ -55,6 +60,8 @@ All notable changes to this project will be documented in this file.
 ### Documentation
 
 - Documentation: wave-1 REQ compliance — README preamble order and canonical FrankenPHP claim, GitHub links use the `WalletQRBundle` repository slug, documentation list order (PSR under Additional documentation), canonical issue templates, CONTRIBUTING Code of Conduct link and Cursor Agent queue settings (REQ-IDE-006), demo README rewritten for the two current demos with a DEMO-FRANKENPHP link, commented demo `.env.example`, Spec Kit baseline acceptance criteria / non-goals / assumptions, tables of contents on long docs.
+
+[3.2.0]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.2.0
 
 ## [3.1.0] - 2026-10-13
 

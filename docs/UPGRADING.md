@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 3.2.0](#to-320)
 - [To 3.1.0](#to-310)
 - [To 3.0.12](#to-3012)
 - [To 3.0.11](#to-3011)
@@ -31,6 +32,14 @@
   - [1.0.0](#100)
 
 ## Unreleased
+
+## To 3.2.0
+
+From **3.1.0**:
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
 
 ```bash
 composer update nowo-tech/wallet-qr-bundle
