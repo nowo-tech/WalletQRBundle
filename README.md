@@ -8,7 +8,7 @@
 
 QR rendering requires the mandatory dependency [**QrCodeBundle**](https://github.com/nowo-tech/QrCodeBundle) (`nowo-tech/qr-code-bundle`), which Composer installs automatically. You can also use it standalone for QR codes outside wallet flows.
 
-> 📋 **Requires PHP 8.2+ and Symfony 7.4+ or 8.x** (CI matrix includes Symfony **7.4**, **8.0**, **8.1**)
+> 📋 **Requires PHP 8.2+ and Symfony 7.4+ or 8.x** (CI matrix covers Symfony **7.4** and **8.1**; **8.0** stays allowed by `composer.json` but its CI cell was dropped after its end of maintenance)
 
 ![FrankenPHP Friendly Worker Mode](docs/images/frankenphp-friendly.png)
 
@@ -24,7 +24,7 @@ It stays safe when the kernel is **not** reset between requests — see [docs/FR
 - ✅ Pair generation for Android + iOS in one call
 - ✅ Symfony configuration under `nowo_wallet_qr`
 - ✅ URL validation for custom QR links (`QrUrlPolicy`; optional host allowlist)
-- ✅ Demo apps for Symfony 7 and 8 (FrankenPHP)
+- ✅ Demo apps for Symfony 8 on PHP 8.5 (FrankenPHP)
 
 ## Quick start
 
@@ -112,9 +112,13 @@ Demos: `make -C demo/symfony8 up`
 
 ## Tests and coverage
 
+PHPUnit runs the unit suite (`tests/Unit`: services, builders, Twig extension, configuration tree, DI extension) and the integration suite (`tests/Integration`: container wiring). CI enforces 100% PHP line coverage on PHP 8.2 / Symfony 7.4.
+
 | Language | Coverage |
 | --- | --- |
-| PHP | ~100% lines |
+| PHP | 100% lines |
+| TS/JS | N/A (no TypeScript/JavaScript sources) |
+| Python | N/A (no Python sources) |
 
 Run `make test-coverage` for the detailed report.
 

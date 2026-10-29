@@ -20,11 +20,21 @@ use function sprintf;
  */
 final class WalletQrExtension extends AbstractExtension
 {
+    /**
+     * Creates the Twig extension.
+     *
+     * @param WalletQrService $walletQrService Wallet QR service
+     */
     public function __construct(
         private readonly WalletQrService $walletQrService,
     ) {
     }
 
+    /**
+     * Registers `wallet_qr_data_uri()` and `wallet_qr_for_url()`.
+     *
+     * @return list<TwigFunction>
+     */
     public function getFunctions(): array
     {
         return [
@@ -33,12 +43,22 @@ final class WalletQrExtension extends AbstractExtension
         ];
     }
 
+    /**
+     * Returns the QR code data URI of a wallet QR.
+     *
+     * @param WalletQr $walletQr Wallet QR value object
+     */
     public function walletQrDataUri(WalletQr $walletQr): string
     {
         return $walletQr->qrCodeDataUri;
     }
 
     /**
+     * Creates a QR code for an http(s) URL labelled with a wallet platform.
+     *
+     * @param string $platform `android` or `ios`
+     * @param string $url URL to encode
+     *
      * @throws RuntimeError when $platform is not a {@see WalletPlatform} value
      */
     public function walletQrForUrl(string $platform, string $url): WalletQr

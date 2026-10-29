@@ -11,6 +11,8 @@
 - [Contact](#contact)
 - [Scope and attack surface](#scope-and-attack-surface)
 - [Threat model and mitigations](#threat-model-and-mitigations)
+- [Secrets and cryptography](#secrets-and-cryptography)
+- [Logging](#logging)
 - [Dependencies and updates](#dependencies-and-updates)
 - [Release security checklist (12.4.1)](#release-security-checklist-1241)
 
@@ -86,6 +88,29 @@ There is **no** bundled HTTP admin UI or public controller. Host applications su
 | **Twig / XSS** | QR helpers emit data-URI images or URLs; escape surrounding HTML as usual. Do not mark untrusted strings `is_safe` without policy checks. |
 
 **REQ-SEC-004:** AI audit + remedia **2026-07-29** (Pass (conditional) / Medium); re-audit **2026-09-28** — grade **Pass (good)** / residual risk **Low** (QR URLs through `QrUrlPolicy`; host keeps the Apple / Google keys private and configures the URL allowlist).
+
+## Secrets and cryptography
+
+| Item | How it is handled |
+|------|-------------------|
+| **What is signed** | Google Wallet save links are JWTs signed with **RS256** (`firebase/php-jwt`) using the service-account `private_key`. Claims: `iss` (service-account email), `aud=google`, `typ=savetowallet`, `iat` (from the injected PSR-20 clock), `payload`, optional `origins`. |
+| **Key storage** | The bundle only reads the JSON file at `google_wallet.service_account_json` when a link is built; the key is never cached in a static, written anywhere or exposed through a Twig function. Keep the file outside the web root and outside git, readable only by the PHP user; prefer a path injected from a secret store / `%env()%`. |
+| **No hardcoded secrets** | No key, token or password ships in `src/`, the Flex recipe or the demos. The recipe keeps `google_wallet.enabled: false`. `tests/fixtures/google-service-account.json` is a throwaway key generated for the test suite only; it grants access to nothing. |
+| **Rotation** | Rotate the service-account key in Google Cloud on any suspected leak and replace the file; previously issued save links stay valid for the passes they reference. |
+| **Apple Wallet** | The bundle does **not** sign `.pkpass` files: it only builds the download URL from `pass_download_url_pattern`. Pass signing (Apple certificates) stays in the host application. |
+
+## Logging
+
+`GoogleWalletSaveLinkBuilder` receives the PSR-3 `logger` (Monolog channel `wallet_qr` when MonologBundle is installed; a null logger otherwise):
+
+| Event | Level | Context |
+|-------|-------|---------|
+| Signing started | `debug` | `bundle`, `action`, `issuer_id`, `origins` (count only) |
+| Save link signed | `info` | same keys |
+| Configuration error (missing issuer, missing/invalid JSON file, missing `client_email` / `private_key`) | `error` | same keys + `reason` (the bundle's own exception message: may contain the configured file path, never file contents) |
+| JWT signing failure | `error` | same keys + `exception_class` only — the underlying message is **not** logged because crypto errors can quote key material |
+
+**Never logged:** the private key, the service-account JSON contents, the signed JWT / save URL, the pass payload (object/class IDs or any personal data in it) and the origin values. Apple Wallet URL building and QR rendering do not log (no I/O, no secrets). The bundle contains no `dump()`, `var_dump()` or `error_log()` calls in `src/`.
 
 ## Dependencies and updates
 

@@ -2,27 +2,26 @@
 description: PHP and Symfony bundle rules
 globs:
   - "src/**/*.php"
-  - "config/**/*.php"
-  - "config/**/*.yaml"
-  - "config/**/*.yml"
+  - "src/Resources/config/**/*.yaml"
+  - ".symfony/recipe/**/*.yaml"
 alwaysApply: false
 ---
 
-Target this bundle compatibility by default: PHP >=8.2 and Symfony 7/8.
+Target this bundle compatibility by default: PHP >=8.2 <8.6 and Symfony 7.4 / 8.x (see `composer.json`).
+Code must parse on PHP 8.2: write `(new Foo())->bar()`, never `new Foo()->bar()`.
 
 Prefer:
 - modern PHP with strict typing and explicit return types
-- PSR-12 coding style
-- final classes by default
-- readonly where appropriate
-- constructor injection
-- small focused services
-- framework conventions over custom abstractions
-- preserving public extension points
-- keeping DI extension, compiler pass wiring, and form type options backward compatible
-- PHPDoc in English for non-trivial classes, methods, and complex behavior
+- PSR-12 coding style (`make cs-check` / `make cs-fix`)
+- final classes by default, readonly where appropriate
+- constructor injection; PSR-20 `Psr\Clock\ClockInterface` for time and PSR-3 `Psr\Log\LoggerInterface` for logs (see `docs/PSR.md`)
+- small focused services (`src/GoogleWallet`, `src/AppleWallet`, `src/Service`, `src/Twig`)
+- keeping `NowoWalletQrExtension`, `Configuration` and the Twig functions backward compatible
+- an English PHPDoc block on every public class and public method in `src/`
+- never logging private keys, JWTs, save URLs or pass payloads
+
+Before finishing a PHP change run `make cs-check`, `make phpstan`, `make rector-dry` and `make test`.
 
 Do not introduce BC breaks unless explicitly requested.
-Do not add PHPDoc in Spanish.
-Do not rename public services, configuration keys, or Twig integrations without warning.
+Do not rename public services, configuration keys, or Twig functions without a deprecation path.
 Do not touch unrelated namespaces or files.

@@ -11,6 +11,12 @@ use function sprintf;
  */
 final readonly class GoogleWalletPassReference
 {
+    /**
+     * Creates a pass reference from fully qualified IDs.
+     *
+     * @param string $objectId Fully qualified pass object ID (`<issuerId>.<suffix>`)
+     * @param string $classId Fully qualified pass class ID (`<issuerId>.<suffix>`)
+     */
     public function __construct(
         public string $objectId,
         public string $classId,
@@ -19,6 +25,10 @@ final readonly class GoogleWalletPassReference
 
     /**
      * Builds fully qualified IDs using the Google Wallet issuer ID.
+     *
+     * @param string $issuerId Google Wallet issuer ID
+     * @param string $objectSuffix Object ID suffix
+     * @param string $classSuffix Class ID suffix
      */
     public static function withIssuer(string $issuerId, string $objectSuffix, string $classSuffix): self
     {

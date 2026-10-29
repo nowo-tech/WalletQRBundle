@@ -1,18 +1,19 @@
 ---
-description: Twig templates and public bundle assets
+description: Twig integration and public assets
 globs:
-  - "templates/**/*.twig"
-  - "src/**/Resources/views/**/*.twig"
-  - "src/Resources/public/**/*"
+  - "src/Twig/**/*.php"
+  - "demo/*/templates/**/*.twig"
 alwaysApply: false
 ---
 
-Prefer:
-- small, backward-compatible template and public asset changes
-- preserving current block structure
-- local DOM updates
-- reusing existing classes, ids, and hooks
-- minimal asset changes
+This bundle ships no Twig templates and no public assets: it only exposes the Twig functions
+`wallet_qr_data_uri()` and `wallet_qr_for_url()` from `src/Twig/WalletQrExtension.php`.
+Templates live in the host application (and in `demo/*/templates` for the demos).
 
-Do not edit generated files inside src/Resources/public/build.
-Do not rewrite entire templates or public asset trees for a local change.
+Prefer:
+- small, backward-compatible changes to the Twig function names and signatures
+- returning data (URLs, data URIs, value objects) and letting Twig auto-escape the HTML context
+- keeping `wallet_qr_for_url()` behind the nowo_qr_code URL policy / allowlist
+
+Do not mark untrusted strings as `is_safe`.
+Do not add templates or `src/Resources/public` assets without updating README, docs and these rules.

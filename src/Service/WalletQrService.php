@@ -20,6 +20,13 @@ use Nowo\WalletQrBundle\Model\WalletQr;
  */
 final readonly class WalletQrService
 {
+    /**
+     * Creates the wallet QR service.
+     *
+     * @param QrCodeService $qrCodeService QR renderer from nowo-tech/qr-code-bundle
+     * @param GoogleWalletSaveLinkBuilder|null $googleWalletSaveLinkBuilder Null when Google Wallet is disabled
+     * @param AppleWalletPassLinkBuilder|null $appleWalletPassLinkBuilder Null when Apple Wallet is disabled
+     */
     public function __construct(
         private QrCodeService $qrCodeService,
         private ?GoogleWalletSaveLinkBuilder $googleWalletSaveLinkBuilder = null,
@@ -28,7 +35,12 @@ final readonly class WalletQrService
     }
 
     /**
-     * @param list<string>|null $origins
+     * Creates the Android (Google Wallet) save link and its QR code.
+     *
+     * @param GoogleWalletPassReference $reference Pass class and object IDs
+     * @param list<string>|null $origins JWT origins (null = configured default)
+     *
+     * @throws WalletConfigurationException when Google Wallet is disabled
      */
     public function createGoogleWalletQr(
         GoogleWalletPassReference $reference,
@@ -42,6 +54,13 @@ final readonly class WalletQrService
         return new WalletQr($link, $this->qrCodeService->createDataUri($link->url));
     }
 
+    /**
+     * Creates the iOS (Apple Wallet) pass download link and its QR code.
+     *
+     * @param string $passId Pass identifier substituted into `{pass_id}`
+     *
+     * @throws WalletConfigurationException when Apple Wallet is disabled
+     */
     public function createAppleWalletQr(string $passId): WalletQr
     {
         $link = new WalletLink(
@@ -53,7 +72,11 @@ final readonly class WalletQrService
     }
 
     /**
-     * @param list<string>|null $googleOrigins
+     * Creates both the Android and the iOS wallet QR codes.
+     *
+     * @param GoogleWalletPassReference $googleReference Google Wallet pass class and object IDs
+     * @param string $applePassId Apple Wallet pass identifier
+     * @param list<string>|null $googleOrigins JWT origins (null = configured default)
      *
      * @return array{android: WalletQr, ios: WalletQr}
      */
@@ -68,6 +91,12 @@ final readonly class WalletQrService
         ];
     }
 
+    /**
+     * Creates a QR code for an arbitrary http(s) URL (checked by the nowo_qr_code URL policy).
+     *
+     * @param WalletPlatform $platform Platform label attached to the link
+     * @param string $url URL to encode
+     */
     public function createQrForUrl(WalletPlatform $platform, string $url): WalletQr
     {
         $link = new WalletLink($platform, $url);

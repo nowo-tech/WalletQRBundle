@@ -4,11 +4,13 @@
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 1.x     | :white_check_mark: |
+| 3.x     | :white_check_mark: |
+| 2.x     | :white_check_mark: |
+| 1.x     | :x:                |
 
 ## Reporting a Vulnerability
 
-We take the security of Wallet QR Bundle seriously. If you believe you have found a security vulnerability, please report it to us as described below.
+We take the security of WalletQRBundle (`nowo-tech/wallet-qr-bundle`) seriously. If you believe you have found a security vulnerability, please report it to us as described below.
 
 ### How to Report
 

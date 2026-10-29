@@ -32,10 +32,10 @@ A bundle that is safe under **B** is safe under **A** and under classic mode / P
 
 | Area | Status | Notes |
 |------|--------|-------|
-| Mutable state in shared services | ✅ | `WalletQrService`, `GoogleWalletSaveLinkBuilder`, `AppleWalletPassLinkBuilder` and `WalletQrExtension` only have `private readonly` constructor properties |
+| Mutable state in shared services | ✅ | `WalletQrService`, `GoogleWalletSaveLinkBuilder`, `AppleWalletPassLinkBuilder` and `WalletQrExtension` only have `readonly` properties set in the constructor (`GoogleWalletSaveLinkBuilder` also keeps the injected stateless PSR-20 clock and PSR-3 logger) |
 | Static properties / `static` locals | ✅ | None. Only pure static helpers (`isConfigured()`, `GoogleWalletPassReference::withIssuer()`) |
 | `ResetInterface` / `kernel.reset` coverage | ✅ N/A | Nothing to reset on this bundle's services |
-| Request / user / locale captured in services | ✅ | Everything is passed as method arguments; the JWT `iat` is computed per call (`GoogleWalletSaveLinkBuilder::buildSaveLinkFromPayload`) |
+| Request / user / locale captured in services | ✅ | Everything is passed as method arguments; the JWT `iat` is read from the injected clock on every call (`GoogleWalletSaveLinkBuilder::buildSaveLinkFromPayload`) |
 | Superglobals, `$_ENV`, `putenv`, `ini_set`, `setlocale`, timezone | ✅ | None used; config is compiled into container parameters / definitions |
 | Doctrine / EntityManager | ✅ N/A | No persistence in this bundle; see W-02 for the QrCodeBundle dependency |
 | Output, headers, `exit`, shutdown functions | ✅ | None |
@@ -52,7 +52,7 @@ Worker demo: `demo/symfony8/docker/frankenphp/Caddyfile` and `demo/symfony8-php8
 | Service | Shared | Mutable state | Scenario A | Scenario B |
 |---------|--------|---------------|------------|------------|
 | `Nowo\WalletQrBundle\Service\WalletQrService` | yes | none (`readonly` dependencies) | ✅ | ✅ |
-| `nowo_wallet_qr.google_wallet.save_link_builder` (`GoogleWalletSaveLinkBuilder`, only when enabled) | yes | none (`readonly` issuer id, JSON path, origins) | ✅ | ✅ |
+| `nowo_wallet_qr.google_wallet.save_link_builder` (`GoogleWalletSaveLinkBuilder`, only when enabled) | yes | none (`readonly` issuer id, JSON path, origins, clock, logger) | ✅ | ✅ |
 | `nowo_wallet_qr.apple_wallet.pass_link_builder` (`AppleWalletPassLinkBuilder`, only when enabled) | yes | none (`readonly` URL pattern) | ✅ | ✅ |
 | `Nowo\WalletQrBundle\Twig\WalletQrExtension` | yes | none | ✅ | ✅ |
 

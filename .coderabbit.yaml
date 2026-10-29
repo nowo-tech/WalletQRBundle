@@ -1,7 +1,7 @@
 # yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
 #
-# CodeRabbit configuration for nowo-tech/WalletQrBundle.
-# Requires the CodeRabbit GitHub App installed on nowo-tech/WalletQrBundle.
+# CodeRabbit configuration for nowo-tech/WalletQRBundle.
+# Requires the CodeRabbit GitHub App installed on nowo-tech/WalletQRBundle.
 # Manual review: comment `@coderabbitai review` on a pull request.
 
 language: en-US

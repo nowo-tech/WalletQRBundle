@@ -21,6 +21,9 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 final class NowoWalletQrBundle extends Bundle
 {
+    /**
+     * Returns the bundle DI extension (`nowo_wallet_qr`).
+     */
     public function getContainerExtension(): ExtensionInterface
     {
         if (!$this->extension instanceof ExtensionInterface) {
@@ -31,6 +34,13 @@ final class NowoWalletQrBundle extends Bundle
         return $this->extension;
     }
 
+    /**
+     * Fails fast when NowoQrCodeBundle is not registered.
+     *
+     * @param ContainerBuilder $container Container being built
+     *
+     * @throws LogicException when NowoQrCodeBundle is missing
+     */
     public function build(ContainerBuilder $container): void
     {
         parent::build($container);

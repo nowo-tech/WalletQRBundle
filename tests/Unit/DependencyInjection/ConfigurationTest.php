@@ -69,6 +69,33 @@ final class ConfigurationTest extends TestCase
         $this->assertSame(400, $config['qr_code']['size']);
     }
 
+    public function testLegacyQrCodeNodeIsDeprecated(): void
+    {
+        $this->expectUserDeprecationMessageMatches('/"nowo_wallet_qr\.qr_code" option is deprecated: configure "nowo_qr_code"/');
+
+        $this->processor->processConfiguration($this->configuration, [[
+            'qr_code' => ['size' => 200],
+        ]]);
+    }
+
+    public function testInvalidErrorCorrectionNamesPathAndAllowedValues(): void
+    {
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessageMatches('/"nowo_wallet_qr\.qr_code\.error_correction".*"low", "medium", "quartile", "high"/');
+
+        $this->processor->processConfiguration($this->configuration, [[
+            'qr_code' => ['error_correction' => 'extreme'],
+        ]]);
+    }
+
+    public function testUnknownKeyIsRejected(): void
+    {
+        $this->expectException(InvalidConfigurationException::class);
+        $this->expectExceptionMessageMatches('/Unrecognized option "unknown" under "nowo_wallet_qr"/');
+
+        $this->processor->processConfiguration($this->configuration, [['unknown' => true]]);
+    }
+
     public function testQrSizeMustBeWithinBounds(): void
     {
         $this->expectException(InvalidConfigurationException::class);

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Nowo\WalletQrBundle\Tests\Unit\QrCode;
 
 use Nowo\WalletQrBundle\QrCode\QrCodeDataUriRenderer;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 final class QrCodeDataUriRendererTest extends TestCase
@@ -17,9 +18,7 @@ final class QrCodeDataUriRendererTest extends TestCase
         $this->assertStringStartsWith('data:image/png;base64,', $dataUri);
     }
 
-    /**
-     * @dataProvider errorCorrectionProvider
-     */
+    #[DataProvider('errorCorrectionProvider')]
     public function testRenderDataUriWithErrorCorrectionLevels(string $level): void
     {
         $renderer = new QrCodeDataUriRenderer(size: 120, margin: 2, errorCorrection: $level);

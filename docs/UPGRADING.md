@@ -32,6 +32,15 @@
 
 ## Unreleased
 
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
+- **New runtime dependencies:** `symfony/clock`, `psr/clock` and `psr/log` (all already present in most Symfony apps). No configuration change.
+- **Deprecated `nowo_wallet_qr.qr_code`:** setting it now triggers a Symfony config deprecation. Move `size`, `margin`, `error_correction` and `url_allowlist` to `nowo_qr_code` (`profiles.default.*` or the flat keys) and delete the `qr_code:` block from `config/packages/nowo_wallet_qr.yaml`. The values are still forwarded until the node is removed in the next major.
+- **Stricter `qr_code.error_correction`:** only `low`, `medium`, `quartile` or `high` are accepted; any other value now fails container compilation (it used to be passed through to QrCodeBundle).
+- **Logging:** Google Wallet signing logs start (`debug`), success (`info`) and failures (`error`) on the `wallet_qr` Monolog channel, without secrets. Route or silence the channel in your Monolog config if needed.
+
 ## To 3.1.0
 
 From **3.0.12** — fail fast on incomplete wallet config, clearer Twig errors, Symfony >=7.4.

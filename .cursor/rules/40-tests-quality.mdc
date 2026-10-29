@@ -2,25 +2,24 @@
 description: Tests and quality rules
 globs:
   - "tests/**/*.php"
-  - "tests/**/*.ts"
-  - "tests/**/*.js"
-  - "src/Resources/assets/**/*.test.ts"
-  - "src/Resources/assets/**/*.spec.ts"
-  - "src/Resources/assets/**/*.test.js"
-  - "src/Resources/assets/**/*.spec.js"
   - "phpunit.xml*"
-  - "vitest.config.*"
-  - "eslint.config.*"
+  - "phpstan.neon*"
+  - "rector.php"
+  - ".php-cs-fixer.dist.php"
 alwaysApply: false
 ---
 
-When changing behavior, prefer adding or updating the nearest relevant test.
+When changing behavior, prefer adding or updating the nearest relevant test
+(`tests/Unit/<Namespace>/` mirrors `src/`, container wiring in `tests/Integration/`).
 
 Prefer:
 - one focused test
-- minimal fixture changes
+- PHPUnit attributes (`#[DataProvider]`, `#[CoversClass]`, ...), never `@test` / `@dataProvider` docblocks
+- `Symfony\Component\Clock\MockClock` for time and an in-memory PSR-3 logger for log assertions
+- obvious placeholders such as `REDACTED-TEST` instead of realistic secrets in fixtures
 - preserving the existing testing style
-- test updates close to the changed behavior
+
+Keep PHP line coverage at 100% (`make test-coverage`; CI enforces it). PHPStan stays at level 8 with no ignores (`make phpstan`).
 
 Do not introduce new testing frameworks unless explicitly requested.
 Do not rewrite unrelated tests.

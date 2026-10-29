@@ -3,15 +3,19 @@ description: Documentation and release notes rules
 globs:
   - "README.md"
   - "docs/**/*.md"
+  - ".github/**/*.md"
 alwaysApply: false
 ---
 
 Prefer:
 - documentation updates aligned with real code changes and current compatibility ranges
-- concise, actionable release notes
-- updating CHANGELOG and UPGRADING together for notable user-facing changes
-- preserving existing document structure and tone
-- keeping examples consistent with actual defaults and routes in this bundle
+- concise, actionable entries under `## [Unreleased]` in `docs/CHANGELOG.md`
+- updating `docs/UPGRADING.md` together with the CHANGELOG when host applications are affected
+- `docs/CONFIGURATION.md` for every `nowo_wallet_qr` key, `docs/SECURITY.md` for secrets/logging changes, `docs/PSR.md` when PSR usage changes
+- GitHub links with the repository slug `nowo-tech/WalletQRBundle`; Packagist / Composer names stay `nowo-tech/wallet-qr-bundle`
+- keeping examples consistent with actual defaults in `src/DependencyInjection/Configuration.php`
+
+Releases follow `docs/RELEASE.md` (`make release-check` first).
 
 Do not invent features, versions, or commands that are not present in the repository.
 Do not remove past release history unless explicitly requested.

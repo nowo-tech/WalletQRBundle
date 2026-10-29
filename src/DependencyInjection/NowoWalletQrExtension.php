@@ -6,13 +6,16 @@ namespace Nowo\WalletQrBundle\DependencyInjection;
 
 use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
 use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilder;
+use Psr\Clock\ClockInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 
 use function is_array;
 use function sprintf;
@@ -26,6 +29,11 @@ use function trim;
  */
 final class NowoWalletQrExtension extends Extension implements PrependExtensionInterface
 {
+    /**
+     * Forwards legacy `nowo_wallet_qr.qr_code` keys onto `nowo_qr_code` (deprecated BC path).
+     *
+     * @param ContainerBuilder $container Container being built
+     */
     public function prepend(ContainerBuilder $container): void
     {
         foreach ($container->getExtensionConfig('nowo_wallet_qr') as $config) {
@@ -36,6 +44,12 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
         }
     }
 
+    /**
+     * Processes the bundle configuration and registers the wallet services.
+     *
+     * @param array<array<string, mixed>> $configs Raw `nowo_wallet_qr` configuration blocks
+     * @param ContainerBuilder $container Container being built
+     */
     public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
@@ -57,6 +71,9 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
         $this->registerAppleWalletBuilder($container, $config);
     }
 
+    /**
+     * Returns the configuration alias (`nowo_wallet_qr`).
+     */
     public function getAlias(): string
     {
         return 'nowo_wallet_qr';
@@ -86,9 +103,13 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
             $issuerId,
             $jsonPath,
             $googleConfig['origins'] ?? [],
+            // PSR-20 clock and PSR-3 logger are optional: the builder falls back to the system clock / a null logger.
+            new Reference(ClockInterface::class, ContainerInterface::NULL_ON_INVALID_REFERENCE),
+            new Reference('logger', ContainerInterface::NULL_ON_INVALID_REFERENCE),
         ]);
         $definition->setAutowired(false);
         $definition->setPublic(false);
+        $definition->addTag('monolog.logger', ['channel' => 'wallet_qr']);
         $container->setDefinition('nowo_wallet_qr.google_wallet.save_link_builder', $definition);
         $container->setParameter('nowo_wallet_qr.google_wallet.enabled', true);
     }

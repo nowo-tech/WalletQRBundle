@@ -7,7 +7,4 @@ nowo_wallet_qr:
     apple_wallet:
         enabled: false
         pass_download_url_pattern: 'https://demo.example.com/wallet/{pass_id}.pkpass'
-    qr_code:
-        size: 240
-        margin: 8
-        error_correction: high
+# QR rendering options live in nowo_qr_code.yaml (the legacy nowo_wallet_qr.qr_code node is deprecated).

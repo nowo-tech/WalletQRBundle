@@ -7,16 +7,7 @@ nowo_wallet_qr:
     apple_wallet:
         enabled: false
         pass_download_url_pattern: 'https://example.com/wallet/{pass_id}.pkpass'
-    qr_code:
-        size: 300
-        margin: 10
-        error_correction: high
-        url_allowlist: []
-
-when@prod:
-    nowo_wallet_qr:
-        qr_code:
-            # Empty on purpose. Do not ship example.com (QrCodeBundle ^1.4.6 rejects
-            # that placeholder when url_allowlist_required is true). Set your hosts
-            # here or on nowo_qr_code.profiles.default.url_allowlist before prod boot.
-            url_allowlist: []
+    # QR size, margin, error correction and the URL allowlist are configured on
+    # nowo_qr_code (config/packages/nowo_qr_code.yaml, nowo-tech/qr-code-bundle).
+    # The legacy nowo_wallet_qr.qr_code node is deprecated since 3.2. In prod set
+    # real hosts on nowo_qr_code.profiles.default.url_allowlist (never example.com).

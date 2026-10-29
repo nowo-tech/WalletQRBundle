@@ -11,6 +11,12 @@ use Nowo\WalletQrBundle\Enum\WalletPlatform;
  */
 final readonly class WalletLink
 {
+    /**
+     * Creates a wallet link value object.
+     *
+     * @param WalletPlatform $platform Target mobile platform
+     * @param string $url Save or download URL
+     */
     public function __construct(
         public WalletPlatform $platform,
         public string $url,

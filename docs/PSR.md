@@ -21,23 +21,28 @@ Others are **N/A** (or already covered by Symfony) so the decision stays auditab
 
 ## Interface / contract PSRs
 
+Domain inventory: the bundle signs Google Wallet save-link JWTs with a service-account key read from a local file
+(`GoogleWalletSaveLinkBuilder`), builds Apple Wallet `.pkpass` download URLs from a pattern
+(`AppleWalletPassLinkBuilder`), renders QR codes through `nowo-tech/qr-code-bundle` (`WalletQrService`) and exposes
+two Twig functions. No outbound HTTP, no cache, no events, no HTTP controllers.
+
 | PSR | Decision | Notes |
 | --- | -------- | ----- |
-| PSR-3 Logger | **N/A** | Logging calls exist but there is no public/injectable logger SPI yet; do not add `psr/log` without type-hints. |
-| PSR-6 / PSR-16 Cache | **N/A** | No package-owned cache layer. |
-| PSR-7 / PSR-17 HTTP messages | **N/A** | Symfony HttpFoundation (or no HTTP messages API) is the correct surface; a PSR-7 bridge would not help consumers. |
-| PSR-18 HTTP client | **N/A** | No outbound HTTP client. |
+| PSR-3 Logger | **Adopted** | `GoogleWalletSaveLinkBuilder::__construct(?Psr\Log\LoggerInterface $logger = null)`; wired to `@logger` (null on invalid) with the `monolog.logger` tag, channel `wallet_qr`, in `NowoWalletQrExtension`. Logs signing start/success/failure without secrets ([SECURITY.md](SECURITY.md#logging)). `psr/log` in `require`; tests use an in-memory `AbstractLogger`. |
+| PSR-20 Clock | **Adopted** | `GoogleWalletSaveLinkBuilder::__construct(?Psr\Clock\ClockInterface $clock = null)` supplies the JWT `iat` claim; wired to the `Psr\Clock\ClockInterface` alias of FrameworkBundle's `clock` service (null on invalid → `Symfony\Component\Clock\NativeClock`). `psr/clock` + `symfony/clock` in `require`; tests freeze time with `MockClock`. |
+| PSR-6 / PSR-16 Cache | **N/A** | No package-owned cache layer (the service-account file is read per signing call, nothing is memoized). |
+| PSR-7 / PSR-17 HTTP messages | **N/A** | No HTTP message API: the bundle returns URL strings and data URIs; it has no controllers. |
+| PSR-18 HTTP client | **N/A** | No outbound HTTP client: JWTs are signed locally and the browser/device opens `pay.google.com`. |
 | PSR-11 Container | **N/A** | No container locator in the public API; constructor injection only. |
-| PSR-14 Event dispatcher | **N/A** | No domain event extension points that need a dispatcher SPI. |
-| PSR-15 HTTP middleware | **N/A** | Uses Symfony kernel listeners/subscribers (or has no HTTP middleware pipeline). |
-| PSR-20 Clock | **N/A** | No time-sensitive domain logic requiring a clock SPI. |
+| PSR-14 Event dispatcher | **N/A** | No domain events or extension points that need a dispatcher. |
+| PSR-15 HTTP middleware | **N/A** | No HTTP middleware pipeline. |
 
 ## Summary
 
-- **Adopted beyond baseline:** none (baseline PSR-12 + PSR-4 only).
+- **Adopted beyond baseline:** PSR-3 (Logger) and PSR-20 (Clock), both in `GoogleWalletSaveLinkBuilder`.
 - **Rule:** do not add `psr/*` Composer dependencies without matching type-hints and DI wiring.
-- **Re-evaluate** when the package gains logging, HTTP, cache, clock, or event SPIs.
+- **Re-evaluate** when the package gains HTTP, cache, or event SPIs, or logs/time in another service.
 
 ---
 
-_REQ-CS-007 evaluation date: 2026-08-21._
+_REQ-CS-007 evaluation date: 2026-10-29._

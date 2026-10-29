@@ -18,11 +18,23 @@ use function trim;
  */
 final readonly class AppleWalletPassLinkBuilder
 {
+    /**
+     * Creates the builder for a configured URL pattern.
+     *
+     * @param string $passDownloadUrlPattern URL pattern containing the `{pass_id}` placeholder
+     */
     public function __construct(
         private string $passDownloadUrlPattern,
     ) {
     }
 
+    /**
+     * Resolves the `.pkpass` download URL for a pass ID (URL-encoded into `{pass_id}`).
+     *
+     * @param string $passId Pass identifier
+     *
+     * @throws WalletConfigurationException when the pattern is empty or has no placeholder
+     */
     public function buildPassDownloadUrl(string $passId): string
     {
         if (trim($this->passDownloadUrlPattern) === '') {
@@ -36,6 +48,11 @@ final readonly class AppleWalletPassLinkBuilder
         return str_replace('{pass_id}', rawurlencode($passId), $this->passDownloadUrlPattern);
     }
 
+    /**
+     * Tells whether the pattern is non-empty and contains `{pass_id}`.
+     *
+     * @param string $passDownloadUrlPattern URL pattern to check
+     */
     public static function isConfigured(string $passDownloadUrlPattern): bool
     {
         return trim($passDownloadUrlPattern) !== '' && str_contains($passDownloadUrlPattern, '{pass_id}');

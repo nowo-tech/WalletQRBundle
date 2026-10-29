@@ -6,5 +6,5 @@
     5. Set <comment>apple_wallet.pass_download_url_pattern</comment> for iOS pass downloads
     6. Inject <comment>Nowo\WalletQrBundle\Service\WalletQrService</comment> in your controllers
 
-  Documentation: https://github.com/nowo-tech/WalletQrBundle
+  Documentation: https://github.com/nowo-tech/WalletQRBundle
   QrCodeBundle: https://github.com/nowo-tech/QrCodeBundle

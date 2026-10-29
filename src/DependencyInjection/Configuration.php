@@ -8,13 +8,20 @@ use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 use function is_array;
-use function is_string;
 
 /**
  * Configuration definition for Wallet QR Bundle.
  */
 final class Configuration implements ConfigurationInterface
 {
+    /**
+     * Allowed values for the legacy `qr_code.error_correction` key (same set as nowo_qr_code).
+     */
+    private const ERROR_CORRECTION_LEVELS = ['low', 'medium', 'quartile', 'high'];
+
+    /**
+     * Builds the `nowo_wallet_qr` configuration tree.
+     */
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('nowo_wallet_qr');
@@ -63,6 +70,7 @@ final class Configuration implements ConfigurationInterface
                 ->arrayNode('qr_code')
                     ->addDefaultsIfNotSet()
                     ->info('Deprecated: prefer nowo_qr_code (QrCodeBundle). Values are prepended onto nowo_qr_code for BC.')
+                    ->setDeprecated('nowo-tech/wallet-qr-bundle', '3.2', 'The "nowo_wallet_qr.qr_code" option is deprecated: configure "nowo_qr_code" (nowo-tech/qr-code-bundle) instead; the values are still forwarded to it.')
                     ->children()
                         ->integerNode('size')
                             ->defaultValue(300)
@@ -76,13 +84,10 @@ final class Configuration implements ConfigurationInterface
                             ->max(64)
                             ->info('QR code quiet zone margin in pixels (forwarded to nowo_qr_code)')
                         ->end()
-                        ->scalarNode('error_correction')
+                        ->enumNode('error_correction')
+                            ->values(self::ERROR_CORRECTION_LEVELS)
                             ->defaultValue('high')
                             ->info('QR error correction level: low, medium, quartile, high (forwarded to nowo_qr_code)')
-                            ->validate()
-                                ->ifTrue(static fn ($v): bool => !is_string($v))
-                                ->thenInvalid('qr_code.error_correction must be a string')
-                            ->end()
                         ->end()
                         ->arrayNode('url_allowlist')
                             ->defaultValue([])

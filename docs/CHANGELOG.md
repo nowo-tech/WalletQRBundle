@@ -31,14 +31,26 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- `GoogleWalletSaveLinkBuilder` takes an optional PSR-20 clock (JWT `iat`, defaults to FrameworkBundle's `clock`) and an optional PSR-3 logger (`wallet_qr` Monolog channel). Signing start/success/failure is logged without secrets (REQ-DI-001, REQ-OBS-001, REQ-CS-007). New runtime requirements: `symfony/clock`, `psr/clock`, `psr/log`.
+- `docs/SECURITY.md`: "Secrets and cryptography" and "Logging" sections (REQ-SEC-001).
 
 ### Changed
 
+- `nowo_wallet_qr.qr_code.error_correction` is an enum node (`low`, `medium`, `quartile`, `high`); invalid values fail compilation with the path and the allowed values (REQ-SF-006).
+- Flex recipe and demos no longer set the legacy `qr_code` block; QR options live in `nowo_qr_code`.
+- `composer.json` `homepage` / `support` and the CodeRabbit comments use the GitHub slug `nowo-tech/WalletQRBundle` (REQ-DOCS-014).
+- `.github/SECURITY.md` lists the supported 3.x / 2.x lines (REQ-SEC-003); `docs/PSR.md` re-evaluated (PSR-3 and PSR-20 adopted, REQ-CS-007).
+- PHPDoc on every public class and method in `src/` (REQ-CS-001); tests use PHPUnit attributes (REQ-TEST-010); README "Tests and coverage" lists exact percentages (REQ-TEST-007); Makefile `help` follows the standard block order (REQ-MAKE-001).
+- Cursor rules: dropped the frontend/Vite rule (the bundle ships no frontend assets) (REQ-IDE-004).
 - Developer tooling: Rector targets PHP 8.2, the declared `php` floor (REQ-CS-003, REQ-SF-001). Rector's PHP 8.2 rules made the final services / value objects `readonly` classes (no API change).
-### Changed
-
 - Dependencies refreshed (Composer and pnpm/npm lock files of the bundle and its demos, campaign 2026-10-19).
 - `.php-cs-fixer.dist.php`: `new ParallelConfig(2)` (REQ-CS-001).
+
+### Deprecated
+
+- `nowo_wallet_qr.qr_code` (and its keys): configure `nowo_qr_code` instead. Setting it triggers a Symfony config deprecation; values are still forwarded (REQ-SF-006, REQ-BC-001).
 
 ### Documentation
 

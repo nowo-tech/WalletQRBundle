@@ -21,6 +21,8 @@ All options live under the `nowo_wallet_qr` root key.
 
 With `enabled: true`, both `issuer_id` and `service_account_json` must be non-empty, otherwise the container fails to compile with `InvalidConfigurationException` (it used to disable the integration silently).
 
+The save link builder also receives two optional services (no configuration key): the PSR-20 clock (`Psr\Clock\ClockInterface`, FrameworkBundle's `clock` service) for the JWT `iat` claim, and the PSR-3 `logger` on the `wallet_qr` Monolog channel. When either is missing, the builder falls back to the system clock / a null logger. See [SECURITY.md](SECURITY.md#logging) for what is logged.
+
 Example:
 
 ```yaml
@@ -57,7 +59,7 @@ Your application must serve the `.pkpass` file at the resolved URL with the corr
 
 QR PNG rendering lives in the **required** dependency [QrCodeBundle](https://github.com/nowo-tech/QrCodeBundle). Preferred config root: **`nowo_qr_code`**.
 
-Legacy keys under `nowo_wallet_qr.qr_code` are still supported and forwarded to `nowo_qr_code`.
+Legacy keys under `nowo_wallet_qr.qr_code` are still supported and forwarded to `nowo_qr_code`, but the node is **deprecated** since 3.2: setting it triggers a Symfony config deprecation (`The "nowo_wallet_qr.qr_code" option is deprecated ...`). Move the values to `nowo_qr_code`. `qr_code.error_correction` is validated as an enum: any other value fails container compilation with a message naming the path and the allowed values.
 
 | Key | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -82,7 +84,7 @@ nowo_qr_code:
 
 Flat keys (`size`, `margin`, …) are also accepted and normalized into `profiles.default` by QrCodeBundle.
 
-Example with URL allowlist (legacy key):
+Example with URL allowlist (legacy key, deprecated since 3.2 — triggers a config deprecation):
 
 ```yaml
 nowo_wallet_qr:
