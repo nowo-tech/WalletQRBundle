@@ -32,6 +32,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Require `nowo-tech/qr-code-bundle` `^1.11`: since 1.11 a `#…#` allowlist pattern is matched against the host only; full-URL regexes need the explicit `url#^…#` form. The URL-regex test and the configuration example now use `url#^https://cdn\.example\.com/#`.
+
 ## [3.2.0] - 2026-10-29
 
 WalletQr: injected clock + PSR-3 logging around Google Wallet signing, strict qr_code enum (legacy node deprecated) See [UPGRADING](UPGRADING.md#to-320).

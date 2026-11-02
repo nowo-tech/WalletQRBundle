@@ -92,7 +92,7 @@ nowo_wallet_qr:
         size: 300
         url_allowlist:
             - example.com
-            - '#^https://cdn\\.example\\.com/'
+            - 'url#^https://cdn\.example\.com/#'
 ```
 
 ## Allowlist scope
