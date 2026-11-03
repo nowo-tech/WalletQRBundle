@@ -77,7 +77,7 @@ final class QrUrlPolicyTest extends TestCase
 
     public function testHostAllowlistRegexOnUrl(): void
     {
-        $policy = new QrUrlPolicy(['#^https://cdn\\.example\\.com/#']);
+        $policy = new QrUrlPolicy(['url#^https://cdn\\.example\\.com/#']);
 
         self::assertTrue($policy->isAllowed('https://cdn.example.com/pass.pkpass'));
         self::assertFalse($policy->isAllowed('https://other.example.com/pass.pkpass'));
