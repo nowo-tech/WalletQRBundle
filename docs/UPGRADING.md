@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 3.3.0](#to-330)
 - [To 3.2.0](#to-320)
 - [To 3.1.0](#to-310)
 - [To 3.0.12](#to-3012)
@@ -32,6 +33,22 @@
   - [1.0.0](#100)
 
 ## Unreleased
+
+## To 3.3.0
+
+From **3.2.0**:
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
+
+- **Requires `nowo-tech/qr-code-bundle` ^1.11, which changes what allowlist patterns mean.** A `#…#` pattern is now
+  matched against the **host only**, so an existing host pattern can only become stricter, never wider.
+- **Full-URL regexes must use the explicit `url#^…#` form**, for example `url#^https://cdn\.example\.com/#`. An old
+  full-URL regex such as `#^https://cdn\.example\.com/#` now **fails container compilation** with a clear message.
+  Update the configuration before deploying.
+- Keep each `url#^…#` pattern a single anchored alternative. Do not use `|` at the top level: an unanchored
+  alternative matches anywhere in the URL.
 
 ## To 3.2.0
 

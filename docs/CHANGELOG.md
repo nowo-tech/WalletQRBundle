@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.3.0] - 2026-11-03](#330---2026-11-03)
 - [[3.2.0] - 2026-10-29](#320---2026-10-29)
 - [[3.1.0] - 2026-10-13](#310---2026-10-13)
 - [[3.0.12] - 2026-10-13](#3012---2026-10-13)
@@ -32,9 +33,15 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-11-03
+
+qr-code-bundle 1.11: host-only allowlist patterns
+
 ### Changed
 
 - Require `nowo-tech/qr-code-bundle` `^1.11`: since 1.11 a `#…#` allowlist pattern is matched against the host only; full-URL regexes need the explicit `url#^…#` form. The URL-regex test and the configuration example now use `url#^https://cdn\.example\.com/#`.
+
+[3.3.0]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.3.0
 
 ## [3.2.0] - 2026-10-29
 
