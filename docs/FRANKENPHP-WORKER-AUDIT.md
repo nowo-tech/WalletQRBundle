@@ -4,6 +4,7 @@
 |-------|-------|
 | Package | `nowo-tech/wallet-qr-bundle` (`symfony-bundle`) |
 | Audited revision | `v3.0.9` (post QrCodeBundle `^1.4.9` pin) |
+| Reviewed version | `v3.3.0` (2026-11-12 review: `git diff v3.3.0 -- src` is empty at this commit) |
 | Audit date | 2026-09-25 |
 | Method | Manual review of every file under `src/` (services, link builders, Twig extension, DI extension, config, `class_alias` BC shims) |
 | **Verdict** | ✅ **Compatible under scenario B** — every service of this bundle is stateless (`readonly` config only). QR rendering is delegated to [`nowo-tech/qr-code-bundle`](https://github.com/nowo-tech/QrCodeBundle) **`^1.4.9`**, which is likewise compatible under scenario B (YAML and database profile modes). |
@@ -16,6 +17,7 @@
 - [Findings](#findings)
   - [W-01 — Service account JSON is read and parsed on every Google link (Low)](#w-01--service-account-json-is-read-and-parsed-on-every-google-link-low)
   - [W-02 — QR rendering depends on QrCodeBundle (Info / resolved by constraint)](#w-02--qr-rendering-depends-on-qrcodebundle-info--resolved-by-constraint)
+- [Kept-alive kernel test (REQ-RUNTIME-002)](#kept-alive-kernel-test-req-runtime-002)
 - [Usage recommendations in worker mode](#usage-recommendations-in-worker-mode)
 - [Re-audit triggers](#re-audit-triggers)
 
@@ -73,6 +75,12 @@ Worker demo: `demo/symfony8/docker/frankenphp/Caddyfile` and `demo/symfony8-php8
 - **Status:** From WalletQrBundle **3.0.9**, Composer requires `nowo-tech/qr-code-bundle` **`^1.4.9`**, whose own audit rates it ✅ *Compatible under scenario B* for YAML and `use_database_config: true` (array hydration + closed-EM recovery; see QrCodeBundle `docs/FRANKENPHP-WORKER-AUDIT.md`).
 
 No other findings. No code changes were required inside WalletQrBundle services to reach scenario B.
+
+## Kept-alive kernel test (REQ-RUNTIME-002)
+
+**Safe with kernel reset false.** `tests/Integration/Worker/WorkerKeptAliveKernelTest.php::testQrCreationInOneKernelWithoutResetterKeepsUsersSeparatedAndMemoryFlat` boots ONE kernel (FrameworkBundle + QrCodeBundle + this bundle, Google and Apple Wallet enabled), fetches `WalletQrService` and both link builders once and runs 1000 iterations alternating two users (distinct pass ids and JWT origins), never calling `services_resetter` or `kernel.reset`. Per iteration it signs a Google save link and builds the Apple link through the builders (every 25th iteration through `WalletQrService`, so the QR PNGs are rendered too, which is slow), decodes the JWT and asserts it holds only its own user's object id and origins, that the Apple link is the user's own (and its QR is stable for that user and different from the other user's), and, after a 50-iteration warm-up and a GC pass, that memory growth stays under 4 MiB.
+
+Rule 7 (host Doctrine): the bundle has no persistence and never touches the host default EntityManager; nothing here clears, flushes or closes it.
 
 ## Usage recommendations in worker mode
 
