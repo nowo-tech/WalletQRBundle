@@ -33,6 +33,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Tests
+
+- `WorkerKeptAliveKernelTest`: one kept-alive kernel, 1000 Google / Apple Wallet QR creations as two users, no resetter, isolation and memory assertions (REQ-RUNTIME-002); `docs/FRANKENPHP-WORKER-AUDIT.md` refreshed.
+
 ## [3.3.0] - 2026-11-03
 
 qr-code-bundle 1.11: host-only allowlist patterns
