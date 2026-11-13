@@ -6,7 +6,7 @@ namespace Nowo\WalletQrBundle\Twig;
 
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Model\WalletQr;
-use Nowo\WalletQrBundle\Service\WalletQrService;
+use Nowo\WalletQrBundle\Service\WalletQrServiceInterface;
 use Twig\Error\RuntimeError;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
@@ -23,10 +23,10 @@ final class WalletQrExtension extends AbstractExtension
     /**
      * Creates the Twig extension.
      *
-     * @param WalletQrService $walletQrService Wallet QR service
+     * @param WalletQrServiceInterface $walletQrService Wallet QR service
      */
     public function __construct(
-        private readonly WalletQrService $walletQrService,
+        private readonly WalletQrServiceInterface $walletQrService,
     ) {
     }
 

@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Nowo\WalletQrBundle\Service;
 
 use Nowo\QrCodeBundle\Service\QrCodeService;
-use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
+use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilderInterface;
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Exception\WalletConfigurationException;
-use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilder;
+use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilderInterface;
 use Nowo\WalletQrBundle\Model\GoogleWalletPassReference;
 use Nowo\WalletQrBundle\Model\WalletLink;
 use Nowo\WalletQrBundle\Model\WalletQr;
@@ -18,19 +18,19 @@ use Nowo\WalletQrBundle\Model\WalletQr;
  *
  * QR rendering and URL policy are provided by nowo-tech/qr-code-bundle ({@see QrCodeService}).
  */
-final readonly class WalletQrService
+final readonly class WalletQrService implements WalletQrServiceInterface
 {
     /**
      * Creates the wallet QR service.
      *
      * @param QrCodeService $qrCodeService QR renderer from nowo-tech/qr-code-bundle
-     * @param GoogleWalletSaveLinkBuilder|null $googleWalletSaveLinkBuilder Null when Google Wallet is disabled
-     * @param AppleWalletPassLinkBuilder|null $appleWalletPassLinkBuilder Null when Apple Wallet is disabled
+     * @param GoogleWalletSaveLinkBuilderInterface|null $googleWalletSaveLinkBuilder Null when Google Wallet is disabled
+     * @param AppleWalletPassLinkBuilderInterface|null $appleWalletPassLinkBuilder Null when Apple Wallet is disabled
      */
     public function __construct(
         private QrCodeService $qrCodeService,
-        private ?GoogleWalletSaveLinkBuilder $googleWalletSaveLinkBuilder = null,
-        private ?AppleWalletPassLinkBuilder $appleWalletPassLinkBuilder = null,
+        private ?GoogleWalletSaveLinkBuilderInterface $googleWalletSaveLinkBuilder = null,
+        private ?AppleWalletPassLinkBuilderInterface $appleWalletPassLinkBuilder = null,
     ) {
     }
 
@@ -104,18 +104,18 @@ final readonly class WalletQrService
         return new WalletQr($link, $this->qrCodeService->createDataUriForUrl($url));
     }
 
-    private function requireGoogleBuilder(): GoogleWalletSaveLinkBuilder
+    private function requireGoogleBuilder(): GoogleWalletSaveLinkBuilderInterface
     {
-        if (!$this->googleWalletSaveLinkBuilder instanceof GoogleWalletSaveLinkBuilder) {
+        if (!$this->googleWalletSaveLinkBuilder instanceof GoogleWalletSaveLinkBuilderInterface) {
             throw new WalletConfigurationException('Google Wallet integration is disabled or not configured.');
         }
 
         return $this->googleWalletSaveLinkBuilder;
     }
 
-    private function requireAppleBuilder(): AppleWalletPassLinkBuilder
+    private function requireAppleBuilder(): AppleWalletPassLinkBuilderInterface
     {
-        if (!$this->appleWalletPassLinkBuilder instanceof AppleWalletPassLinkBuilder) {
+        if (!$this->appleWalletPassLinkBuilder instanceof AppleWalletPassLinkBuilderInterface) {
             throw new WalletConfigurationException('Apple Wallet integration is disabled or not configured.');
         }
 

@@ -7,6 +7,7 @@ namespace Nowo\WalletQrBundle\Tests\Unit\Service;
 use Nowo\QrCodeBundle\Config\ProfileResolver;
 use Nowo\QrCodeBundle\Service\QrCodeService;
 use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
+use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilderInterface;
 use Nowo\WalletQrBundle\Enum\WalletPlatform;
 use Nowo\WalletQrBundle\Exception\InvalidWalletQrUrlException;
 use Nowo\WalletQrBundle\Exception\WalletConfigurationException;
@@ -70,6 +71,20 @@ final class WalletQrServiceTest extends TestCase
 
         $this->assertSame(WalletPlatform::Ios, $result->link->platform);
         $this->assertSame('https://example.com/ticket-42.pkpass', $result->link->url);
+    }
+
+    public function testHostLinkBuilderImplementingTheSpiIsUsed(): void
+    {
+        $host = new class implements AppleWalletPassLinkBuilderInterface {
+            public function buildPassDownloadUrl(string $passId): string
+            {
+                return 'https://signed.example.com/' . $passId . '?sig=abc';
+            }
+        };
+
+        $result = (new WalletQrService($this->qrCodeService(), null, $host))->createAppleWalletQr('t-1');
+
+        $this->assertSame('https://signed.example.com/t-1?sig=abc', $result->link->url);
     }
 
     public function testCreateWalletQrPair(): void

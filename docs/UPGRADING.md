@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [Unreleased](#unreleased)
+- [To 3.4.0](#to-340)
 - [To 3.3.0](#to-330)
 - [To 3.2.0](#to-320)
 - [To 3.1.0](#to-310)
@@ -33,6 +34,10 @@
   - [1.0.0](#100)
 
 ## Unreleased
+
+## To 3.4.0
+
+From **3.3.0**: no action. The three interfaces are new and additive; the class service ids still work. Type-hint `WalletQrServiceInterface` in your own code to be able to swap or double it. To sign Google Wallet links or build Apple pass URLs your own way, implement `GoogleWalletSaveLinkBuilderInterface` / `AppleWalletPassLinkBuilderInterface` (see [ARCHITECTURE](ARCHITECTURE.md)).
 
 ## To 3.3.0
 

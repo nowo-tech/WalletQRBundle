@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Nowo\WalletQrBundle\DependencyInjection;
 
 use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilder;
+use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilderInterface;
 use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilder;
+use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilderInterface;
 use Psr\Clock\ClockInterface;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 use Symfony\Component\Config\FileLocator;
@@ -111,6 +113,7 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
         $definition->setPublic(false);
         $definition->addTag('monolog.logger', ['channel' => 'wallet_qr']);
         $container->setDefinition('nowo_wallet_qr.google_wallet.save_link_builder', $definition);
+        $container->setAlias(GoogleWalletSaveLinkBuilderInterface::class, 'nowo_wallet_qr.google_wallet.save_link_builder');
         $container->setParameter('nowo_wallet_qr.google_wallet.enabled', true);
     }
 
@@ -139,6 +142,7 @@ final class NowoWalletQrExtension extends Extension implements PrependExtensionI
         $definition->setAutowired(false);
         $definition->setPublic(false);
         $container->setDefinition('nowo_wallet_qr.apple_wallet.pass_link_builder', $definition);
+        $container->setAlias(AppleWalletPassLinkBuilderInterface::class, 'nowo_wallet_qr.apple_wallet.pass_link_builder');
         $container->setParameter('nowo_wallet_qr.apple_wallet.enabled', true);
     }
 }

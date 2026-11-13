@@ -16,7 +16,7 @@ use function trim;
  * Apple Wallet passes are typically served as `.pkpass` files. This builder resolves
  * a configured URL pattern so applications can expose a scannable link for iOS devices.
  */
-final readonly class AppleWalletPassLinkBuilder
+final readonly class AppleWalletPassLinkBuilder implements AppleWalletPassLinkBuilderInterface
 {
     /**
      * Creates the builder for a configured URL pattern.

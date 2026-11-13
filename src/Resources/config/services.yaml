@@ -19,5 +19,8 @@ services:
       $googleWalletSaveLinkBuilder: '@?nowo_wallet_qr.google_wallet.save_link_builder'
       $appleWalletPassLinkBuilder: '@?nowo_wallet_qr.apple_wallet.pass_link_builder'
 
+  # REQ-ARCH-001 rules 1 and 5: the Twig extension depends on the interface; a host replaces the alias.
+  Nowo\WalletQrBundle\Service\WalletQrServiceInterface: '@Nowo\WalletQrBundle\Service\WalletQrService'
+
   Nowo\WalletQrBundle\Twig\WalletQrExtension:
     tags: ['twig.extension']
