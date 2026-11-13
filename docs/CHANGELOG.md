@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## Table of contents
 
 - [[Unreleased]](#unreleased)
+- [[3.4.0] - 2026-11-13](#340---2026-11-13)
 - [[3.3.0] - 2026-11-03](#330---2026-11-03)
 - [[3.2.0] - 2026-10-29](#320---2026-10-29)
 - [[3.1.0] - 2026-10-13](#310---2026-10-13)
@@ -33,6 +34,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-11-13
+
 ### Added
 
 - **Interfaces and SPI (REQ-ARCH-001 rules 1 and 5):** `Service\WalletQrServiceInterface`, `GoogleWallet\GoogleWalletSaveLinkBuilderInterface` and `AppleWallet\AppleWalletPassLinkBuilderInterface`. `WalletQrService`, `GoogleWalletSaveLinkBuilder` and `AppleWalletPassLinkBuilder` implement them; the interfaces are aliased in the container (the builder aliases exist only when the platform is enabled); `WalletQrService` and the Twig extension depend on the interfaces. A host with its own signing or URL scheme implements a builder interface and registers it under the documented service id. Strictly additive; class ids and defaults unchanged.
@@ -45,6 +48,8 @@ All notable changes to this project will be documented in this file.
 ### Tests
 
 - `WorkerKeptAliveKernelTest`: one kept-alive kernel, 1000 Google / Apple Wallet QR creations as two users, no resetter, isolation and memory assertions (REQ-RUNTIME-002); `docs/FRANKENPHP-WORKER-AUDIT.md` refreshed.
+
+[3.4.0]: https://github.com/nowo-tech/WalletQRBundle/releases/tag/v3.4.0
 
 ## [3.3.0] - 2026-11-03
 

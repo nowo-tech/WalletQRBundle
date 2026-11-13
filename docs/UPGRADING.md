@@ -4,6 +4,7 @@
 
 - [Unreleased](#unreleased)
 - [To 3.4.0](#to-340)
+- [To 3.4.0](#to-340-1)
 - [To 3.3.0](#to-330)
 - [To 3.2.0](#to-320)
 - [To 3.1.0](#to-310)
@@ -34,6 +35,14 @@
   - [1.0.0](#100)
 
 ## Unreleased
+
+## To 3.4.0
+
+From **3.3.0**:
+
+```bash
+composer update nowo-tech/wallet-qr-bundle
+```
 
 ## To 3.4.0
 
