@@ -33,6 +33,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Demo uses the UiKit base style and FormKit forms (REQ-DEMO-014/015). The bundle demo has no forms, so only the UiKit shell applies; the unused Bootstrap password-toggle form theme is removed.
+
 ### Tests
 
 - `WorkerKeptAliveKernelTest`: one kept-alive kernel, 1000 Google / Apple Wallet QR creations as two users, no resetter, isolation and memory assertions (REQ-RUNTIME-002); `docs/FRANKENPHP-WORKER-AUDIT.md` refreshed.

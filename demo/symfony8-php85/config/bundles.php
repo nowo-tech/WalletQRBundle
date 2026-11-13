@@ -8,6 +8,7 @@ return [
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
     Nowo\QrCodeBundle\NowoQrCodeBundle::class => ['all' => true],
     Nowo\WalletQrBundle\NowoWalletQrBundle::class => ['all' => true],
+    Nowo\UiKitBundle\NowoUiKitBundle::class => ['all' => true],
     Nowo\HotReloadBundle\NowoHotReloadBundle::class => ['dev' => true, 'test' => true],
     Nowo\TwigInspectorBundle\NowoTwigInspectorBundle::class => ['dev' => true, 'test' => true],
     Symfony\UX\TwigComponent\TwigComponentBundle::class => ['all' => true],
