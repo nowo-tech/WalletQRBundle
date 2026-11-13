@@ -29,7 +29,7 @@ use function trim;
  *
  * @see https://developers.google.com/wallet/generic/web
  */
-final readonly class GoogleWalletSaveLinkBuilder
+final readonly class GoogleWalletSaveLinkBuilder implements GoogleWalletSaveLinkBuilderInterface
 {
     private const SAVE_URL = 'https://pay.google.com/gp/v/save/';
 

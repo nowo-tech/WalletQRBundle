@@ -4,10 +4,14 @@ declare(strict_types=1);
 
 namespace Nowo\WalletQrBundle\Tests\Unit\DependencyInjection;
 
+use Nowo\WalletQrBundle\AppleWallet\AppleWalletPassLinkBuilderInterface;
 use Nowo\WalletQrBundle\DependencyInjection\NowoWalletQrExtension;
+use Nowo\WalletQrBundle\GoogleWallet\GoogleWalletSaveLinkBuilderInterface;
 use Nowo\WalletQrBundle\Service\WalletQrService;
+use Nowo\WalletQrBundle\Service\WalletQrServiceInterface;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 
 use function dirname;
 
@@ -106,5 +110,29 @@ final class NowoWalletQrExtensionTest extends TestCase
 
         $this->assertTrue($container->hasDefinition('nowo_wallet_qr.apple_wallet.pass_link_builder'));
         $this->assertTrue($container->getParameter('nowo_wallet_qr.apple_wallet.enabled'));
+    }
+
+    public function testPortsAreAliasedAndAHostCanOverrideTheBuilders(): void
+    {
+        $container = new ContainerBuilder();
+        $this->extension->load([[
+            'google_wallet' => [
+                'enabled'              => true,
+                'issuer_id'            => '3388000000000000000',
+                'service_account_json' => dirname(__DIR__, 2) . '/fixtures/google-service-account.json',
+            ],
+            'apple_wallet' => [
+                'enabled'                   => true,
+                'pass_download_url_pattern' => 'https://example.com/pass/{pass_id}.pkpass',
+            ],
+        ]], $container);
+
+        $this->assertSame(WalletQrService::class, (string) $container->getAlias(WalletQrServiceInterface::class));
+        $this->assertSame('nowo_wallet_qr.google_wallet.save_link_builder', (string) $container->getAlias(GoogleWalletSaveLinkBuilderInterface::class));
+        $this->assertSame('nowo_wallet_qr.apple_wallet.pass_link_builder', (string) $container->getAlias(AppleWalletPassLinkBuilderInterface::class));
+
+        // A host registers its own builder under the documented service id: the service keeps its wiring.
+        $container->setDefinition('nowo_wallet_qr.apple_wallet.pass_link_builder', new Definition(AppleWalletPassLinkBuilderInterface::class));
+        $this->assertSame(AppleWalletPassLinkBuilderInterface::class, $container->getDefinition('nowo_wallet_qr.apple_wallet.pass_link_builder')->getClass());
     }
 }

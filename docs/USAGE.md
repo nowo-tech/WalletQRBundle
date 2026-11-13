@@ -14,12 +14,12 @@
 
 ```php
 use Nowo\WalletQrBundle\Model\GoogleWalletPassReference;
-use Nowo\WalletQrBundle\Service\WalletQrService;
+use Nowo\WalletQrBundle\Service\WalletQrServiceInterface;
 
 final class TicketController
 {
     public function __construct(
-        private readonly WalletQrService $walletQrService,
+        private readonly WalletQrServiceInterface $walletQrService,
     ) {
     }
 }

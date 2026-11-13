@@ -33,6 +33,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Added
+
+- **Interfaces and SPI (REQ-ARCH-001 rules 1 and 5):** `Service\WalletQrServiceInterface`, `GoogleWallet\GoogleWalletSaveLinkBuilderInterface` and `AppleWallet\AppleWalletPassLinkBuilderInterface`. `WalletQrService`, `GoogleWalletSaveLinkBuilder` and `AppleWalletPassLinkBuilder` implement them; the interfaces are aliased in the container (the builder aliases exist only when the platform is enabled); `WalletQrService` and the Twig extension depend on the interfaces. A host with its own signing or URL scheme implements a builder interface and registers it under the documented service id. Strictly additive; class ids and defaults unchanged.
+- `docs/ARCHITECTURE.md`: SPI table and a "Standard Symfony and DDD hosts" section.
+
 ### Changed
 
 - Demo uses the UiKit base style and FormKit forms (REQ-DEMO-014/015). The bundle demo has no forms, so only the UiKit shell applies; the unused Bootstrap password-toggle form theme is removed.
