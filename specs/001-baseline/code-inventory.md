@@ -2,7 +2,7 @@
 
 **Baseline spec**: [`spec.md`](spec.md)  
 **Package**: `nowo-tech/wallet-qr-bundle`  
-**Last audited**: 2026-10-20
+**Last audited**: 2026-11-16
 
 This file proves that **every production source artifact** under `src/` is referenced by the baseline specification. The package ships PHP and one YAML service file only (no TypeScript, no build outputs).
 
@@ -34,9 +34,12 @@ This file proves that **every production source artifact** under `src/` is refer
 | Source file | Spec section | Requirement IDs |
 | --- | --- | --- |
 | `AppleWallet/AppleWalletPassLinkBuilder.php` | Wallet link builder | FR-WALLET-001, FR-WRK-001 |
+| `AppleWallet/AppleWalletPassLinkBuilderInterface.php` | SPI: Apple `.pkpass` download URL (3.4.0) | FR-WALLET-003 |
 | `GoogleWallet/GoogleWalletSaveLinkBuilder.php` | Wallet link builder | FR-WALLET-001, FR-WRK-001 |
+| `GoogleWallet/GoogleWalletSaveLinkBuilderInterface.php` | SPI: signed Google save link (3.4.0) | FR-WALLET-003 |
 | `QrCode/QrCodeDataUriRenderer.php` | BC `class_alias` → QrCodeBundle | FR-QR-001 |
 | `Service/WalletQrService.php` | Wallet QR orchestration | FR-WALLET-002, FR-WRK-001 |
+| `Service/WalletQrServiceInterface.php` | Port: Wallet QR creation, aliased to `WalletQrService` (3.4.0) | FR-WALLET-003 |
 
 ## Twig PHP
 
@@ -66,8 +69,8 @@ This file proves that **every production source artifact** under `src/` is refer
 | Security | 1 | 1 |
 | Twig PHP | 1 | 1 |
 | Exceptions | 2 | 2 |
-| Wallet & QR | 4 | 4 |
+| Wallet & QR | 7 | 7 |
 | Symfony config | 1 | 1 |
-| **Total production sources** | **16** | **16** |
+| **Total production sources** | **19** | **19** |
 
-Audit: `git ls-files src | wc -l` → 16.
+Audit: `git ls-files src | wc -l` → 19.
