@@ -34,6 +34,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Documentation
+
+- REQ compliance sweep 2026-11-16: Spec Kit baseline maps the 3.4.0 port and SPIs (`WalletQrServiceInterface`, `AppleWalletPassLinkBuilderInterface`, `GoogleWalletSaveLinkBuilderInterface`; FR-WALLET-003), inventory 19/19 (REQ-SPECKIT-001/003).
+
 ## [3.4.0] - 2026-11-13
 
 ### Added

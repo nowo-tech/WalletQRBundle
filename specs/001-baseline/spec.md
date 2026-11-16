@@ -55,6 +55,7 @@ As a template author, I render wallet QR markup via `WalletQrExtension`.
 
 - **FR-BUNDLE-001 / FR-CFG-001 / FR-CFG-002**: Bundle registration and issuer/credential configuration.
 - **FR-WALLET-001 / FR-WALLET-002**: Platform link builders and orchestrating `WalletQrService`.
+- **FR-WALLET-003**: `WalletQrServiceInterface` (port) and the `AppleWalletPassLinkBuilderInterface` / `GoogleWalletSaveLinkBuilderInterface` SPIs (3.4.0): hosts type-hint the interfaces and may alias them to their own implementations; the bundle aliases them to the shipped builders/service (REQ-ARCH-001).
 - **FR-QR-001**: `QrCodeDataUriRenderer` produces inline PNG data URIs.
 - **FR-MDL-001 / FR-MDL-002**: `WalletPlatform`, `WalletLink`, `WalletQr`, `GoogleWalletPassReference`.
 - **FR-SEC-004**: `QrUrlPolicy` restricts allowed URL schemes for QR payloads.
@@ -67,7 +68,7 @@ As a template author, I render wallet QR markup via `WalletQrExtension`.
 
 ## Success Criteria
 
-- **SC-001**: 100% of production files in `src/` appear in [`code-inventory.md`](code-inventory.md) with requirement IDs (16/16 mapped, audited 2026-10-20).
+- **SC-001**: 100% of production files in `src/` appear in [`code-inventory.md`](code-inventory.md) with requirement IDs (19/19 mapped, audited 2026-11-16).
 - **SC-002**: Configuration keys in `docs/CONFIGURATION.md` match `Configuration.php`.
 - **SC-003**: `composer qa` / `make release-check` pass in CI (PHP-CS-Fixer, PHPStan, PHPUnit). The package ships no TypeScript.
 - **SC-004**: No Packagist-visible behavior change without spec, inventory, and test updates.
@@ -93,6 +94,6 @@ As a template author, I render wallet QR markup via `WalletQrExtension`.
 | Check | Command |
 | --- | --- |
 | Full QA | `make release-check` or `composer qa` |
-| Code inventory audit | `git ls-files src \| wc -l` → 16 |
+| Code inventory audit | `git ls-files src \| wc -l` → 19 |
 
 When changing behavior, update this spec, `code-inventory.md`, integrator docs, and tests.
