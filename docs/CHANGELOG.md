@@ -34,6 +34,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### Changed
+
+- Demo (both apps): runs in UiKit's shared demo platform shell (`nowo-tech/ui-kit-bundle` ^2.60), no demo stylesheet or script of its own; adds a minimal Playwright e2e (demo platform rules + axe) and `make test-e2e`.
+
 ### Documentation
 
 - REQ compliance sweep 2026-11-16: Spec Kit baseline maps the 3.4.0 port and SPIs (`WalletQrServiceInterface`, `AppleWalletPassLinkBuilderInterface`, `GoogleWalletSaveLinkBuilderInterface`; FR-WALLET-003), inventory 19/19 (REQ-SPECKIT-001/003).
