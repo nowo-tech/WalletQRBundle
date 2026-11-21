@@ -5,20 +5,17 @@
 {% endblock %}
 
 {% block body %}
-    <div class="nowo-ui-cards">
-        <section class="nowo-ui-card">
-            <div class="nowo-ui-card__body">
-                <h2 class="nowo-ui-card__title">Android · Google Wallet</h2>
-                <img src="{{ wallet_qr_data_uri(androidQr) }}" alt="Google Wallet QR" width="240">
-                <p><code class="nowo-ui-code">{{ androidQr.link.url }}</code></p>
-            </div>
-        </section>
-        <section class="nowo-ui-card">
-            <div class="nowo-ui-card__body">
-                <h2 class="nowo-ui-card__title">iOS · Apple Wallet</h2>
-                <img src="{{ wallet_qr_data_uri(iosQr) }}" alt="Apple Wallet QR" width="240">
-                <p><code class="nowo-ui-code">{{ iosQr.link.url }}</code></p>
-            </div>
-        </section>
-    </div>
+    {% embed '@NowoUiKit/demo_platform/_section.html.twig' with {title: 'Android · Google Wallet', kind: 'detail', testid: 'demo-android'} %}
+        {% block section_body %}
+            <img src="{{ wallet_qr_data_uri(androidQr) }}" alt="Google Wallet QR" width="240" height="240">
+            <p><code class="nowo-ui-code">{{ androidQr.link.url }}</code></p>
+        {% endblock %}
+    {% endembed %}
+
+    {% embed '@NowoUiKit/demo_platform/_section.html.twig' with {title: 'iOS · Apple Wallet', kind: 'detail', testid: 'demo-ios'} %}
+        {% block section_body %}
+            <img src="{{ wallet_qr_data_uri(iosQr) }}" alt="Apple Wallet QR" width="240" height="240">
+            <p><code class="nowo-ui-code">{{ iosQr.link.url }}</code></p>
+        {% endblock %}
+    {% endembed %}
 {% endblock %}
