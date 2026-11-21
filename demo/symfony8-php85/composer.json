@@ -6,7 +6,7 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "nowo-tech/ui-kit-bundle": "^2.49",
+        "nowo-tech/ui-kit-bundle": "^2.60",
         "nowo-tech/wallet-qr-bundle": "dev-main as 1.2.99",
         "php": ">=8.2,<8.6",
         "symfony/asset": "^8.0",
